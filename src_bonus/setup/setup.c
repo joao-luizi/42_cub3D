@@ -1,4 +1,4 @@
-#include "../../inc/cub3d.h"
+#include "../../inc_bonus/cub3d.h"
 
 static bool	validate_file_argument(char *arg)
 {
@@ -38,19 +38,6 @@ while (file_contents[index] && index < line_count)
 	index++;
 }
 return (normalize_map(cfg, file_contents, map_start_index, map_end_index));
-}
-
-bool	check_configurations(t_config *cfg, t_app_state *state)
-{
-	//check map
-	if (!validate_map(cfg))
-		return (false);
-	state->map = &cfg->map;
-	state->player.direction.x = state->map->player_direction.x;
-	state->player.direction.y = state->map->player_direction.y;
-	state->player.position.x = state->map->player_position.x + 0.5;
-	state->player.position.y = state->map->player_position.y + 0.5;
-	//check fields
 }
 
 bool	load_configurations(t_config *cfg)

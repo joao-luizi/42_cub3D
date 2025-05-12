@@ -1,4 +1,4 @@
-#include "../../inc/cub3d.h"
+#include "../../inc_bonus/cub3d.h"
 
 void	extract_rgb(const char *line, t_rgb *ref)
 {
@@ -21,12 +21,13 @@ void	extract_rgb(const char *line, t_rgb *ref)
 		ref->blue = color_teste;
 }
 
-bool validate_fields(t_config *cfg, t_app_state *state)
+static bool	are_configurations_filled(t_config *cfg)
 {
-
+	return (cfg->no_tex && cfg->so_tex && cfg->we_tex && cfg->ea_tex
+		&& cfg->cl_tex && cfg->fl_tex );
 }
 
-static bool	parse_config_item(char **target, char *id, char *str)
+static bool parse_config_item(char **target, char * id, char *str)
 {
 	if (*target)
 	{
@@ -35,9 +36,9 @@ static bool	parse_config_item(char **target, char *id, char *str)
 		ft_putstr_fd("\n", 2);
 		return (false);
 	}
-	*target = strtrim_dup(str);
+	*target =  strtrim_dup(str);
 	return (true);
-}
+} 
 static bool	parse_configuration_line(t_config *cfg, const char *line)
 {
 	if (*line && is_whitespace_line(line))
@@ -73,8 +74,7 @@ bool	parse_configurations(t_config *cfg, char **file_contents,
 		}
 		(*index)++;
 	}
-	if (!cfg->no_tex || !cfg->so_tex || !cfg->we_tex || !cfg->ea_tex
-		|| !cfg->cl_tex || !cfg->fl_tex)
+	if (!are_configurations_filled(cfg))
 		return (ft_putstr_fd("Error.\nMissing configurations fileds\n", 2),
 			false);
 	return (true);

@@ -1,7 +1,7 @@
-	NO     /home/joaomigu/Documents/cub3d/maps/NO.xpm
-SO /home/joaomigu/Documents/cub3d/maps/SO.xpm
-WE /home/joaomigu/Documents/cub3d/maps/WS.xpm
-EA /home/joaomigu/Documents/cub3d/maps/ES.xpm
+	NO     ./maps/NO.xpm
+SO ./maps/SO.xpm
+WE ./maps/WS.xpm
+EA ./maps/ES.xpm
 F 220,100,0
 C 225,30,0
 

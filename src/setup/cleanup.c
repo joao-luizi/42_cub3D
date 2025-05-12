@@ -11,7 +11,7 @@ void	free_array(char **arr)
 		free(arr[i]);
 	free(arr);
 }
-void	free_config(t_config *cfg)
+void	free_config(t_config *cfg, bool free_map)
 {
 	if (!cfg)
 		return ;
@@ -29,6 +29,46 @@ void	free_config(t_config *cfg)
 		free(cfg->cl_tex);
 	if (cfg->fl_tex)
 		free(cfg->fl_tex);
-	if (cfg->map.map)
+	if (free_map && cfg->map.map)
 		free_array(cfg->map.map);
 }
+
+static void	free_image(t_img *img, void *mlx)
+{
+	if (!img)
+		return;
+	if (img->img_ptr)
+		mlx_destroy_image(mlx, img->img_ptr);
+	img->img_ptr = NULL;
+	img->data_addr = NULL;
+}
+
+static void	free_graphics(t_graphics *g, void *mlx)
+{
+	if (!g)
+		return;
+	free_image(&g->tex_no, mlx);
+	free_image(&g->tex_so, mlx);
+	free_image(&g->tex_we, mlx);
+	free_image(&g->tex_ea, mlx);
+	free_image(&g->main_scene, mlx);
+}
+
+void	free_state(t_app_state *state)
+{
+	if (!state)
+		return ;
+	if (state->mlx)
+	{
+		free_graphics(&state->g, state->mlx);
+		if (state->win)
+			mlx_destroy_window(state->mlx, state->win);
+		mlx_destroy_display(state->mlx);
+		free(state->mlx);
+		state->mlx = NULL;
+	}
+	if (state->map->map)
+		free_array(state->map->map);
+}
+
+

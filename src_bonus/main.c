@@ -1,10 +1,9 @@
-#include "../inc/cub3d.h"
-
+#include "../../inc_bonus/cub3d.h"
 
 int	main(int argc, char **argv)
 {
 	t_config cfg;
-	t_app_state st;
+
 	if (argc != 2)
 		return (ft_putstr_fd("Error.\nIncorrect number of arguments.\n", 2), 1);
 	if (!argv[1] || !argv[1][0])
@@ -14,14 +13,8 @@ int	main(int argc, char **argv)
 	if (!cfg.normal_file_path)
 		return (1);
 	if (!load_configurations(&cfg))
-		return (free_config(&cfg, true), 1);
-	init_state(&st);
-	if (!check_configurations(&cfg, &st));
-	{
-		free_config(&cfg, false);
-		return (free_state(&st), 1);
-	}
-	free_config(&cfg, false);
-	free_state(&st);
+		return (free_config(&cfg), 1);
+	//
+	free_config(&cfg);
 	return (0);
 }

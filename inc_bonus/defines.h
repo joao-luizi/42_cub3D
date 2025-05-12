@@ -15,4 +15,5 @@
 # include <sys/time.h>
 # include <time.h>
 
+# define MAP_CHARS "01NESWD"
 #endif

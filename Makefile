@@ -23,11 +23,9 @@ SRC				=	$(SRC_DIR)/setup/setup.c $(SRC_DIR)/setup/init.c $(SRC_DIR)/setup/clean
 					$(SRC_DIR)/setup/aux.c $(SRC_DIR)/setup/setup_fields.c $(SRC_DIR)/setup/setup_map.c\
 					$(SRC_DIR)/main.c $(SRC_DIR)/aux.c
 
-SRC_BONUS		= 	$(SRC_DIR_BO)/base/base_utils.c $(SRC_DIR_BO)/base/cleanup.c $(SRC_DIR_BO)/base/debug.c $(SRC_DIR_BO)/base/init.c \
-					$(SRC_DIR_BO)/game/game.c $(SRC_DIR_BO)/game/hooks.c $(SRC_DIR_BO)/game/init.c\
-					$(SRC_DIR_BO)/parser/map_check.c $(SRC_DIR_BO)/parser/map_check_utils.c $(SRC_DIR_BO)/parser/map_content.c $(SRC_DIR_BO)/parser/map_content_utils.c \
-					$(SRC_DIR_BO)/render/main_scene.c $(SRC_DIR_BO)/render/gui.c $(SRC_DIR_BO)/render/minimap.c	$(SRC_DIR_BO)/render/render_utils.c\
-					$(SRC_DIR_BO)/main.c
+SRC_BONUS		=	$(SRC_DIR_BO)/setup/setup.c $(SRC_DIR_BO)/setup/init.c $(SRC_DIR_BO)/setup/cleanup.c\
+					$(SRC_DIR_BO)/setup/aux.c $(SRC_DIR_BO)/setup/setup_fields.c $(SRC_DIR_BO)/setup/setup_map.c\
+					$(SRC_DIR_BO)/main.c $(SRC_DIR_BO)/aux.c
 
 OBJS 			= 	${patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC}}
 
