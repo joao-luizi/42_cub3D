@@ -48,17 +48,6 @@ static void	init_g(t_graphics *g)
 	init_image(&g->main_scene);
 }
 
-void	init_state(t_app_state *state)
-{
-	if (!state)
-		return ;
-	state->mlx = NULL;
-	state->win = NULL;
-	init_map(&state->map);
-	init_g(&state->g);
-	init_player(&state->player);
-}
-
 static void	init_map(t_map *map)
 {
 	map->map = NULL;
@@ -69,6 +58,19 @@ static void	init_map(t_map *map)
 	map->range.x = 0;
 	map->range.y = 0;
 }
+
+void	init_state(t_app_state *state)
+{
+	if (!state)
+		return ;
+	state->mlx = NULL;
+	state->win = NULL;
+	init_map(state->map);
+	init_g(&state->g);
+	init_player(&state->player);
+}
+
+
 void	init_config(t_config *cfg)
 {
 	if (!cfg)

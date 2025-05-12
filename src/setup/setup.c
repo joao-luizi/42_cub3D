@@ -51,6 +51,7 @@ bool	check_configurations(t_config *cfg, t_app_state *state)
 	state->player.position.x = state->map->player_position.x + 0.5;
 	state->player.position.y = state->map->player_position.y + 0.5;
 	//check fields
+	return (true);
 }
 
 bool	load_configurations(t_config *cfg)

@@ -26,7 +26,7 @@ bool	normalize_map(t_config *cfg, char **file_contents,
 //		setup_fields
 bool	parse_configurations(t_config *cfg, char **file_contents,
 			size_t line_count, size_t *index);
-bool validate_fields(t_config *cfg, t_app_state *state);
+bool 	validate_fields(t_config *cfg, t_app_state *state);
 //		setup
 bool	load_configurations(t_config *cfg);
 bool	check_configurations(t_config *cfg, t_app_state *state);

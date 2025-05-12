@@ -21,9 +21,11 @@ void	extract_rgb(const char *line, t_rgb *ref)
 		ref->blue = color_teste;
 }
 
-bool validate_fields(t_config *cfg, t_app_state *state)
+bool	validate_fields(t_config *cfg, t_app_state *state)
 {
-
+	if (!cfg || !state)
+		return (false);
+	return (true);
 }
 
 static bool	parse_config_item(char **target, char *id, char *str)
@@ -62,20 +64,22 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 bool	parse_configurations(t_config *cfg, char **file_contents,
 		size_t line_count, size_t *index)
 {
-	while (file_contents[*index] && !are_configurations_filled(cfg)
-		&& *index < line_count)
+	while (file_contents[*index] && *index < line_count)
 	{
+		if (cfg->no_tex && cfg->so_tex && cfg->we_tex && cfg->ea_tex
+			&& cfg->cl_tex && cfg->fl_tex)
+			break ;
 		if (!parse_configuration_line(cfg, file_contents[*index]))
 		{
-			ft_putstr_fd("Error.\nLine error on: ", 2);
+			ft_putstr_fd("Error.\nLine error on: '", 2);
 			ft_putstr_fd(file_contents[*index], 2);
-			return (ft_putstr_fd("\n", 2), false);
+			return (ft_putstr_fd("'\n", 2), false);
 		}
 		(*index)++;
 	}
 	if (!cfg->no_tex || !cfg->so_tex || !cfg->we_tex || !cfg->ea_tex
 		|| !cfg->cl_tex || !cfg->fl_tex)
-		return (ft_putstr_fd("Error.\nMissing configurations fileds\n", 2),
+		return (ft_putstr_fd("Error.\nMissing configurations fields\n", 2),
 			false);
 	return (true);
 }

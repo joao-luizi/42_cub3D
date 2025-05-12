@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 	if (!load_configurations(&cfg))
 		return (free_config(&cfg, true), 1);
 	init_state(&st);
-	if (!check_configurations(&cfg, &st));
+	if (!check_configurations(&cfg, &st))
 	{
 		free_config(&cfg, false);
 		return (free_state(&st), 1);

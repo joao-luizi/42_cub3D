@@ -79,6 +79,7 @@ bool validate_map(t_config *cfg)
 		}
 		i++;
 	}
+	return (true);
 }
 
 bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
