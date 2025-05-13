@@ -30,7 +30,10 @@ void	free_config(t_config *cfg, bool free_map)
 	if (cfg->fl_tex)
 		free(cfg->fl_tex);
 	if (free_map && cfg->map.map)
+	{
 		free_array(cfg->map.map);
+		cfg->map.map = NULL;
+	}
 }
 
 static void	free_image(t_img *img, void *mlx)
@@ -67,8 +70,11 @@ void	free_state(t_app_state *state)
 		free(state->mlx);
 		state->mlx = NULL;
 	}
-	if (state->map->map)
+	if (state->map && state->map->map)
+	{
 		free_array(state->map->map);
+		state->map->map = NULL;
+	}
 }
 
 

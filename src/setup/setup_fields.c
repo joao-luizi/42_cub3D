@@ -1,29 +1,16 @@
 #include "../../inc/cub3d.h"
 
-void	extract_rgb(const char *line, t_rgb *ref)
-{
-	char	**split;
-	int		color_teste;
-
-	while (*line && is_whitespace(*line))
-		line++;
-	split = ft_split(line, ',');
-	if (!split || ft_str_array_len(split) != 3)
-		return ;
-	color_teste = ft_atoi(split[0]);
-	if (color_teste >= 0 && color_teste <= 255)
-		ref->red = color_teste;
-	color_teste = ft_atoi(split[1]);
-	if (color_teste >= 0 && color_teste <= 255)
-		ref->green = color_teste;
-	color_teste = ft_atoi(split[2]);
-	if (color_teste >= 0 && color_teste <= 255)
-		ref->blue = color_teste;
-}
-
 bool	validate_fields(t_config *cfg, t_app_state *state)
 {
-	if (!cfg || !state)
+	state->mlx = mlx_init();
+	if (!state->mlx)
+		return (ft_putstr_fd(ERR_MLX_INIT, 2), false);
+	if (!fill_texture(state->mlx, &state->g.tex_no, cfg->no_tex)
+		|| !fill_texture(state->mlx, &state->g.tex_so, cfg->so_tex)
+		|| !fill_texture(state->mlx, &state->g.tex_we, cfg->we_tex)
+		|| !fill_texture(state->mlx, &state->g.tex_ea, cfg->ea_tex)
+		|| !extract_rgb(cfg->fl_tex, &state->g.floor)
+		|| !extract_rgb(cfg->cl_tex, &state->g.ceil))
 		return (false);
 	return (true);
 }
@@ -32,7 +19,7 @@ static bool	parse_config_item(char **target, char *id, char *str)
 {
 	if (*target)
 	{
-		ft_putstr_fd("Error.\nDuplicate ID found: ", 2);
+		ft_putstr_fd(ERR_DUP_ID, 2);
 		ft_putstr_fd(id, 2);
 		ft_putstr_fd("\n", 2);
 		return (false);
@@ -46,6 +33,8 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 		return (true);
 	while (*line && is_whitespace(*line))
 		line++;
+	if (!*line)
+		return (true);
 	if (!ft_strncmp(line, "NO ", 3))
 		return (parse_config_item(&cfg->no_tex, "NO", (char *)line + 3));
 	if (!ft_strncmp(line, "SO ", 3))
@@ -58,6 +47,9 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 		return (parse_config_item(&cfg->fl_tex, "F", (char *)line + 2));
 	if (!ft_strncmp(line, "C ", 2))
 		return (parse_config_item(&cfg->cl_tex, "C", (char *)line + 2));
+	ft_putstr_fd("Error.\nUnrecognized field line: ", 2);
+	ft_putstr_fd((char *)line, 2);
+	ft_putstr_fd("\n", 2);
 	return (false);
 }
 
@@ -70,16 +62,11 @@ bool	parse_configurations(t_config *cfg, char **file_contents,
 			&& cfg->cl_tex && cfg->fl_tex)
 			break ;
 		if (!parse_configuration_line(cfg, file_contents[*index]))
-		{
-			ft_putstr_fd("Error.\nLine error on: '", 2);
-			ft_putstr_fd(file_contents[*index], 2);
-			return (ft_putstr_fd("'\n", 2), false);
-		}
+			return (false);
 		(*index)++;
 	}
 	if (!cfg->no_tex || !cfg->so_tex || !cfg->we_tex || !cfg->ea_tex
 		|| !cfg->cl_tex || !cfg->fl_tex)
-		return (ft_putstr_fd("Error.\nMissing configurations fields\n", 2),
-			false);
+		return (ft_putstr_fd(ERR_FIELDS, 2), false);
 	return (true);
 }

@@ -29,6 +29,8 @@ static void	init_image(t_img *img)
 	img->size_line = 0;
 	img->bpp = 0;
 	img->endian = 0;
+	img->width = 0;
+	img->height = 0;
 }
 
 static void	init_g(t_graphics *g)
@@ -65,7 +67,7 @@ void	init_state(t_app_state *state)
 		return ;
 	state->mlx = NULL;
 	state->win = NULL;
-	init_map(state->map);
+	state->map = NULL;
 	init_g(&state->g);
 	init_player(&state->player);
 }

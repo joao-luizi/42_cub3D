@@ -30,7 +30,7 @@ static bool	isvalid_border(t_config *cfg, int i, int j)
 static void set_player(int i, int j, t_config *cfg)
 {
 	cfg->map.player_position.y = i;
-	cfg->map.player_position.y = j;
+	cfg->map.player_position.x = j;
 	if (cfg->map.map[i][j] == 'N')
 	{
 		cfg->map.player_direction.x = 0;
@@ -59,26 +59,27 @@ bool validate_map(t_config *cfg)
 	int i;
 	int j;
 	char c;
-	i = 0;
-	while (cfg->map.map[i])
+
+	i = -1;
+	while (cfg->map.map[++i])
 	{
-		j = 0;
-		c = cfg->map.map[i][j];
-		while (c)
+		j = -1;
+		while (cfg->map.map[i][++j])
 		{
+			c = cfg->map.map[i][j];
 			if (!isvalid_border(cfg, i, j))
-				return (ft_putstr_fd("Error.\nInvalid border detected.\n", 2), false);
+				return (ft_putstr_fd(ERR_BORDER, 2), false);
 			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 			{
 				if (cfg->map.player_position.x != -1 && cfg->map.player_position.y != -1)
-					return (ft_putstr_fd("Error.\nDuplicate player position found.\n", 2), false);
+					return (ft_putstr_fd(ERR_DUP_PLAYER, 2), false);
 				else
 					set_player(i, j, cfg);
 			}
-			j++;
 		}
-		i++;
 	}
+	if (cfg->map.player_position.x < 0 || cfg->map.player_position.y < 0)	
+		return (ft_putstr_fd(ERR_NO_PLAYER, 2), false);
 	return (true);
 }
 
@@ -97,7 +98,9 @@ bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
 		cfg->map.range.y++;
 		(*index)++;
 	}
-	return (cfg->map.range.y > 2);
+	if (cfg->map.range.y < 3 || cfg->map.range.x < 3)
+		return (ft_putstr_fd(ERR_MAP_DIM, 2), false);
+	return (true);
 }
 
 bool	normalize_map(t_config *cfg, char **file_contents,
@@ -109,13 +112,13 @@ bool	normalize_map(t_config *cfg, char **file_contents,
 	index = 0;
 	cfg->map.map = (char **)ft_calloc(cfg->map.range.y + 1, sizeof(char *));
 	if (!cfg->map.map)
-		return (false);
+		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
 	while (map_start_index < map_end_index)
 	{
 		cfg->map.map[index] = (char *)ft_calloc(cfg->map.range.x + 1,
 				sizeof(char));
 		if (!cfg->map.map[index])
-			return (false);
+			return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
 		i = 0;
 		while (file_contents[map_start_index][i])
         {

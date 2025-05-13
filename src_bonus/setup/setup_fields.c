@@ -45,6 +45,8 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 		return (true);
 	while (*line && is_whitespace(*line))
 		line++;
+	if (!*line)
+		return (true);
 	if (!ft_strncmp(line, "NO ", 3))
 		return (parse_config_item(&cfg->no_tex, "NO", (char *)line + 3));
 	if (!ft_strncmp(line, "SO ", 3))
@@ -58,7 +60,6 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 	if (!ft_strncmp(line, "C ", 2))
 		return (parse_config_item(&cfg->cl_tex, "C", (char *)line + 2));
 	return (false);
-}
 
 bool	parse_configurations(t_config *cfg, char **file_contents,
 		size_t line_count, size_t *index)

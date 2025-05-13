@@ -15,7 +15,8 @@ void	free_state(t_app_state *state);
 size_t	count_file_lines(char *path);
 bool	get_file_content(char *path, size_t line_count, char ***file_content);
 bool	is_map_line(const char *line, char *allowed);
-
+bool	fill_texture(void *mlx, t_img *tex, char *file);
+bool	extract_rgb(const char *line, t_rgb *ref);
 //		setup_map
 bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
 			size_t *index, size_t line_count);
