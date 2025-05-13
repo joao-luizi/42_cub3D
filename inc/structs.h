@@ -2,6 +2,14 @@
 # define STRUCTS_H
 
 # include "defines.h"
+typedef enum e_wall
+{
+	NONE_WALL,
+	NO_WALL,
+	SO_WALL,
+	WE_WALL,
+	EA_WALL,
+}	t_wall;
 
 typedef struct s_img
 {
@@ -12,6 +20,8 @@ typedef struct s_img
 	int			endian;
 	int			width;
 	int			height;
+	int			half_width;
+	int			half_height;
 }				t_img;
 
 typedef struct s_rgb
@@ -84,9 +94,22 @@ typedef struct s_graphics
 	t_img		tex_so;
 	t_img		tex_we;
 	t_img		tex_ea;
-	t_rgb		floor;
-	t_rgb		ceil;
+	int			floor;
+	int			ceil;
 }				t_graphics;
+
+typedef struct e_ray_info
+{
+	double		wall_dist;
+	double		wall_half;
+	t_vector	wall_info;
+	t_vector	ray_dir;
+	t_vector	delta_dist;
+	t_point		map;
+	t_point		step;
+	t_vector	side_dist;
+	t_wall		wall;
+}				t_ray_info;
 
 typedef struct e_app_state
 {
@@ -95,6 +118,7 @@ typedef struct e_app_state
 	t_graphics	g;
 	t_map		*map;
 	t_player	player;
+	double		*normal_x;
 
 }				t_app_state;
 

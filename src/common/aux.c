@@ -1,5 +1,6 @@
 #include "../../inc/cub3d.h"
 
+
 char	*strtrim_dup(char *ori)
 {
 	char	*result;

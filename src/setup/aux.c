@@ -1,9 +1,9 @@
 #include "../../inc/cub3d.h"
 
-bool	extract_rgb(const char *line, t_rgb *ref)
+bool	extract_rgb(const char *line, int *ref)
 {
 	char	**split;
-	int		color_teste;
+	int		color[3];
 
 	while (*line && is_whitespace(*line))
 		line++;
@@ -16,24 +16,22 @@ bool	extract_rgb(const char *line, t_rgb *ref)
 		ft_putstr_fd((char *)line, 2);
 		return (ft_putstr_fd("\n", 2), false);
 	}
-	color_teste = ft_atoi(split[0]);
-	if (color_teste >= 0 && color_teste <= 255)
-		ref->red = color_teste;
-	color_teste = ft_atoi(split[1]);
-	if (color_teste >= 0 && color_teste <= 255)
-		ref->green = color_teste;
-	color_teste = ft_atoi(split[2]);
-	if (color_teste >= 0 && color_teste <= 255)
-		ref->blue = color_teste;
-	free_array(split);
-	return (true);
+	color[0] = ft_atoi(split[0]);
+	color[1] = ft_atoi(split[1]);
+	color[2] = ft_atoi(split[2]);
+	if (color[0] < 0 || color[0] > 255 || color[1] < 0 || color[1] > 255
+		|| color[2] < 0 || color[2] > 255)
+	{
+		free_array(split);
+		return (ft_putstr_fd(ERR_COLOR_FORMAT, 2), false);
+	}
+	*ref = (color[0] << 16) | (color[1] << 8) | color[2];
+	return (free_array(split), true);
 }
 
 bool	fill_texture(void *mlx, t_img *tex, char *file)
 {
-	
-	tex->img_ptr = mlx_xpm_file_to_image(mlx, file, &tex->width,
-			&tex->height);
+	tex->img_ptr = mlx_xpm_file_to_image(mlx, file, &tex->width, &tex->height);
 	if (!tex->img_ptr)
 	{
 		ft_putstr_fd(ERR_MISS_TEX, 2);
@@ -74,8 +72,8 @@ bool	get_file_content(char *path, size_t line_count, char ***file_content)
 	i = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		
-		line[ft_strlen(line) - 1] = '\0'; //remove the ending newline (this is guarranteed to be there)
+		line[ft_strlen(line) - 1] = '\0';
+		// remove the ending newline (this is guarranteed to be there)
 		(*file_content)[i] = line;
 		i++;
 	}
@@ -134,4 +132,3 @@ bool	is_map_line(const char *line, char *allowed)
 	}
 	return (allowed_count != 0);
 }
-

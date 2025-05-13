@@ -55,14 +55,14 @@ bool	check_configurations(t_config *cfg, t_app_state *state)
 		return (false);
 	fov_factor = (double)FOV / 100;
 	state->map = &cfg->map;
-	x = state->map->player_position.x + 0.5;
-	y = state->map->player_position.y + 0.5;
+	state->player.position.x = state->map->player_position.x + 0.5;;
+	state->player.position.y = state->map->player_position.y + 0.5;
+	x = state->map->player_direction.x;
+	y = state->map->player_direction.y;
+	state->player.direction.x = x;
+	state->player.direction.y = y;
 	state->player.plane.x = -y * fov_factor;
 	state->player.plane.y = x * fov_factor;
-	state->player.direction.x = state->map->player_direction.x;
-	state->player.direction.y = state->map->player_direction.y;
-	state->player.position.x = x;
-	state->player.position.y = y;
 	return (true);
 }
 

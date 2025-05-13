@@ -75,6 +75,8 @@ void	free_state(t_app_state *state)
 		free_array(state->map->map);
 		state->map->map = NULL;
 	}
+	if (state->normal_x)
+		free(state->normal_x);
 }
 
 

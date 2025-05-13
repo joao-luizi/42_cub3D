@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 		return (free_state(&st), 1);
 	}
 	free_config(&cfg, false);
-	//game loop
+	init_window(&st);
 	free_state(&st);
 	return (0);
 }

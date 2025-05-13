@@ -16,6 +16,11 @@
 # include <time.h>
 
 # define FOV 60
+# define WINDOW_WIDTH 1200
+# define WINDOW_HEIGHT 800
+# define MAIN_WIDTH 1200
+# define MAIN_HEIGHT 800
+
 # define MAP_CHARS "01NESW"
 # define ERR_BORDER "Error.\nInvalid border detected.\n"
 # define ERR_DUP_PLAYER "Error.\nDuplicate player position found.\n"
@@ -34,4 +39,7 @@
 # define ERR_FILE_EXT "Error.\nWrong file extension. Expected '.cub'.\n"
 # define ERR_LAST_ELE "Error.\nMap must be the last element in the file.\n"
 # define ERR_MAP_LINE "Error.\nEmpty line on map.\n"
+# define ERR_IMG_INIT "Error.\nUnable to initialize mlx image."
+# define ERR_WIN_INIT "Error.\nUnable to initialize mlx window."
+# define ERR_IMG_DA "Error.\nUnable to initialize mlx image data address."
 #endif
