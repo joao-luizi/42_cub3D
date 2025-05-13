@@ -108,8 +108,6 @@ size_t	count_file_lines(char *path)
 	return (i);
 }
 
-
-
 bool	is_map_line(const char *line, char *allowed)
 {
 	int	i;

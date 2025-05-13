@@ -19,9 +19,10 @@ MLX_FILE		=	$(MLX_PATH)libmlx.a
 
 LINKS 			= -lmlx -lXext -lX11 -L$(MLX_PATH) -lmlx -L$(LIBFT_PATH)lib -lft -lm
 
-SRC				=	$(SRC_DIR)/setup/setup.c $(SRC_DIR)/setup/init.c $(SRC_DIR)/setup/cleanup.c\
+SRC				=	$(SRC_DIR)/setup/setup.c \
 					$(SRC_DIR)/setup/aux.c $(SRC_DIR)/setup/setup_fields.c $(SRC_DIR)/setup/setup_map.c\
-					$(SRC_DIR)/main.c $(SRC_DIR)/aux.c
+					$(SRC_DIR)/common/aux.c $(SRC_DIR)/common/init.c $(SRC_DIR)/common/cleanup.c
+					$(SRC_DIR)/main.c 
 
 SRC_BONUS		=	$(SRC_DIR_BO)/setup/setup.c $(SRC_DIR_BO)/setup/init.c $(SRC_DIR_BO)/setup/cleanup.c\
 					$(SRC_DIR_BO)/setup/aux.c $(SRC_DIR_BO)/setup/setup_fields.c $(SRC_DIR_BO)/setup/setup_map.c\
