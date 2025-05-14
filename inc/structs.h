@@ -83,12 +83,15 @@ typedef struct e_player
 	bool		down_pressed;
 	bool		left_pressed;
 	bool		right_pressed;
+	bool		turn_left_pressed;
+	bool		turn_right_pressed;
 }				t_player;
 
 
 
 typedef struct s_graphics
 {
+	bool 		fps;
 	t_img		main_scene;
 	t_img		tex_no;
 	t_img		tex_so;
@@ -119,6 +122,7 @@ typedef struct e_app_state
 	t_map		*map;
 	t_player	player;
 	double		*normal_x;
+	int			*column_buffer;
 
 }				t_app_state;
 

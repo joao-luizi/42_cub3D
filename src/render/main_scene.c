@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/13 18:25:09 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:27:59 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static inline void	get_wall(t_app_state *st, t_ray_info *r_info)
 {
 	int	side;
 
-	
 	while (r_info->wall == NONE_WALL)
 	{
 		if (r_info->side_dist.x < r_info->side_dist.y)
@@ -96,30 +95,32 @@ static inline void	get_wall(t_app_state *st, t_ray_info *r_info)
 	}
 }
 
+
+
 static inline void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
 {
 	int		y;
 	int		wall[2];
 	t_img	*wall_tex;
+	int		tex_i;
 
-	wall_tex = NULL;
 	wall[0] = st->g.main_scene.half_height - r_info->wall_half;
 	wall[1] = wall[0] + r_info->wall_info.y;
+	get_wall_tex(&wall_tex, r_info->wall, st);
+	precompute_column(st, wall, r_info, wall_tex);
 	y = -1;
 	while (++y < wall[0])
 		draw_pixel(&st->g.main_scene, x, y, st->g.ceil);
+	tex_i = 0;
+	if (wall[0] == wall[1])
+	{
+		draw_pixel(&st->g.main_scene, x, y, st->g.ceil);
+		draw_pixel(&st->g.main_scene, x, y + 1, st->g.floor);
+	}
 	while (++y <= wall[1] && y < st->g.main_scene.height)
 	{
-		if (r_info->wall == NO_WALL)
-			wall_tex = &st->g.tex_no;
-		else if (r_info->wall == SO_WALL)
-			wall_tex = &st->g.tex_so;
-		else if (r_info->wall == WE_WALL)
-			wall_tex = &st->g.tex_we;
-		else if (r_info->wall == EA_WALL)
-			wall_tex = &st->g.tex_ea;
-		draw_pixel(&st->g.main_scene, x, y, get_tex_color(wall_tex,
-				r_info, y, wall[0]));
+		draw_pixel(&st->g.main_scene, x, y, st->column_buffer[tex_i]);
+		tex_i++;
 	}
 	while (++y < st->g.main_scene.height)
 		draw_pixel(&st->g.main_scene, x, y, st->g.floor);

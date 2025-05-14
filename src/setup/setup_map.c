@@ -7,27 +7,25 @@ static bool	isvalid_border(t_config *cfg, int i, int j)
 	cur = cfg->map.map[i][j];
 	if (cur == '1')
 		return (true);
-	else if (cur != ' ' )
+	else if (cur != ' ')
 	{
 		if (i - 1 < 0 || j - 1 < 0)
 			return (false);
 		if (i - 1 >= 0 && (cfg->map.map[i - 1][j] == ' ' || cfg->map.map[i
 				- 1][j] == '\0'))
 			return (false);
-		if (cfg->map.map[i + 1][j] == ' ' || cfg->map.map[i
-			+ 1][j] == '\0')
+		if (cfg->map.map[i + 1][j] == ' ' || cfg->map.map[i + 1][j] == '\0')
 			return (false);
-		if (j - 1 >= 0 && (cfg->map.map[i][j - 1] == ' '
-			|| cfg->map.map[i][j - 1] == '\0'))
+		if (j - 1 >= 0 && (cfg->map.map[i][j - 1] == ' ' || cfg->map.map[i][j
+				- 1] == '\0'))
 			return (false);
-		if (cfg->map.map[i][j + 1] == ' ' || cfg->map.map[i][j
-			+ 1] == '\0')
+		if (cfg->map.map[i][j + 1] == ' ' || cfg->map.map[i][j + 1] == '\0')
 			return (false);
 	}
 	return (true);
 }
 
-static void set_player(int i, int j, t_config *cfg)
+static void	set_player(int i, int j, t_config *cfg)
 {
 	cfg->map.player_position.y = i;
 	cfg->map.player_position.x = j;
@@ -53,12 +51,11 @@ static void set_player(int i, int j, t_config *cfg)
 	}
 }
 
-
-bool validate_map(t_config *cfg)
+bool	validate_map(t_config *cfg)
 {
-	int i;
-	int j;
-	char c;
+	int		i;
+	int		j;
+	char	c;
 
 	i = -1;
 	while (cfg->map.map[++i])
@@ -71,14 +68,15 @@ bool validate_map(t_config *cfg)
 				return (ft_putstr_fd(ERR_BORDER, 2), false);
 			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 			{
-				if (cfg->map.player_position.x != -1 && cfg->map.player_position.y != -1)
+				if (cfg->map.player_position.x != -1
+					&& cfg->map.player_position.y != -1)
 					return (ft_putstr_fd(ERR_DUP_PLAYER, 2), false);
 				else
 					set_player(i, j, cfg);
 			}
 		}
 	}
-	if (cfg->map.player_position.x < 0 || cfg->map.player_position.y < 0)	
+	if (cfg->map.player_position.x < 0 || cfg->map.player_position.y < 0)
 		return (ft_putstr_fd(ERR_NO_PLAYER, 2), false);
 	return (true);
 }
@@ -87,19 +85,26 @@ bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
 		size_t *index, size_t line_count)
 {
 	size_t	line_length;
+	int i;
 
-    line_length = 0;
-	while (file_contents[*index] && is_map_line(file_contents[*index],
-			MAP_CHARS) && *index < line_count)
+	line_length = 0;
+	while (file_contents[*index] && is_map_line(file_contents[*index])
+		&& *index < line_count)
 	{
+		i = -1;
+		while (file_contents[*index][++i])
+		{
+			if (file_contents[*index][i] == ' ')
+				continue;
+			if (!is_allowed(file_contents[*index][i], MAP_CHARS))
+				return (ft_putstr_fd(ERR_MAP_CHAR, 2), false);
+		}
 		line_length = ft_strlen(file_contents[*index]);
 		if (line_length > (size_t)cfg->map.range.x)
 			cfg->map.range.x = line_length;
 		cfg->map.range.y++;
 		(*index)++;
 	}
-	if (cfg->map.range.y < 3 || cfg->map.range.x < 3)
-		return (ft_putstr_fd(ERR_MAP_DIM, 2), false);
 	return (true);
 }
 
@@ -121,10 +126,10 @@ bool	normalize_map(t_config *cfg, char **file_contents,
 			return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
 		i = 0;
 		while (file_contents[map_start_index][i])
-        {
-            cfg->map.map[index][i] = file_contents[map_start_index][i];
-            i++;
-        }
+		{
+			cfg->map.map[index][i] = file_contents[map_start_index][i];
+			i++;
+		}
 		while (i < (size_t)cfg->map.range.x)
 			cfg->map.map[index][i++] = ' ';
 		map_start_index++;

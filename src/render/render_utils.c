@@ -6,13 +6,13 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:26:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/13 15:33:09 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:30:52 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y, int wall_start)
+static inline int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y, int wall_start)
 {
 	int	tex_x;
 	int	tex_y;
@@ -40,6 +40,28 @@ int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y, int wall_start)
 	return (color);
 }
 
+void	precompute_column(t_app_state *st, int wall[2],
+		t_ray_info *r_info, t_img *wall_tex)
+{
+	int	k;
+	int	tex_i;
+
+	k = 0;
+	if (k < wall[0])
+		k = wall[0];
+	tex_i = 0;
+	while (k <= wall[1] && k < MAIN_HEIGHT)
+	{
+		if (wall_tex)
+			st->column_buffer[tex_i] = get_tex_color(wall_tex, r_info, k,
+					wall[0]);
+		tex_i++;
+		k++;
+	}
+}
+
+
+
 void	draw_pixel(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
@@ -61,4 +83,18 @@ bool	is_wall(double x, double y, t_app_state *st)
 	if (st->map->map[map_y][map_x] == ' ' || st->map->map[map_y][map_x] == '\0')
 		return (true);
 	return (false);
+}
+
+void	get_wall_tex(t_img **wall_tex, t_wall wall, t_app_state *st)
+{
+	if (wall == NO_WALL)
+		*wall_tex = &st->g.tex_no;
+	else if (wall == SO_WALL)
+		*wall_tex = &st->g.tex_so;
+	else if (wall == WE_WALL)
+		*wall_tex = &st->g.tex_we;
+	else if (wall == EA_WALL)
+		*wall_tex = &st->g.tex_ea;
+	else
+		*wall_tex = NULL;
 }

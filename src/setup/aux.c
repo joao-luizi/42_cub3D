@@ -1,30 +1,38 @@
 #include "../../inc/cub3d.h"
+static void count_char(int *count, char c, char *str)
+{
+	int i;
 
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			(*count)++;
+		i++;
+	}
+}
 bool	extract_rgb(const char *line, int *ref)
 {
 	char	**split;
-	int		color[3];
+	int		color[4];
 
+	color[3] = 0;
 	while (*line && is_whitespace(*line))
 		line++;
+	count_char(&color[3], ' ', (char *)line);
+	if (color[3] > 2)
+		return (ft_putstr_fd(ERR_COLOR_FORMAT, 2), ft_putstr_fd((char *)line,
+				2), ft_putstr_fd("\n", 2), false);
 	split = ft_split(line, ',');
 	if (!split)
 		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
-	if (ft_str_array_len(split) != 3)
-	{
-		ft_putstr_fd(ERR_COLOR_FORMAT, 2);
-		ft_putstr_fd((char *)line, 2);
-		return (ft_putstr_fd("\n", 2), false);
-	}
 	color[0] = ft_atoi(split[0]);
 	color[1] = ft_atoi(split[1]);
 	color[2] = ft_atoi(split[2]);
 	if (color[0] < 0 || color[0] > 255 || color[1] < 0 || color[1] > 255
 		|| color[2] < 0 || color[2] > 255)
-	{
-		free_array(split);
-		return (ft_putstr_fd(ERR_COLOR_FORMAT, 2), false);
-	}
+		return (free_array(split), ft_putstr_fd(ERR_COLOR_FORMAT, 2),
+			ft_putstr_fd((char *)line, 2), ft_putstr_fd("\n", 2), false);
 	*ref = (color[0] << 16) | (color[1] << 8) | color[2];
 	return (free_array(split), true);
 }
@@ -105,30 +113,38 @@ size_t	count_file_lines(char *path)
 		ft_putstr_fd(ERR_EMPTY_CFG, STDERR_FILENO);
 	return (i);
 }
-
-bool	is_map_line(const char *line, char *allowed)
+bool	is_allowed(char c, char *allowed)
 {
 	int	i;
+
+	i = -1;
+	while (allowed[++i])
+	{
+		if (allowed[i] == c)
+			return (true);
+	}
+	return (false);
+}
+bool	is_map_line(const char *line)
+{
 	int	j;
 	int	allowed_count;
+	int	not_allowed_count;
 
 	j = -1;
 	allowed_count = 0;
+	not_allowed_count = 0;
 	while (line[++j])
 	{
 		if (line[j] == ' ')
 			continue ;
-		i = -1;
-		while (allowed[++i])
-		{
-			if (line[j] == allowed[i])
-			{
-				allowed_count++;
-				break ;
-			}
-		}
-		if (!allowed[i])
-			return (false);
+		if (is_allowed(line[j], MAP_CHARS))
+			allowed_count++;
+		else
+			not_allowed_count++;
 	}
-	return (allowed_count != 0);
+	if (allowed_count > 0 && not_allowed_count == 0)
+		return (true);
+	else
+		return (false);
 }

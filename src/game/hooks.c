@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:55:59 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/13 13:15:11 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/14 17:26:00 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,22 @@
 
 static void	handle_player(int keycode, t_app_state *state)
 {
-	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
-		state->player.shift_pressed = true;
-	if (keycode == XK_Alt_L || keycode == XK_Alt_R)
-		state->player.alt_pressed = true;
-	if (keycode == XK_w || keycode == XK_Up || keycode == XK_KP_Up)
+	if (keycode == XK_w)
 	{
 		state->player.up_pressed = true;
 		state->player.down_pressed = false;
 	}
-	else if (keycode == XK_s || keycode == XK_Down || keycode == XK_KP_Down)
+	else if (keycode == XK_s)
 	{
 		state->player.up_pressed = false;
 		state->player.down_pressed = true;
 	}
-	else if (keycode == XK_a || keycode == XK_Left || keycode == XK_KP_Left)
+	else if (keycode == XK_a)
 	{
 		state->player.left_pressed = true;
 		state->player.right_pressed = false;
 	}
-	else if (keycode == XK_d || keycode == XK_Right || keycode == XK_KP_Right)
+	else if (keycode == XK_d)
 	{
 		state->player.left_pressed = false;
 		state->player.right_pressed = true;
@@ -42,6 +38,9 @@ static void	handle_player(int keycode, t_app_state *state)
 
 static void	handle_utils(int keycode, t_app_state  *state)
 {
+	
+	if (keycode == XK_F1 || keycode == F1_KEY)
+		state->g.fps = !state->g.fps;
 	if (keycode == XK_Escape)
 	{
 		mlx_loop_end(state->mlx);
@@ -52,6 +51,20 @@ static void	handle_utils(int keycode, t_app_state  *state)
 
 int	handle_keypress(int keycode, t_app_state *state)
 {
+	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
+		state->player.shift_pressed = true;
+	if (keycode == XK_Alt_L || keycode == XK_Alt_R)
+		state->player.alt_pressed = true;
+	if (keycode == XK_Left || keycode == XK_KP_Left)
+	{
+		state->player.turn_left_pressed = true;
+		state->player.turn_right_pressed = false;
+	}
+	else if (keycode == XK_Right || keycode == XK_KP_Right)
+	{
+		state->player.turn_left_pressed = false;
+		state->player.turn_right_pressed = true;
+	}
 	handle_player(keycode, state);
 	handle_utils(keycode, state);
 	return (0);
@@ -63,14 +76,18 @@ int	handle_keyrelease(int keycode, t_app_state *state)
 		state->player.shift_pressed = false;
 	if (keycode == XK_Alt_L || keycode == XK_Alt_R)
 		state->player.alt_pressed = false;
-	if (keycode == XK_w || keycode == XK_Up || keycode == XK_KP_Up)
+	if (keycode == XK_w)
 		state->player.up_pressed = false;
-	if (keycode == XK_s || keycode == XK_Down || keycode == XK_KP_Down)
+	if (keycode == XK_s)
 		state->player.down_pressed = false;
-	if (keycode == XK_a || keycode == XK_Left || keycode == XK_KP_Left)
+	if (keycode == XK_a)
 		state->player.left_pressed = false;
-	if (keycode == XK_d || keycode == XK_Right || keycode == XK_KP_Right)
+	if (keycode == XK_d)
 		state->player.right_pressed = false;
+	if (keycode == XK_Left || keycode == XK_KP_Left)
+		state->player.turn_left_pressed = false;
+	if (keycode == XK_Right || keycode == XK_KP_Right)
+		state->player.turn_right_pressed = false;
 	return (0);
 }
 

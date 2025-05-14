@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:12:32 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/13 18:14:39 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/14 17:08:04 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ double	buffer_y;
 if (v_x > 0)
 	buffer_x = 0.5;
 else 
-	buffer_x = -0.5;
+	buffer_x = 0.5;
 if (v_y > 0)
 	buffer_y = 0.5;
 else
-	buffer_y = -0.5;
+	buffer_y = 0.5;
 
 new_x = state->player.position.x + v_x;
 new_y = state->player.position.y + v_y;
@@ -77,24 +77,18 @@ static inline void	horizontal_move(t_app_state *state, double *v_x,
 {
 	if (state->player.left_pressed)
 	{
-		if (state->player.alt_pressed)
-		{
-			*v_x += state->player.direction.y * move_speed;
-			*v_y += -state->player.direction.x * move_speed;
-		}
-		else
-			rotate_player(state, -state->player.speed.angular);
+		*v_x += state->player.direction.y * move_speed;
+		*v_y += -state->player.direction.x * move_speed;
 	}
 	else if (state->player.right_pressed)
 	{
-		if (state->player.alt_pressed)
-		{
-			*v_x += -state->player.direction.y * move_speed;
-			*v_y += state->player.direction.x * move_speed;
-		}
-		else
-			rotate_player(state, state->player.speed.angular);
+		*v_x += -state->player.direction.y * move_speed;
+		*v_y += state->player.direction.x * move_speed;
 	}
+	if (state->player.turn_left_pressed)
+		rotate_player(state, -state->player.speed.angular);
+	if (state->player.turn_right_pressed)
+		rotate_player(state, state->player.speed.angular);
 }
 
 void	update_player(t_app_state *state)

@@ -21,6 +21,11 @@
 # define MAIN_WIDTH 1200
 # define MAIN_HEIGHT 800
 
+# define PLAYER_ROT_SPEED 0.02
+# define PLAYER_MOV_SPEED 0.04
+
+
+# define F1_KEY 269025093
 # define MAP_CHARS "01NESW"
 # define ERR_BORDER "Error.\nInvalid border detected.\n"
 # define ERR_DUP_PLAYER "Error.\nDuplicate player position found.\n"
@@ -32,6 +37,7 @@
 # define ERR_FIELDS "Error.\nMissing configurations fields.\n"
 # define ERR_DUP_ID "Error.\nDuplicate ID found: "
 # define ERR_MAP_DIM "Error.\nInvalid map dimensions.\n"
+# define ERR_MAP_CHAR "Error.\nInvalid char detected.\n"
 # define ERR_MISS_TEX "Error.\nMissing texture: "
 # define ERR_COLOR_FORMAT "Error.\nIncorrect color format: "
 # define ERR_MLX_INIT "Error.\nUnable to initialize mlx.\n"

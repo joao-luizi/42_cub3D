@@ -56,15 +56,13 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 bool	parse_configurations(t_config *cfg, char **file_contents,
 		size_t line_count, size_t *index)
 {
-	while (file_contents[*index] && *index < line_count)
+	while (file_contents[*index] && *index < line_count && !is_map_line(file_contents[*index]))
 	{
-		if (cfg->no_tex && cfg->so_tex && cfg->we_tex && cfg->ea_tex
-			&& cfg->cl_tex && cfg->fl_tex)
-			break ;
 		if (!parse_configuration_line(cfg, file_contents[*index]))
 			return (false);
 		(*index)++;
 	}
+	
 	if (!cfg->no_tex || !cfg->so_tex || !cfg->we_tex || !cfg->ea_tex
 		|| !cfg->cl_tex || !cfg->fl_tex)
 		return (ft_putstr_fd(ERR_FIELDS, 2), false);

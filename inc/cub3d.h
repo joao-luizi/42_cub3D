@@ -31,8 +31,9 @@ void	init_window(t_app_state *state);
 //		render_utils
 bool	is_wall(double x, double y, t_app_state *st);
 void	draw_pixel(t_img *img, int x, int y, int color);
-int		get_tex_color(t_img *img, t_ray_info *r_info, int screen_y,
-			int wall_start);
+void	get_wall_tex(t_img **wall_tex, t_wall wall, t_app_state *st);
+void	precompute_column(t_app_state *st, int wall[2],
+		t_ray_info *r_info, t_img *wall_tex);
 //		render_perf
 void	prec_normal_x(double **normal_x, int width);
 //		main_scene
@@ -41,7 +42,8 @@ void	render_main_scene(t_app_state *st);
 //		aux
 size_t	count_file_lines(char *path);
 bool	get_file_content(char *path, size_t line_count, char ***file_content);
-bool	is_map_line(const char *line, char *allowed);
+bool	is_map_line(const char *line);
+bool 	is_allowed(char c, char *allowed);
 bool	fill_texture(void *mlx, t_img *tex, char *file);
 bool	extract_rgb(const char *line, int *ref);
 //		setup_map

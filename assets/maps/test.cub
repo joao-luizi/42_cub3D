@@ -1,9 +1,10 @@
-	NO     /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/NO.xpm
-SO /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/SO.xpm
-WE //home/joaomigu/Documents/42_Projects/new_cub/assets/textures/WS.xpm
-EA /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/ES.xpm
+	NO     /home/joaomigu/Documents/cub3d/assets/textures/NO.xpm
+SO /home/joaomigu/Documents/cub3d/assets/textures/SO.xpm
+WE /home/joaomigu/Documents/cub3d/assets/textures/WS.xpm
+EA /home/joaomigu/Documents/cub3d/assets/textures/ES.xpm
+
 F 220,100,0
-C 225,30,0
+C 256,30,0
 
         1111111111111111111111111
         10000000001100000000000E1

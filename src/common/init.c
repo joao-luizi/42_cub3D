@@ -10,14 +10,16 @@ static void	init_player(t_player *player)
 	player->position.y = -1;
 	player->plane.x = 0;
 	player->plane.y = 0;
-	player->speed.linear = 0.04;
-	player->speed.angular = 0.02;
+	player->speed.linear = PLAYER_MOV_SPEED;
+	player->speed.angular = PLAYER_ROT_SPEED;
 	player->shift_pressed = false;
 	player->alt_pressed = false;
 	player->up_pressed = false;
 	player->down_pressed = false;
 	player->right_pressed = false;
 	player->left_pressed = false;
+	player->turn_left_pressed = false;
+	player->turn_right_pressed = false;
 }
 
 static void	init_image(t_img *img)
@@ -41,13 +43,13 @@ static void	init_g(t_graphics *g)
 		return ;
 	g->floor = -1;
 	g->ceil = -1;
+	g->fps = false;
 	init_image(&g->tex_no);
 	init_image(&g->tex_so);
 	init_image(&g->tex_we);
 	init_image(&g->tex_ea);
 	init_image(&g->main_scene);
 }
-
 
 void	init_state(t_app_state *state)
 {
@@ -57,10 +59,10 @@ void	init_state(t_app_state *state)
 	state->win = NULL;
 	state->map = NULL;
 	state->normal_x = NULL;
+	state->column_buffer = NULL;
 	init_g(&state->g);
 	init_player(&state->player);
 }
-
 
 void	init_config(t_config *cfg)
 {

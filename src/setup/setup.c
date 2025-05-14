@@ -33,7 +33,7 @@ static bool	check_file_contents(t_config *cfg, char **file_contents,
 	{
 		if (!is_whitespace_line(file_contents[index]))
 		{
-			if (is_map_line(file_contents[index],MAP_CHARS))
+			if (is_map_line(file_contents[index]))
 				return (ft_putstr_fd(ERR_MAP_LINE, 2), false);
 			else
 				return (ft_putstr_fd(ERR_LAST_ELE, 2), false);

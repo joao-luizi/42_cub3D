@@ -6,43 +6,54 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:16:07 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/13 18:41:32 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:55:10 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static inline int	game_loop(t_app_state *state)
+static inline void print_fps(time_t previous_sec, time_t previous_usec, t_app_state *st)
 {
-	
-	struct timeval va;
-	struct timeval vb;
+	struct timeval current;
 	int				frame_time; 
-    int				fps;       
-
-	gettimeofday(&va, NULL);
+    int				fps;  
+	char *			itoa;
 	
-	mlx_clear_window(state->mlx, state->win);
-	update_player(state);
-	render_main_scene(state);
-	mlx_put_image_to_window(state->mlx, state->win,
-		state->g.main_scene.img_ptr, 0, 0);
-	gettimeofday(&vb, NULL);
-	if (va.tv_sec != 0 || va.tv_usec != 0)
+	gettimeofday(&current, NULL);
+	if (previous_sec != 0 || previous_usec != 0)
     {
-        frame_time = (vb.tv_sec - va.tv_sec) * 1000000 +
-                     (vb.tv_usec - va.tv_usec);
+        frame_time = (current.tv_sec - previous_sec) * 1000000 +
+                     (current.tv_usec - previous_usec);
         if (frame_time > 0)
-            fps = 1000000 / frame_time; // Convert microseconds to FPS
+            fps = 1000000 / frame_time;
         else
-            fps = 0; // Avoid division by zero
+            fps = 0; 
     }
     else
     {
-        frame_time = 0; // First frame, no previous time
-        fps = 0;        // FPS is unknown for the first frame
+        frame_time = 0;
+        fps = 0;        
     }
-	mlx_string_put(state->mlx, state->win, 10,10, 0x000000, ft_itoa(fps));
+	itoa = ft_itoa(fps);
+	mlx_string_put(st->mlx, st->win, 10,10, 0x000000, "FPS:");
+	mlx_string_put(st->mlx, st->win, 50,10, 0x000000, itoa);
+	free(itoa);
+}
+static inline int	game_loop(t_app_state *st)
+{
+	
+	struct timeval va;
+	 
+
+	gettimeofday(&va, NULL);
+	
+	mlx_clear_window(st->mlx, st->win);
+	update_player(st);
+	render_main_scene(st);
+	mlx_put_image_to_window(st->mlx, st->win,
+		st->g.main_scene.img_ptr, 0, 0);
+	if (st->g.fps)
+		print_fps(va.tv_sec, va.tv_usec, st);
 	return (0);
 }
 
@@ -73,6 +84,9 @@ void	init_window(t_app_state *state)
 		return (ft_putstr_fd(ERR_IMG_INIT, 2), (void)0);
 	prec_normal_x(&state->normal_x, MAIN_WIDTH);
 	if (!state->normal_x)
+		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), (void)0);
+	state->column_buffer = ft_calloc(MAIN_HEIGHT, sizeof(int));
+	if (!state->column_buffer)
 		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), (void)0);
 	mlx_hook(state->win, KeyPress, KeyPressMask, handle_keypress,
 		state);

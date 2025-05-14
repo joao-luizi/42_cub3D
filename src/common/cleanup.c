@@ -77,6 +77,8 @@ void	free_state(t_app_state *state)
 	}
 	if (state->normal_x)
 		free(state->normal_x);
+	if (state->column_buffer)
+		free(state->column_buffer);
 }
 
 
