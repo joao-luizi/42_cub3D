@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:55:59 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 17:26:00 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/14 17:56:20 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ static void	handle_player(int keycode, t_app_state *state)
 	}
 }
 
-static void	handle_utils(int keycode, t_app_state  *state)
+static void	handle_utils(int keycode, t_app_state *state)
 {
-	
 	if (keycode == XK_F1 || keycode == F1_KEY)
 		state->g.fps = !state->g.fps;
 	if (keycode == XK_Escape)

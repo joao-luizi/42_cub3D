@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 17:54:00 by joaomigu          #+#    #+#             */
+/*   Updated: 2025/05/14 17:55:40 by joaomigu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	free_array(char **arr)
@@ -11,6 +23,7 @@ void	free_array(char **arr)
 		free(arr[i]);
 	free(arr);
 }
+
 void	free_config(t_config *cfg, bool free_map)
 {
 	if (!cfg)
@@ -39,7 +52,7 @@ void	free_config(t_config *cfg, bool free_map)
 static void	free_image(t_img *img, void *mlx)
 {
 	if (!img)
-		return;
+		return ;
 	if (img->img_ptr)
 		mlx_destroy_image(mlx, img->img_ptr);
 	img->img_ptr = NULL;
@@ -49,7 +62,7 @@ static void	free_image(t_img *img, void *mlx)
 static void	free_graphics(t_graphics *g, void *mlx)
 {
 	if (!g)
-		return;
+		return ;
 	free_image(&g->tex_no, mlx);
 	free_image(&g->tex_so, mlx);
 	free_image(&g->tex_we, mlx);
@@ -80,5 +93,3 @@ void	free_state(t_app_state *state)
 	if (state->column_buffer)
 		free(state->column_buffer);
 }
-
-

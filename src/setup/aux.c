@@ -1,41 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   aux.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 17:53:19 by joaomigu          #+#    #+#             */
+/*   Updated: 2025/05/14 18:14:22 by joaomigu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
-static void count_char(int *count, char c, char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			(*count)++;
-		i++;
-	}
-}
-bool	extract_rgb(const char *line, int *ref)
-{
-	char	**split;
-	int		color[4];
-
-	color[3] = 0;
-	while (*line && is_whitespace(*line))
-		line++;
-	count_char(&color[3], ' ', (char *)line);
-	if (color[3] > 2)
-		return (ft_putstr_fd(ERR_COLOR_FORMAT, 2), ft_putstr_fd((char *)line,
-				2), ft_putstr_fd("\n", 2), false);
-	split = ft_split(line, ',');
-	if (!split)
-		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
-	color[0] = ft_atoi(split[0]);
-	color[1] = ft_atoi(split[1]);
-	color[2] = ft_atoi(split[2]);
-	if (color[0] < 0 || color[0] > 255 || color[1] < 0 || color[1] > 255
-		|| color[2] < 0 || color[2] > 255)
-		return (free_array(split), ft_putstr_fd(ERR_COLOR_FORMAT, 2),
-			ft_putstr_fd((char *)line, 2), ft_putstr_fd("\n", 2), false);
-	*ref = (color[0] << 16) | (color[1] << 8) | color[2];
-	return (free_array(split), true);
-}
 
 bool	fill_texture(void *mlx, t_img *tex, char *file)
 {
@@ -72,16 +47,16 @@ bool	get_file_content(char *path, size_t line_count, char ***file_content)
 		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_putstr_fd(ERR_OPEN_FILE, STDERR_FILENO);
-		ft_putstr_fd(path, STDERR_FILENO);
-		return (ft_putstr_fd("\n", STDERR_FILENO), false);
-	}
+		return (ft_putstr_fd(ERR_OPEN_FILE, 2), ft_putstr_fd(ERR_OPEN_FILE, 2),
+			ft_putstr_fd(path, 2), ft_putstr_fd("\n", STDERR_FILENO), false);
 	i = 0;
-	while ((line = get_next_line(fd)) != NULL)
+	line = NULL;
+	while (true)
 	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
 		line[ft_strlen(line) - 1] = '\0';
-		// remove the ending newline (this is guarranteed to be there)
 		(*file_content)[i] = line;
 		i++;
 	}
@@ -103,8 +78,12 @@ size_t	count_file_lines(char *path)
 		ft_putstr_fd(path, STDERR_FILENO);
 		return (ft_putstr_fd("\n", STDERR_FILENO), i);
 	}
-	while ((line = get_next_line(fd)) != NULL)
+	line = NULL;
+	while (true)
 	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
 		i++;
 		free(line);
 	}
@@ -113,6 +92,7 @@ size_t	count_file_lines(char *path)
 		ft_putstr_fd(ERR_EMPTY_CFG, STDERR_FILENO);
 	return (i);
 }
+
 bool	is_allowed(char c, char *allowed)
 {
 	int	i;
@@ -125,6 +105,7 @@ bool	is_allowed(char c, char *allowed)
 	}
 	return (false);
 }
+
 bool	is_map_line(const char *line)
 {
 	int	j;

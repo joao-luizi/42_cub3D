@@ -6,13 +6,14 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:26:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 15:30:52 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/14 17:57:17 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static inline int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y, int wall_start)
+static inline int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y,
+		int wall_start)
 {
 	int	tex_x;
 	int	tex_y;
@@ -40,8 +41,8 @@ static inline int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y, in
 	return (color);
 }
 
-void	precompute_column(t_app_state *st, int wall[2],
-		t_ray_info *r_info, t_img *wall_tex)
+void	precompute_column(t_app_state *st, int wall[2], t_ray_info *r_info,
+		t_img *wall_tex)
 {
 	int	k;
 	int	tex_i;
@@ -59,8 +60,6 @@ void	precompute_column(t_app_state *st, int wall[2],
 		k++;
 	}
 }
-
-
 
 void	draw_pixel(t_img *img, int x, int y, int color)
 {

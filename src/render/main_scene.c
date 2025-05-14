@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 15:27:59 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/14 17:56:55 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ static inline void	get_wall(t_app_state *st, t_ray_info *r_info)
 			get_wall_info(st, r_info, side);
 	}
 }
-
-
 
 static inline void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
 {

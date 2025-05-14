@@ -1,10 +1,21 @@
-#include "../inc/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 17:52:51 by joaomigu          #+#    #+#             */
+/*   Updated: 2025/05/14 17:52:52 by joaomigu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../inc/cub3d.h"
 
 int	main(int argc, char **argv)
 {
-	t_config cfg;
-	t_app_state st;
+	t_config	cfg;
+	t_app_state	st;
 
 	if (argc != 2)
 		return (ft_putstr_fd("Error.\nIncorrect number of arguments.\n", 2), 1);

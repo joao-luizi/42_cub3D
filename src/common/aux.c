@@ -1,5 +1,16 @@
-#include "../../inc/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   aux.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 17:54:06 by joaomigu          #+#    #+#             */
+/*   Updated: 2025/05/14 18:14:55 by joaomigu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../../inc/cub3d.h"
 
 char	*strtrim_dup(char *ori)
 {
@@ -42,10 +53,23 @@ bool	is_whitespace_line(const char *line)
 
 size_t	ft_str_array_len(char **str)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	while (str && str[len])
 		len++;
 	return (len);
+}
+
+void	count_char(int *count, char c, char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			(*count)++;
+		i++;
+	}
 }

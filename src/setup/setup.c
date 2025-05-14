@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 17:53:02 by joaomigu          #+#    #+#             */
+/*   Updated: 2025/05/14 18:03:52 by joaomigu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 static bool	validate_file_argument(char *arg)
@@ -33,12 +45,11 @@ static bool	check_file_contents(t_config *cfg, char **file_contents,
 	{
 		if (!is_whitespace_line(file_contents[index]))
 		{
-			if (is_map_line(file_contents[index]))
+			if (is_map_line(file_contents[index++]))
 				return (ft_putstr_fd(ERR_MAP_LINE, 2), false);
 			else
 				return (ft_putstr_fd(ERR_LAST_ELE, 2), false);
 		}
-		index++;
 	}
 	return (normalize_map(cfg, file_contents, map_start_index, map_end_index));
 }
@@ -55,7 +66,7 @@ bool	check_configurations(t_config *cfg, t_app_state *state)
 		return (false);
 	fov_factor = (double)FOV / 100;
 	state->map = &cfg->map;
-	state->player.position.x = state->map->player_position.x + 0.5;;
+	state->player.position.x = state->map->player_position.x + 0.5;
 	state->player.position.y = state->map->player_position.y + 0.5;
 	x = state->map->player_direction.x;
 	y = state->map->player_direction.y;

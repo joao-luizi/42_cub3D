@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 17:53:10 by joaomigu          #+#    #+#             */
+/*   Updated: 2025/05/14 18:06:38 by joaomigu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 static bool	isvalid_border(t_config *cfg, int i, int j)
@@ -17,7 +29,7 @@ static bool	isvalid_border(t_config *cfg, int i, int j)
 		if (cfg->map.map[i + 1][j] == ' ' || cfg->map.map[i + 1][j] == '\0')
 			return (false);
 		if (j - 1 >= 0 && (cfg->map.map[i][j - 1] == ' ' || cfg->map.map[i][j
-				- 1] == '\0'))
+			- 1] == '\0'))
 			return (false);
 		if (cfg->map.map[i][j + 1] == ' ' || cfg->map.map[i][j + 1] == '\0')
 			return (false);
@@ -53,18 +65,17 @@ static void	set_player(int i, int j, t_config *cfg)
 
 bool	validate_map(t_config *cfg)
 {
-	int		i;
-	int		j;
+	int		i[2];
 	char	c;
 
-	i = -1;
-	while (cfg->map.map[++i])
+	i[0] = -1;
+	while (cfg->map.map[++i[0]])
 	{
-		j = -1;
-		while (cfg->map.map[i][++j])
+		i[1] = -1;
+		while (cfg->map.map[i[0]][++i[1]])
 		{
-			c = cfg->map.map[i][j];
-			if (!isvalid_border(cfg, i, j))
+			c = cfg->map.map[i[0]][i[1]];
+			if (!isvalid_border(cfg, i[0], i[1]))
 				return (ft_putstr_fd(ERR_BORDER, 2), false);
 			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 			{
@@ -72,7 +83,7 @@ bool	validate_map(t_config *cfg)
 					&& cfg->map.player_position.y != -1)
 					return (ft_putstr_fd(ERR_DUP_PLAYER, 2), false);
 				else
-					set_player(i, j, cfg);
+					set_player(i[0], i[1], cfg);
 			}
 		}
 	}
@@ -85,7 +96,7 @@ bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
 		size_t *index, size_t line_count)
 {
 	size_t	line_length;
-	int i;
+	int		i;
 
 	line_length = 0;
 	while (file_contents[*index] && is_map_line(file_contents[*index])
@@ -95,7 +106,7 @@ bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
 		while (file_contents[*index][++i])
 		{
 			if (file_contents[*index][i] == ' ')
-				continue;
+				continue ;
 			if (!is_allowed(file_contents[*index][i], MAP_CHARS))
 				return (ft_putstr_fd(ERR_MAP_CHAR, 2), false);
 		}

@@ -1,4 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_fields.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 17:53:15 by joaomigu          #+#    #+#             */
+/*   Updated: 2025/05/14 18:14:33 by joaomigu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
+
+static bool	extract_rgb(const char *line, int *ref)
+{
+	char	**split;
+	int		color[4];
+
+	color[3] = 0;
+	while (*line && is_whitespace(*line))
+		line++;
+	count_char(&color[3], ' ', (char *)line);
+	if (color[3] > 2)
+		return (ft_putstr_fd(ERR_COLOR_FORMAT, 2), ft_putstr_fd((char *)line,
+				2), ft_putstr_fd("\n", 2), false);
+	split = ft_split(line, ',');
+	if (!split)
+		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
+	color[0] = ft_atoi(split[0]);
+	color[1] = ft_atoi(split[1]);
+	color[2] = ft_atoi(split[2]);
+	if (color[0] < 0 || color[0] > 255 || color[1] < 0 || color[1] > 255
+		|| color[2] < 0 || color[2] > 255)
+		return (free_array(split), ft_putstr_fd(ERR_COLOR_FORMAT, 2),
+			ft_putstr_fd((char *)line, 2), ft_putstr_fd("\n", 2), false);
+	*ref = (color[0] << 16) | (color[1] << 8) | color[2];
+	return (free_array(split), true);
+}
 
 bool	validate_fields(t_config *cfg, t_app_state *state)
 {
@@ -27,6 +65,7 @@ static bool	parse_config_item(char **target, char *id, char *str)
 	*target = strtrim_dup(str);
 	return (true);
 }
+
 static bool	parse_configuration_line(t_config *cfg, const char *line)
 {
 	if (*line && is_whitespace_line(line))
@@ -56,13 +95,13 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 bool	parse_configurations(t_config *cfg, char **file_contents,
 		size_t line_count, size_t *index)
 {
-	while (file_contents[*index] && *index < line_count && !is_map_line(file_contents[*index]))
+	while (file_contents[*index] && *index < line_count
+		&& !is_map_line(file_contents[*index]))
 	{
 		if (!parse_configuration_line(cfg, file_contents[*index]))
 			return (false);
 		(*index)++;
 	}
-	
 	if (!cfg->no_tex || !cfg->so_tex || !cfg->we_tex || !cfg->ea_tex
 		|| !cfg->cl_tex || !cfg->fl_tex)
 		return (ft_putstr_fd(ERR_FIELDS, 2), false);
