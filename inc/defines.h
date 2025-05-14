@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 17:54:28 by joaomigu          #+#    #+#             */
+/*   Updated: 2025/05/14 18:16:46 by joaomigu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 # define DEFINES_H
 
@@ -24,12 +36,11 @@
 # define PLAYER_ROT_SPEED 0.02
 # define PLAYER_MOV_SPEED 0.04
 
-
 # define F1_KEY 269025093
 # define MAP_CHARS "01NESW"
 # define ERR_BORDER "Error.\nInvalid border detected.\n"
 # define ERR_DUP_PLAYER "Error.\nDuplicate player position found.\n"
-# define ERR_NO_PLAYER  "Error.\nIndeterminate player position.\n"
+# define ERR_NO_PLAYER "Error.\nIndeterminate player position.\n"
 # define ERR_ALLOC_FAIL "Error.\nAllocation failed.\n"
 # define ERR_OPEN_FILE "Error.\nUnable to open file: "
 # define ERR_EMPTY_CFG "Error.\nEmpty configuration file: "

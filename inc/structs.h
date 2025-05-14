@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
+/*   Updated: 2025/05/14 18:17:03 by joaomigu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
 # include "defines.h"
+
 typedef enum e_wall
 {
 	NONE_WALL,
@@ -9,7 +22,7 @@ typedef enum e_wall
 	SO_WALL,
 	WE_WALL,
 	EA_WALL,
-}	t_wall;
+}				t_wall;
 
 typedef struct s_img
 {
@@ -61,15 +74,15 @@ typedef struct s_map
 
 typedef struct s_config
 {
-	char	*normal_file_path;
-	char	*no_tex;
-	char	*so_tex;
-	char	*we_tex;
-	char	*ea_tex;
-	char 	*cl_tex;
-	char	*fl_tex;
-	t_map	map;
-}			t_config;
+	char		*normal_file_path;
+	char		*no_tex;
+	char		*so_tex;
+	char		*we_tex;
+	char		*ea_tex;
+	char		*cl_tex;
+	char		*fl_tex;
+	t_map		map;
+}				t_config;
 
 typedef struct e_player
 {
@@ -87,11 +100,9 @@ typedef struct e_player
 	bool		turn_right_pressed;
 }				t_player;
 
-
-
 typedef struct s_graphics
 {
-	bool 		fps;
+	bool		fps;
 	t_img		main_scene;
 	t_img		tex_no;
 	t_img		tex_so;
@@ -125,6 +136,5 @@ typedef struct e_app_state
 	int			*column_buffer;
 
 }				t_app_state;
-
 
 #endif
