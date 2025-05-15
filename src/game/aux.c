@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:16:07 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 12:40:47 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:44:42 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	print_fps(time_t previous_sec, time_t previous_usec,
 		fps = 0;
 	}
 	itoa = ft_itoa(fps);
-	mlx_string_put(st->mlx, st->win, 10, 10, 0x000000, "FPS:");
-	mlx_string_put(st->mlx, st->win, 50, 10, 0x000000, itoa);
+	mlx_string_put(st->mlx, st->win, 10, 20, 0xFF0000, "FPS:");
+	mlx_string_put(st->mlx, st->win, 50, 20, 0xFF0000, itoa);
 	free(itoa);
 }
