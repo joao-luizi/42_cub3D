@@ -6,12 +6,22 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:26:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 17:57:17 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:41:52 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+ * @brief Retrieves the color of a specific pixel from a texture based on 
+ * ray information.
+ * 
+ * @param img The texture image.
+ * @param r_info The ray information structure containing wall details.
+ * @param screen_y The y-coordinate on the screen.
+ * @param wall_start The starting y-coordinate of the wall on the screen.
+ * @return The color of the pixel in the texture.
+ */
 static inline int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y,
 		int wall_start)
 {
@@ -41,6 +51,16 @@ static inline int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y,
 	return (color);
 }
 
+/**
+ * @brief Precomputes the colors for a vertical column of pixels 
+ * representing a wall slice.
+ * 
+ * @param st The application state containing the game's data.
+ * @param wall An array containing the start and end y-coordinates of the 
+ * wall slice.
+ * @param r_info The ray information structure containing wall details.
+ * @param wall_tex The texture image for the wall.
+ */
 void	precompute_column(t_app_state *st, int wall[2], t_ray_info *r_info,
 		t_img *wall_tex)
 {
@@ -61,6 +81,14 @@ void	precompute_column(t_app_state *st, int wall[2], t_ray_info *r_info,
 	}
 }
 
+/**
+ * @brief Draws a single pixel on an image at the specified coordinates.
+ * 
+ * @param img The image to draw on.
+ * @param x The x-coordinate of the pixel.
+ * @param y The y-coordinate of the pixel.
+ * @param color The color of the pixel.
+ */
 void	draw_pixel(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
@@ -69,6 +97,15 @@ void	draw_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
+/**
+ * @brief Checks if a given position in the map is a wall or out of bounds.
+ * 
+ * @param x The x-coordinate of the position.
+ * @param y The y-coordinate of the position.
+ * @param st The application state containing the map data.
+ * @return true if the position is a wall or out of bounds, false 
+ * otherwise.
+ */
 bool	is_wall(double x, double y, t_app_state *st)
 {
 	int	map_x;
@@ -84,6 +121,13 @@ bool	is_wall(double x, double y, t_app_state *st)
 	return (false);
 }
 
+/**
+ * @brief Retrieves the appropriate wall texture based on the wall type.
+ * 
+ * @param wall_tex Pointer to the texture image to set.
+ * @param wall The type of wall (e.g., NO_WALL, SO_WALL).
+ * @param st The application state containing the texture data.
+ */
 void	get_wall_tex(t_img **wall_tex, t_wall wall, t_app_state *st)
 {
 	if (wall == NO_WALL)

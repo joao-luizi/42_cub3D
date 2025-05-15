@@ -6,12 +6,29 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:10 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 18:06:38 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:39:41 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+
+ * @brief Parses the configuration fields from the file contents and 
+ updates the configuration structure.
+ *
+ * This function iterates through the file contents,
+	parsing configuration fields until the map section
+ * is reached.
+ *
+ * @param cfg The configuration structure to update.
+ * @param file_contents The array of strings containing the file contents.
+ * @param line_count The total number of lines in the file.
+ * @param index Pointer to the current line index,
+	which will be updated during parsing.
+ * @return true if all configuration fields were successfully parsed,
+	false otherwise.
+ */
 static bool	isvalid_border(t_config *cfg, int i, int j)
 {
 	char	cur;
@@ -37,6 +54,16 @@ static bool	isvalid_border(t_config *cfg, int i, int j)
 	return (true);
 }
 
+/**
+ * @brief Sets the player's position and direction based on the map data.
+ *
+ * This function identifies the player's starting position and direction
+ * (N, S, E, W) on the map and updates the configuration structure accordingly.
+ *
+ * @param i The row index of the player's position.
+ * @param j The column index of the player's position.
+ * @param cfg The configuration structure to update.
+ */
 static void	set_player(int i, int j, t_config *cfg)
 {
 	cfg->map.player_position.y = i;
@@ -63,6 +90,15 @@ static void	set_player(int i, int j, t_config *cfg)
 	}
 }
 
+/**
+ * @brief Validates the map for correctness, including borders and player setup.
+ *
+ * This function checks the map for valid borders, ensures there is exactly one
+ * player starting position, and validates the map's overall structure.
+ *
+ * @param cfg The configuration structure containing the map data.
+ * @return true if the map is valid, false otherwise.
+ */
 bool	validate_map(t_config *cfg)
 {
 	int		i[2];
@@ -92,6 +128,19 @@ bool	validate_map(t_config *cfg)
 	return (true);
 }
 
+/**
+ * @brief Calculates the dimensions of the map based on the file contents.
+ *
+ * This function determines the width and height of the map by analyzing the
+ * file contents and updates the configuration structure with the map's range.
+ *
+ * @param cfg The configuration structure to update.
+ * @param file_contents The array of strings containing the file contents.
+ * @param index Pointer to the current line index in the file.
+ * @param line_count The total number of lines in the file.
+ * @return true if the map dimensions were successfully calculated,
+	false otherwise.
+ */
 bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
 		size_t *index, size_t line_count)
 {
@@ -119,6 +168,19 @@ bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
 	return (true);
 }
 
+/**
+
+ * @brief Normalizes the map by padding rows with spaces to ensure uniform width.
+ *
+ * This function allocates memory for the map, copies the file contents into
+ * the map, and pads shorter rows with spaces to match the map's maximum width.
+ *
+ * @param cfg The configuration structure to update.
+ * @param file_contents The array of strings containing the file contents.
+ * @param map_start_index The starting index of the map in the file contents.
+ * @param map_end_index The ending index of the map in the file contents.
+ * @return true if the map was successfully normalized, false otherwise.
+ */
 bool	normalize_map(t_config *cfg, char **file_contents,
 		size_t map_start_index, size_t map_end_index)
 {

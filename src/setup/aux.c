@@ -6,12 +6,20 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:19 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 18:14:22 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:39:10 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+ * @brief Loads a texture from a file and initializes the texture structure.
+ * 
+ * @param mlx The MiniLibX instance used to load the texture.
+ * @param tex The texture structure to initialize.
+ * @param file The path to the texture file.
+ * @return true if the texture was successfully loaded, false otherwise.
+ */
 bool	fill_texture(void *mlx, t_img *tex, char *file)
 {
 	tex->img_ptr = mlx_xpm_file_to_image(mlx, file, &tex->width, &tex->height);
@@ -36,6 +44,15 @@ bool	fill_texture(void *mlx, t_img *tex, char *file)
 	return (true);
 }
 
+/**
+ * @brief Reads the content of a file and stores it in a dynamically 
+ * allocated array of strings.
+ * 
+ * @param path The path to the file to read.
+ * @param line_count The number of lines in the file.
+ * @param file_content Pointer to the array of strings to store the file content.
+ * @return true if the file was successfully read, false otherwise.
+ */
 bool	get_file_content(char *path, size_t line_count, char ***file_content)
 {
 	char	*line;
@@ -64,6 +81,13 @@ bool	get_file_content(char *path, size_t line_count, char ***file_content)
 	return (true);
 }
 
+/**
+ * @brief Counts the number of lines in a file.
+ * 
+ * @param path The path to the file to count lines in.
+ * @return The number of lines in the file, or 0 if the 
+ * file could not be opened or is empty.
+ */
 size_t	count_file_lines(char *path)
 {
 	size_t	i;
@@ -93,6 +117,13 @@ size_t	count_file_lines(char *path)
 	return (i);
 }
 
+/**
+ * @brief Checks if a character is in the allowed set of characters.
+ * 
+ * @param c The character to check.
+ * @param allowed A string containing the allowed characters.
+ * @return true if the character is allowed, false otherwise.
+ */
 bool	is_allowed(char c, char *allowed)
 {
 	int	i;
@@ -106,6 +137,12 @@ bool	is_allowed(char c, char *allowed)
 	return (false);
 }
 
+/**
+ * @brief Determines if a line is a valid map line based on allowed characters.
+ * 
+ * @param line The line to check.
+ * @return true if the line is a valid map line, false otherwise.
+ */
 bool	is_map_line(const char *line)
 {
 	int	j;

@@ -6,12 +6,19 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:06 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 18:14:55 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:24:49 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+ * @brief Trims leading and trailing whitespace from a string and duplicates it.
+ *
+ * @param ori The original string to be trimmed and duplicated.
+ * @return A newly allocated string without leading and trailing whitespace,
+ *         or NULL if memory allocation fails.
+ */
 char	*strtrim_dup(char *ori)
 {
 	char	*result;
@@ -34,12 +41,25 @@ char	*strtrim_dup(char *ori)
 	return (result);
 }
 
+/**
+ * @brief Checks if a character is a whitespace character.
+ *
+ * @param str The character to check.
+ * @return true if the character is a whitespace character, false otherwise.
+ */
 bool	is_whitespace(char str)
 {
 	return (str == ' ' || str == '\t' || str == '\r' || str == '\n'
 		|| str == '\v' || str == '\f');
 }
 
+/**
+ * @brief Checks if a string consists entirely of whitespace characters.
+ *
+ * @param line The string to check.
+ * @return true if the string contains only whitespace characters,
+	false otherwise.
+ */
 bool	is_whitespace_line(const char *line)
 {
 	while (*line)
@@ -51,6 +71,12 @@ bool	is_whitespace_line(const char *line)
 	return (true);
 }
 
+/**
+ * @brief Calculates the length of a null-terminated array of strings.
+ *
+ * @param str The array of strings.
+ * @return The number of strings in the array.
+ */
 size_t	ft_str_array_len(char **str)
 {
 	size_t	len;
@@ -61,6 +87,13 @@ size_t	ft_str_array_len(char **str)
 	return (len);
 }
 
+/**
+ * @brief Counts the occurrences of a specific character in a string.
+ *
+ * @param count Pointer to an integer where the count will be stored.
+ * @param c The character to count.
+ * @param str The string in which to count occurrences of the character.
+ */
 void	count_char(int *count, char c, char *str)
 {
 	int	i;

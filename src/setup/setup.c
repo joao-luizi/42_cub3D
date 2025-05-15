@@ -6,12 +6,19 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 18:03:52 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:38:10 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+ * @brief Validates the file argument to ensure it is not empty 
+ * and has the correct extension.
+ *
+ * @param arg The file argument to validate.
+ * @return true if the file argument is valid, false otherwise.
+ */
 static bool	validate_file_argument(char *arg)
 {
 	int	arg_len;
@@ -24,6 +31,18 @@ static bool	validate_file_argument(char *arg)
 	return (true);
 }
 
+/**
+ * @brief Checks the contents of the configuration file for validity 
+ and processes the map section.
+ *
+ * This function parses the configuration fields, validates the map,
+	and normalizes it for further use.
+ *
+ * @param cfg The configuration structure to update.
+ * @param file_contents The array of strings containing the file contents.
+ * @param line_count The total number of lines in the file.
+ * @return true if the file contents are valid, false otherwise.
+ */
 static bool	check_file_contents(t_config *cfg, char **file_contents,
 		size_t line_count)
 {
@@ -54,6 +73,17 @@ static bool	check_file_contents(t_config *cfg, char **file_contents,
 	return (normalize_map(cfg, file_contents, map_start_index, map_end_index));
 }
 
+/**
+ * @brief Validates the configuration and initializes the application state.
+ *
+ * This function validates the map, initializes fields,
+	and sets up the player's position and direction.
+ *
+ * @param cfg The configuration structure containing the field data.
+ * @param state The application state to initialize.
+ * @return true if the configurations are valid and the state is initialized,
+	false otherwise.
+ */
 bool	check_configurations(t_config *cfg, t_app_state *state)
 {
 	double	fov_factor;
@@ -77,6 +107,16 @@ bool	check_configurations(t_config *cfg, t_app_state *state)
 	return (true);
 }
 
+/**
+ * @brief Loads the configuration file, validates its contents,
+	and updates the configuration structure.
+ *
+ * This function reads the configuration file,
+	validates its format and contents, and processes the map section.
+ *
+ * @param cfg The configuration structure to update.
+ * @return true if the configurations were successfully loaded, false otherwise.
+ */
 bool	load_configurations(t_config *cfg)
 {
 	size_t	line_count;

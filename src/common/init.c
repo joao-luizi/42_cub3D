@@ -6,12 +6,17 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:53 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 17:53:54 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:45:03 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+ * @brief Initializes the player structure with default values.
+ * 
+ * @param player The player structure to initialize.
+ */
 static void	init_player(t_player *player)
 {
 	if (!player)
@@ -20,6 +25,10 @@ static void	init_player(t_player *player)
 	player->direction.y = 0;
 	player->position.x = -1;
 	player->position.y = -1;
+	player->rotation_factor_pos.x = cos(PLAYER_ROT_SPEED);
+	player->rotation_factor_pos.y = sin(PLAYER_ROT_SPEED);
+	player->rotation_factor_neg.x = cos(-PLAYER_ROT_SPEED);
+	player->rotation_factor_neg.y = sin(-PLAYER_ROT_SPEED);
 	player->plane.x = 0;
 	player->plane.y = 0;
 	player->speed.linear = PLAYER_MOV_SPEED;
@@ -34,6 +43,11 @@ static void	init_player(t_player *player)
 	player->turn_right_pressed = false;
 }
 
+/**
+ * @brief Initializes the image structure with default values.
+ * 
+ * @param img The image structure to initialize.
+ */
 static void	init_image(t_img *img)
 {
 	if (!img)
@@ -49,6 +63,11 @@ static void	init_image(t_img *img)
 	img->half_width = 0;
 }
 
+/**
+ * @brief Initializes the graphics structure with default values.
+ * 
+ * @param g The graphics structure to initialize.
+ */
 static void	init_g(t_graphics *g)
 {
 	if (!g)
@@ -63,6 +82,12 @@ static void	init_g(t_graphics *g)
 	init_image(&g->main_scene);
 }
 
+/**
+ * @brief Initializes the application state structure with default 
+ * values.
+ * 
+ * @param state The application state structure to initialize.
+ */
 void	init_state(t_app_state *state)
 {
 	if (!state)
@@ -76,6 +101,11 @@ void	init_state(t_app_state *state)
 	init_player(&state->player);
 }
 
+/**
+ * @brief Initializes the configuration structure with default values.
+ * 
+ * @param cfg The configuration structure to initialize.
+ */
 void	init_config(t_config *cfg)
 {
 	if (!cfg)

@@ -6,12 +6,17 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:00 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 17:55:40 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:27:27 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+ * @brief Frees a null-terminated array of strings.
+ *
+ * @param arr The array of strings to free.
+ */
 void	free_array(char **arr)
 {
 	int	i;
@@ -24,6 +29,13 @@ void	free_array(char **arr)
 	free(arr);
 }
 
+/**
+ * @brief Frees the memory allocated for the configuration structure.
+ *
+ * @param cfg The configuration structure to free.
+ * @param free_map A boolean indicating whether to free the map inside the 
+ configuration.
+ */
 void	free_config(t_config *cfg, bool free_map)
 {
 	if (!cfg)
@@ -49,6 +61,13 @@ void	free_config(t_config *cfg, bool free_map)
 	}
 }
 
+/**
+ * @brief Frees the memory allocated for an image structure and destroys 
+ * the image.
+ *
+ * @param img The image structure to free.
+ * @param mlx The MiniLibX instance used to destroy the image.
+ */
 static void	free_image(t_img *img, void *mlx)
 {
 	if (!img)
@@ -59,6 +78,12 @@ static void	free_image(t_img *img, void *mlx)
 	img->data_addr = NULL;
 }
 
+/**
+ * @brief Frees the memory allocated for graphics-related resources.
+ *
+ * @param g The graphics structure to free.
+ * @param mlx The MiniLibX instance used to destroy the graphics resources.
+ */
 static void	free_graphics(t_graphics *g, void *mlx)
 {
 	if (!g)
@@ -70,6 +95,12 @@ static void	free_graphics(t_graphics *g, void *mlx)
 	free_image(&g->main_scene, mlx);
 }
 
+/**
+ * @brief Frees the memory allocated for the application state and its 
+ * associated resources.
+ *
+ * @param state The application state structure to free.
+ */
 void	free_state(t_app_state *state)
 {
 	if (!state)

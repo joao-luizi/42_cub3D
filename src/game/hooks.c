@@ -6,12 +6,18 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:55:59 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 17:56:20 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:40:10 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+ * @brief Handles player movement and direction based on key presses.
+ * 
+ * @param keycode The keycode of the pressed key.
+ * @param state The application state containing the player's data.
+ */
 static void	handle_player(int keycode, t_app_state *state)
 {
 	if (keycode == XK_w)
@@ -36,6 +42,13 @@ static void	handle_player(int keycode, t_app_state *state)
 	}
 }
 
+/**
+ * @brief Handles utility actions such as toggling FPS display or 
+ * exiting the game.
+ * 
+ * @param keycode The keycode of the pressed key.
+ * @param state The application state containing the game's data.
+ */
 static void	handle_utils(int keycode, t_app_state *state)
 {
 	if (keycode == XK_F1 || keycode == F1_KEY)
@@ -48,6 +61,14 @@ static void	handle_utils(int keycode, t_app_state *state)
 	}
 }
 
+/**
+ * @brief Handles key press events and updates the player's state 
+ * accordingly.
+ * 
+ * @param keycode The keycode of the pressed key.
+ * @param state The application state containing the player's data.
+ * @return Always returns 0.
+ */
 int	handle_keypress(int keycode, t_app_state *state)
 {
 	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
@@ -69,6 +90,14 @@ int	handle_keypress(int keycode, t_app_state *state)
 	return (0);
 }
 
+/**
+ * @brief Handles key release events and updates the player's state 
+ * accordingly.
+ * 
+ * @param keycode The keycode of the released key.
+ * @param state The application state containing the player's data.
+ * @return Always returns 0.
+ */
 int	handle_keyrelease(int keycode, t_app_state *state)
 {
 	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
@@ -90,6 +119,13 @@ int	handle_keyrelease(int keycode, t_app_state *state)
 	return (0);
 }
 
+/**
+ * @brief Handles the closing of the application, freeing resources and 
+ * exiting.
+ * 
+ * @param state The application state containing the game's data.
+ * @return Always returns 0.
+ */
 int	close_handler(t_app_state *state)
 {
 	mlx_loop_end(state->mlx);

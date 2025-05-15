@@ -6,12 +6,23 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:52:51 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 17:52:52 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:27:19 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+/**
+ * @brief Entry point for the Cub3D application.
+ * 
+ * This function initializes the configuration and application state, validates
+ * the input file, loads configurations, and starts the game window. It also
+ * handles cleanup of resources in case of errors or upon successful execution.
+ * 
+ * @param argc The number of command-line arguments.
+ * @param argv The array of command-line arguments.
+ * @return 0 if the program executes successfully, or 1 if an error occurs.
+ */
 int	main(int argc, char **argv)
 {
 	t_config	cfg;

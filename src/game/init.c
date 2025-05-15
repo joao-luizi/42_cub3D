@@ -6,41 +6,19 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:16:07 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 17:56:37 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:39:58 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static inline void	print_fps(time_t previous_sec, time_t previous_usec,
-		t_app_state *st)
-{
-	struct timeval	current;
-	int				frame_time;
-	int				fps;
-	char			*itoa;
-
-	gettimeofday(&current, NULL);
-	if (previous_sec != 0 || previous_usec != 0)
-	{
-		frame_time = (current.tv_sec - previous_sec) * 1000000
-			+ (current.tv_usec - previous_usec);
-		if (frame_time > 0)
-			fps = 1000000 / frame_time;
-		else
-			fps = 0;
-	}
-	else
-	{
-		frame_time = 0;
-		fps = 0;
-	}
-	itoa = ft_itoa(fps);
-	mlx_string_put(st->mlx, st->win, 10, 10, 0x000000, "FPS:");
-	mlx_string_put(st->mlx, st->win, 50, 10, 0x000000, itoa);
-	free(itoa);
-}
-
+/**
+ * @brief The main game loop that updates the player, renders the scene, 
+ * and displays FPS.
+ * 
+ * @param st The application state containing the game's data.
+ * @return Always returns 0.
+ */
 static inline int	game_loop(t_app_state *st)
 {
 	struct timeval	va;
@@ -55,6 +33,15 @@ static inline int	game_loop(t_app_state *st)
 	return (0);
 }
 
+/**
+ * @brief Initializes a MiniLibX image with the specified dimensions.
+ * 
+ * @param img The image structure to initialize.
+ * @param mlx The MiniLibX instance.
+ * @param width The width of the image.
+ * @param height The height of the image.
+ * @return true if the image was successfully initialized, false otherwise.
+ */
 static bool	init_mlx_image(t_img *img, void *mlx, int width, int height)
 {
 	img->img_ptr = mlx_new_image(mlx, width, height);
@@ -71,6 +58,12 @@ static bool	init_mlx_image(t_img *img, void *mlx, int width, int height)
 	return (true);
 }
 
+/**
+ * @brief Initializes the game window and sets up hooks for events and 
+ * the game loop.
+ * 
+ * @param state The application state containing the game's data.
+ */
 void	init_window(t_app_state *state)
 {
 	state->win = mlx_new_window(state->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,

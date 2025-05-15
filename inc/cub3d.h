@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:20 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 18:16:40 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:42:13 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	init_config(t_config *cfg);
 void	init_state(t_app_state *state);
 
 //	game
+//		aux
+void	print_fps(time_t previous_sec, time_t previous_usec, t_app_state *st);
 //		game
 void	update_player(t_app_state *state);
 //		hooks

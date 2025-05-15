@@ -6,12 +6,20 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:15 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 18:14:33 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:38:43 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+ * @brief Extracts RGB color values from a string and converts them into 
+ * a single integer.
+ * @param line The string containing the RGB values separated by commas.
+ * @param ref Pointer to the integer where the resulting color will be stored.
+ * @return true if the RGB values were successfully extracted and valid,
+	false otherwise.
+ */
 static bool	extract_rgb(const char *line, int *ref)
 {
 	char	**split;
@@ -38,6 +46,20 @@ static bool	extract_rgb(const char *line, int *ref)
 	return (free_array(split), true);
 }
 
+/**
+
+ * @brief Validates and initializes the fields in the configuration 
+ and application state.
+ *
+ * This function initializes MiniLibX, loads textures,
+	and extracts RGB values for floor
+ * and ceiling colors.
+ *
+ * @param cfg The configuration structure containing the field data.
+ * @param state The application state to initialize.
+ * @return true if all fields were successfully validated and initialized,
+	false otherwise.
+ */
 bool	validate_fields(t_config *cfg, t_app_state *state)
 {
 	state->mlx = mlx_init();
@@ -53,6 +75,17 @@ bool	validate_fields(t_config *cfg, t_app_state *state)
 	return (true);
 }
 
+/**
+ * @brief Parses a configuration item and assigns its value to the 
+ * target field.
+ *
+ * @param target Pointer to the target field where the parsed value will 
+ * be stored.
+ * @param id The identifier of the configuration item (e.g., "NO", "SO").
+ * @param str The string containing the value of the configuration item.
+ * @return true if the configuration item was successfully parsed,
+	false otherwise.
+ */
 static bool	parse_config_item(char **target, char *id, char *str)
 {
 	if (*target)
@@ -66,6 +99,14 @@ static bool	parse_config_item(char **target, char *id, char *str)
 	return (true);
 }
 
+/**
+ * @brief Parses a single line of the configuration file and updates 
+ * the configuration structure.
+ *
+ * @param cfg The configuration structure to update.
+ * @param line The line from the configuration file to parse.
+ * @return true if the line was successfully parsed, false otherwise.
+ */
 static bool	parse_configuration_line(t_config *cfg, const char *line)
 {
 	if (*line && is_whitespace_line(line))
@@ -92,6 +133,23 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 	return (false);
 }
 
+/**
+
+ * @brief Parses the configuration fields from the file contents
+ and updates the configuration structure.
+ *
+ * This function iterates through the file contents,
+ parsing configuration fields until the map section
+ * is reached.
+ *
+ * @param cfg The configuration structure to update.
+ * @param file_contents The array of strings containing the file contents.
+ * @param line_count The total number of lines in the file.
+ * @param index Pointer to the current line index,
+	which will be updated during parsing.
+ * @return true if all configuration fields were successfully parsed,
+	false otherwise.
+ */
 bool	parse_configurations(t_config *cfg, char **file_contents,
 		size_t line_count, size_t *index)
 {

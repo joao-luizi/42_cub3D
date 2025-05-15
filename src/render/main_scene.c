@@ -6,12 +6,19 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 17:56:55 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:41:31 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+/**
+ * @brief Initializes the ray's step and side distances based on its 
+ * direction.
+ * 
+ * @param st The application state containing the player's data.
+ * @param r_info The ray information structure to initialize.
+ */
 static inline void	initialize_ray(t_app_state *st, t_ray_info *r_info)
 {
 	if (r_info->ray_dir.x < 0)
@@ -40,6 +47,15 @@ static inline void	initialize_ray(t_app_state *st, t_ray_info *r_info)
 	}
 }
 
+/**
+ * @brief Calculates wall information such as distance, type, and texture 
+ * coordinates.
+ * 
+ * @param st The application state containing the player's data.
+ * @param r_info The ray information structure to update.
+ * @param side Indicates whether the wall was hit on the x-axis (0) or
+ *  y-axis (1).
+ */
 static inline void	get_wall_info(t_app_state *st, t_ray_info *r_info, int side)
 {
 	if (side == 0)
@@ -69,6 +85,13 @@ static inline void	get_wall_info(t_app_state *st, t_ray_info *r_info, int side)
 	r_info->wall_half = r_info->wall_info.y / 2;
 }
 
+/**
+ * @brief Traces the ray through the map to find the first wall it 
+ * intersects.
+ * 
+ * @param st The application state containing the player's data.
+ * @param r_info The ray information structure to update.
+ */
 static inline void	get_wall(t_app_state *st, t_ray_info *r_info)
 {
 	int	side;
@@ -95,6 +118,14 @@ static inline void	get_wall(t_app_state *st, t_ray_info *r_info)
 	}
 }
 
+/**
+ * @brief Draws a vertical column of pixels representing a wall slice on 
+ * the screen.
+ * 
+ * @param st The application state containing the game's data.
+ * @param r_info The ray information structure containing wall details.
+ * @param x The x-coordinate of the column to draw.
+ */
 static inline void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
 {
 	int		y;
@@ -124,6 +155,12 @@ static inline void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
 		draw_pixel(&st->g.main_scene, x, y, st->g.floor);
 }
 
+/**
+ * @brief Renders the main scene by casting rays and drawing the 
+ * corresponding wall slices.
+ * 
+ * @param st The application state containing the game's data.
+ */
 void	render_main_scene(t_app_state *st)
 {
 	int			x;

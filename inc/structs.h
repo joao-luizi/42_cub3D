@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 18:17:03 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:44:41 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct e_player
 	t_vector	direction;
 	t_vector	position;
 	t_vector	plane;
+	t_vector	rotation_factor_pos;
+	t_vector	rotation_factor_neg;
 	t_speed		speed;
 	bool		shift_pressed;
 	bool		alt_pressed;

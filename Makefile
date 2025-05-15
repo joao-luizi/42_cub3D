@@ -1,5 +1,5 @@
 CC				=	cc
-CFLAGS 			= 	-Wall -Wextra -Werror -g -I$(MLX_PATH)
+CFLAGS 			= 	-Wall -Wextra -Werror -MMD -g -I$(MLX_PATH)
 RM				=	rm -rf
 
 SRC_DIR			= ./src
@@ -19,10 +19,10 @@ MLX_FILE		=	$(MLX_PATH)libmlx.a
 
 LINKS 			= -lmlx -lXext -lX11 -L$(MLX_PATH) -lmlx -L$(LIBFT_PATH)lib -lft -lm
 
-SRC				=	$(SRC_DIR)/render/render_utils.c $(SRC_DIR)/render/main_scene.c $(SRC_DIR)/render/render_perf.c  \
-					$(SRC_DIR)/game/init.c $(SRC_DIR)/game/hooks.c $(SRC_DIR)/game/game.c $(SRC_DIR)/setup/setup.c \
-					$(SRC_DIR)/common/aux.c $(SRC_DIR)/common/init.c $(SRC_DIR)/common/cleanup.c\
-					$(SRC_DIR)/setup/aux.c $(SRC_DIR)/setup/setup_fields.c $(SRC_DIR)/setup/setup_map.c\
+SRC				=	$(SRC_DIR)/render/render_utils.c $(SRC_DIR)/render/main_scene.c $(SRC_DIR)/render/render_perf.c  			\
+					$(SRC_DIR)/game/init.c $(SRC_DIR)/game/hooks.c $(SRC_DIR)/game/game.c $(SRC_DIR)/game/aux.c 				\
+					$(SRC_DIR)/common/aux.c $(SRC_DIR)/common/init.c $(SRC_DIR)/common/cleanup.c								\
+					$(SRC_DIR)/setup/aux.c $(SRC_DIR)/setup/setup_fields.c $(SRC_DIR)/setup/setup_map.c $(SRC_DIR)/setup/setup.c\
 					$(SRC_DIR)/main.c 
 
 SRC_BONUS		=	$(SRC_DIR_BO)/setup/setup.c $(SRC_DIR_BO)/setup/init.c $(SRC_DIR_BO)/setup/cleanup.c\
@@ -32,6 +32,8 @@ SRC_BONUS		=	$(SRC_DIR_BO)/setup/setup.c $(SRC_DIR_BO)/setup/init.c $(SRC_DIR_BO
 OBJS 			= 	${patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC}}
 
 OBJS_BONUS		= 	${patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC_BONUS}}
+
+DEPS 			=	$(OBJS:.o=.d)
 
 all:	$(NAME)
 
@@ -44,6 +46,8 @@ $(BIN_DIR):
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+-include $(DEPS)
 
 $(LIBFT_FILE):
 	@echo "Building libft..."

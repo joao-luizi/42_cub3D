@@ -6,29 +6,43 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:12:32 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/14 17:56:12 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:40:15 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static inline void	rotate_player(t_app_state *state, double rotation_speed)
+/**
+ * @brief Rotates the player by a given rotation speed.
+ *
+ * @param state The application state containing the player's data.
+ * @param rotation_speed The speed and direction of the rotation.
+ */
+static inline void	rotate_player(t_app_state *state, t_vector rotation_speed)
 {
 	double	old_d_x;
 	double	old_plane_x;
 
 	old_d_x = state->player.direction.x;
-	state->player.direction.x = state->player.direction.x * cos(rotation_speed)
-		- state->player.direction.y * sin(rotation_speed);
-	state->player.direction.y = old_d_x * sin(rotation_speed)
-		+ state->player.direction.y * cos(rotation_speed);
+	state->player.direction.x = state->player.direction.x * rotation_speed.x
+		- state->player.direction.y * rotation_speed.y;
+	state->player.direction.y = old_d_x * rotation_speed.y
+		+ state->player.direction.y * rotation_speed.x;
 	old_plane_x = state->player.plane.x;
-	state->player.plane.x = state->player.plane.x * cos(rotation_speed)
-		- state->player.plane.y * sin(rotation_speed);
-	state->player.plane.y = old_plane_x * sin(rotation_speed)
-		+ state->player.plane.y * cos(rotation_speed);
+	state->player.plane.x = state->player.plane.x * rotation_speed.x
+		- state->player.plane.y * rotation_speed.y;
+	state->player.plane.y = old_plane_x * rotation_speed.y
+		+ state->player.plane.y * rotation_speed.x;
 }
 
+/**
+ * @brief Moves the player by a given velocity vector, checking for 
+ * collisions.
+ *
+ * @param v_x The velocity in the x-direction.
+ * @param v_y The velocity in the y-direction.
+ * @param state The application state containing the player's data.
+ */
 static inline void	move_player(double v_x, double v_y, t_app_state *state)
 {
 	double	new_x;
@@ -52,6 +66,14 @@ static inline void	move_player(double v_x, double v_y, t_app_state *state)
 		state->player.position.y = new_y;
 }
 
+/**
+ * @brief Calculates the vertical movement of the player based on input.
+ *
+ * @param state The application state containing the player's data.
+ * @param v_x Pointer to the x-component of the velocity vector.
+ * @param v_y Pointer to the y-component of the velocity vector.
+ * @param move_speed The speed of the player's movement.
+ */
 static inline void	vertical_move(t_app_state *state, double *v_x, double *v_y,
 		double move_speed)
 {
@@ -67,6 +89,14 @@ static inline void	vertical_move(t_app_state *state, double *v_x, double *v_y,
 	}
 }
 
+/**
+ * @brief Calculates the horizontal movement of the player based on input.
+ *
+ * @param state The application state containing the player's data.
+ * @param v_x Pointer to the x-component of the velocity vector.
+ * @param v_y Pointer to the y-component of the velocity vector.
+ * @param move_speed The speed of the player's movement.
+ */
 static inline void	horizontal_move(t_app_state *state, double *v_x,
 		double *v_y, double move_speed)
 {
@@ -81,11 +111,16 @@ static inline void	horizontal_move(t_app_state *state, double *v_x,
 		*v_y += state->player.direction.x * move_speed;
 	}
 	if (state->player.turn_left_pressed)
-		rotate_player(state, -state->player.speed.angular);
+		rotate_player(state, state->player.rotation_factor_neg);
 	if (state->player.turn_right_pressed)
-		rotate_player(state, state->player.speed.angular);
+		rotate_player(state, state->player.rotation_factor_pos);
 }
 
+/**
+ * @brief Updates the player's position and orientation based on input.
+ *
+ * @param state The application state containing the player's data.
+ */
 void	update_player(t_app_state *state)
 {
 	double	v_x;
