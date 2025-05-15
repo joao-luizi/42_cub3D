@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 13:05:17 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:25:25 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,12 +139,12 @@ static inline void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
 	precompute_column(st, wall, r_info, wall_tex);
 	y = -1;
 	while (++y < wall[0])
-		draw_pixel(&st->g.main_scene, x, y, st->g.ceil);
+		draw_pixel(&st->g.main_scene, x, y, 0x00FF00);
 	tex_i = 0;
 	if (wall[0] == wall[1])
 	{
-		draw_pixel(&st->g.main_scene, x, y, st->g.ceil);
-		draw_pixel(&st->g.main_scene, x, y + 1, st->g.floor);
+		draw_pixel(&st->g.main_scene, x, y, 0x00FF00);
+		draw_pixel(&st->g.main_scene, x, y + 1, 0x0000FF);
 	}
 	while (++y <= wall[1] && y < st->g.main_scene.height)
 	{
@@ -152,7 +152,7 @@ static inline void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
 		tex_i++;
 	}
 	while (++y < st->g.main_scene.height)
-		draw_pixel(&st->g.main_scene, x, y, st->g.floor);
+		draw_pixel(&st->g.main_scene, x, y, 0x0000FF);
 }
 
 /**

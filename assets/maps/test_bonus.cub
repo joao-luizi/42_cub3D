@@ -8,7 +8,7 @@ C /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/ceiling.xpm
 
 ANIM_DOOR /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/door.ani
 
-ANIM_FACE /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/face.ani
+ANIM_FACE                     /joaomigu/Documents/42_Projects/new_cub/assets/textures/face.ani
 
         1111111111111111111111111
         1000000000110000000000001

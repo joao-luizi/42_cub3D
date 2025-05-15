@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 15:08:01 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:45:59 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef struct s_img
 	int			half_width;
 	int			half_height;
 }				t_img;
+
+typedef struct s_anim
+{
+    t_img	frame;      
+    int		duration_ms; 
+}	t_anim;
 
 typedef struct s_rgb
 {
@@ -107,13 +113,15 @@ typedef struct e_player
 typedef struct s_graphics
 {
 	bool		fps;
+	t_anim		*door_anim;
+	t_anim		*face_anim;
 	t_img		main_scene;
 	t_img		tex_no;
 	t_img		tex_so;
 	t_img		tex_we;
 	t_img		tex_ea;
-	int			floor;
-	int			ceil;
+	t_img		tex_fl;
+	t_img		tex_cl;
 }				t_graphics;
 
 typedef struct e_ray_info

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:15 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 16:17:38 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:58:50 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * @return true if the RGB values were successfully extracted and valid,
 	false otherwise.
  */
-static bool	extract_rgb(const char *line, int *ref)
+bool	extract_rgb(const char *line, int *ref)
 {
 	char	**split;
 	int		color[4];
@@ -47,6 +47,48 @@ static bool	extract_rgb(const char *line, int *ref)
 	return (free_array(split), true);
 }
 
+bool	load_animation(t_app_state *st, char **split, t_anim *anim)
+{
+	if (!fill_texture(st->mlx, &anim->frame, split[0]))
+		return (false);
+	anim->duration_ms = ft_atoi(split[1]);
+	if (anim->duration_ms <= 0)
+		return (false);
+	return (true);
+}
+
+bool	load_animation_frames(t_config *cfg, t_app_state *st, t_anim *anim,
+		const char *anim_file)
+{
+	char	**file_content;
+	char	**split;
+	size_t	line_count;
+	int		i[2];
+
+	line_count = count_file_lines(anim_file);
+	if (line_count == 0 || line_count > 4)
+		return (false);
+	if (!get_file_content(anim_file, line_count, &file_content))
+		(false);
+	i[0] = -1;
+	i[1] = 0;
+	while (file_content[++i[0]])
+	{
+		if (is_whitespace_line(file_content[i[0]]))
+			continue ;
+		split = ft_split(file_content[i[0]], ';');
+		if (ft_str_array_len(split) != 2)
+			return (free_array(file_content), free_array(split), false);
+		if (is_whitespace_line(split[0]) || is_whitespace_line(split[1]))
+			return (free_array(file_content), free_array(split), false);
+		if (!load_animation(st, split, &anim[i[1]]))
+			return (free_array(file_content), free_array(split), false);
+		free_array(split);
+		i[1]++;
+	}
+	free_array(file_content);
+	return (true);
+}
 /**
 
  * @brief Validates and initializes the fields in the configuration
@@ -70,8 +112,8 @@ bool	validate_fields(t_config *cfg, t_app_state *state)
 		|| !fill_texture(state->mlx, &state->g.tex_so, cfg->so_tex)
 		|| !fill_texture(state->mlx, &state->g.tex_we, cfg->we_tex)
 		|| !fill_texture(state->mlx, &state->g.tex_ea, cfg->ea_tex)
-		|| !extract_rgb(cfg->fl_tex, &state->g.floor)
-		|| !extract_rgb(cfg->cl_tex, &state->g.ceil))
+		|| !fill_texture(state->mlx, &state->g.tex_fl, cfg->fl_tex)
+		|| !fill_texture(state->mlx, &state->g.tex_cl, cfg->cl_tex))
 		return (false);
 	return (true);
 }
@@ -164,7 +206,7 @@ bool	parse_configurations(t_config *cfg, char **file_contents,
 		(*index)++;
 	}
 	if (!cfg->no_tex || !cfg->so_tex || !cfg->we_tex || !cfg->ea_tex
-		|| !cfg->cl_tex || !cfg->fl_tex)
+		|| !cfg->cl_tex || !cfg->fl_tex || !cfg->door_anim || !cfg->face_anim)
 		return (ft_putstr_fd(ERR_FIELDS, 2), false);
 	return (true);
 }
