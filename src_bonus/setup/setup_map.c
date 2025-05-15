@@ -6,11 +6,11 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:10 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 16:07:38 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:51:55 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub3d.h"
+#include "../../inc_bonus/cub3d.h"
 
 /**
 
@@ -129,6 +129,30 @@ bool	validate_map(t_config *cfg)
 }
 
 /**
+ * @brief Checks if a string contains only allowed characters.
+ *
+ * This function iterates through the given string and verifies that each
+ * character is part of the allowed `MAP_CHARS`. If an invalid character is
+ * found, it returns false.
+ *
+ * @param str The string to check.
+ * @return true if all characters are allowed, false otherwise.
+ */
+bool	is_valid_map_line(const char *str)
+{
+    int	i;
+
+    i = 0;
+    while (str[i])
+    {
+        if (!is_allowed(str[i], MAP_CHARS))
+            return (false);
+        i++;
+    }
+    return (true);
+}
+
+/**
  * @brief Calculates the dimensions of the map based on the file contents.
  *
  * This function determines the width and height of the map by analyzing the
@@ -142,32 +166,32 @@ bool	validate_map(t_config *cfg)
 	false otherwise.
  */
 bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
-	size_t *index, size_t line_count)
+		size_t *index, size_t line_count)
 {
-size_t	line_length;
-int		i;
+	size_t	line_length;
+	int		i;
 
-line_length = 0;
-while (*index < line_count && file_contents[*index])
-{
-	if (!is_whitespace_line(file_contents[*index]))
+	line_length = 0;
+	while (*index < line_count && file_contents[*index])
 	{
-		i = -1;
-		while (file_contents[*index][++i])
-		{
-			if (file_contents[*index][i] == ' ')
-				continue ;
-			if (!is_allowed(file_contents[*index][i], MAP_CHARS))
-				return (ft_putstr_fd(ERR_MAP_CHAR, 2), false);
-		}
-		line_length = ft_strlen(file_contents[*index]);
-		if (line_length > (size_t)cfg->map.range.x)
-			cfg->map.range.x = line_length;
-		cfg->map.range.y++;
+		if (!is_whitespace_line(file_contents[*index]))
+        {
+			i = -1;
+			while (file_contents[*index][++i])
+			{
+				if (file_contents[*index][i] == ' ')
+					continue ;
+				if (!is_allowed(file_contents[*index][i], MAP_CHARS))
+					return (ft_putstr_fd(ERR_MAP_CHAR, 2), false);
+			}
+			line_length = ft_strlen(file_contents[*index]);
+			if (line_length > (size_t)cfg->map.range.x)
+				cfg->map.range.x = line_length;
+			cfg->map.range.y++;
+        }
+		(*index)++;
 	}
-	(*index)++;
-}
-return (true);
+	return (true);
 }
 
 /**

@@ -6,11 +6,11 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:15 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 16:14:21 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:17:38 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub3d.h"
+#include "../../inc_bonus/cub3d.h"
 
 /**
  * @brief Extracts RGB color values from a string and converts them into
@@ -87,7 +87,7 @@ bool	validate_fields(t_config *cfg, t_app_state *state)
  * @return true if the configuration item was successfully parsed,
 	false otherwise.
  */
-static bool	parse_config_item(char **target, char *id, char *str)
+static bool	parse_item(char **target, char *id, char *str)
 {
 	if (*target)
 	{
@@ -117,21 +117,23 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 	if (!*line)
 		return (true);
 	if (!ft_strncmp(line, "NO ", 3))
-		return (parse_config_item(&cfg->no_tex, "NO", (char *)line + 3));
+		return (parse_item(&cfg->no_tex, "NO", (char *)line + 3));
 	if (!ft_strncmp(line, "SO ", 3))
-		return (parse_config_item(&cfg->so_tex, "SO", (char *)line + 3));
+		return (parse_item(&cfg->so_tex, "SO", (char *)line + 3));
 	if (!ft_strncmp(line, "WE ", 3))
-		return (parse_config_item(&cfg->we_tex, "WE", (char *)line + 3));
+		return (parse_item(&cfg->we_tex, "WE", (char *)line + 3));
 	if (!ft_strncmp(line, "EA ", 3))
-		return (parse_config_item(&cfg->ea_tex, "EA", (char *)line + 3));
+		return (parse_item(&cfg->ea_tex, "EA", (char *)line + 3));
 	if (!ft_strncmp(line, "F ", 2))
-		return (parse_config_item(&cfg->fl_tex, "F", (char *)line + 2));
+		return (parse_item(&cfg->fl_tex, "F", (char *)line + 2));
 	if (!ft_strncmp(line, "C ", 2))
-		return (parse_config_item(&cfg->cl_tex, "C", (char *)line + 2));
+		return (parse_item(&cfg->cl_tex, "C", (char *)line + 2));
+	if (!ft_strncmp(line, "ANIM_DOOR ", 10))
+		return (parse_item(&cfg->door_anim, "ANIM_DOOR", (char *)line + 10));
+	if (!ft_strncmp(line, "ANIM_FACE ", 10))
+		return (parse_item(&cfg->face_anim, "ANIM_FACE", (char *)line + 10));
 	ft_putstr_fd("Error.\nUnrecognized field line: ", 2);
-	ft_putstr_fd((char *)line, 2);
-	ft_putstr_fd("\n", 2);
-	return (false);
+	return (ft_putstr_fd((char *)line, 2), ft_putstr_fd("\n", 2), false);
 }
 
 /**

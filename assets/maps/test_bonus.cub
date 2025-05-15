@@ -1,20 +1,15 @@
-NO /home/joaomigu/Documents/cub3d/maps/NO.xpm
-SO /home/joaomigu/Documents/cub3d/maps/SO.xpm
-WE /home/joaomigu/Documents/cub3d/maps/WS.xpm
-EA /home/joaomigu/Documents/cub3d/maps/ES.xpm
+NO /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/NO_1.xpm
+SO /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/SO_1.xpm
+WE /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/WS_1.xpm
+EA /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/ES_1.xpm
 
-F /home/joaomigu/Documents/cub3d/maps/floor.xpm
-C /home/joaomigu/Documents/cub3d/maps/ceiling.xpm
+F /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/floor.xpm
+C /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/ceiling.xpm
 
-ANIM_DOOR /home/joaomigu/Documents/cub3d/maps/door_frame_1.xpm
-ANIM_DOOR /home/joaomigu/Documents/cub3d/maps/door_frame_2.xpm
-ANIM_DOOR /home/joaomigu/Documents/cub3d/maps/door_frame_3.xpm
-ANIM_DOOR /home/joaomigu/Documents/cub3d/maps/door_frame_4.xpm
+ANIM_DOOR /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/door.ani
 
-ANIM_FACE /home/joaomigu/Documents/cub3d/maps/facial_1.xpm
-ANIM_FACE /home/joaomigu/Documents/cub3d/maps/facial_2.xpm
-ANIM_FACE /home/joaomigu/Documents/cub3d/maps/facial_3.xpm
-ANIM_FACE /home/joaomigu/Documents/cub3d/maps/facial_4.xpm
+ANIM_FACE /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/face.ani
+
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
@@ -24,7 +19,7 @@ ANIM_FACE /home/joaomigu/Documents/cub3d/maps/facial_4.xpm
 11110111111111011100000010001
 11110111111111011101010010001
 11000000110101011100000010001
-10000000000000001100000010001
+1000000000000000D000000010001
 10000000000000001101010000001
 11000001110101011111011110N0111
 11110111 1110101 101111010001

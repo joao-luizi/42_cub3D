@@ -5,6 +5,7 @@ RM				=	rm -rf
 SRC_DIR			= ./src
 SRC_DIR_BO		= ./src_bonus
 OBJ_DIR 		= ./obj
+OBJ_DIR_BO		= ./obj_bonus
 INC_DIR			= ./inc
 BIN_DIR			= ./bin
 LIB_DIR			= ./lib
@@ -25,17 +26,24 @@ SRC				=	$(SRC_DIR)/render/render_utils.c $(SRC_DIR)/render/main_scene.c $(SRC_D
 					$(SRC_DIR)/setup/aux.c $(SRC_DIR)/setup/setup_fields.c $(SRC_DIR)/setup/setup_map.c $(SRC_DIR)/setup/setup.c\
 					$(SRC_DIR)/main.c 
 
-SRC_BONUS		=	$(SRC_DIR_BO)/setup/setup.c $(SRC_DIR_BO)/setup/init.c $(SRC_DIR_BO)/setup/cleanup.c\
-					$(SRC_DIR_BO)/setup/aux.c $(SRC_DIR_BO)/setup/setup_fields.c $(SRC_DIR_BO)/setup/setup_map.c\
-					$(SRC_DIR_BO)/main.c $(SRC_DIR_BO)/aux.c
+SRC_BONUS		=	$(SRC_DIR_BO)/render/render_utils.c $(SRC_DIR_BO)/render/main_scene.c $(SRC_DIR_BO)/render/render_perf.c  			\
+					$(SRC_DIR_BO)/game/init.c $(SRC_DIR_BO)/game/hooks.c $(SRC_DIR_BO)/game/game.c $(SRC_DIR_BO)/game/aux.c 			\
+					$(SRC_DIR_BO)/common/aux.c $(SRC_DIR_BO)/common/init.c $(SRC_DIR_BO)/common/cleanup.c								\
+					$(SRC_DIR_BO)/setup/aux.c $(SRC_DIR_BO)/setup/setup_fields.c $(SRC_DIR_BO)/setup/setup_map.c $(SRC_DIR_BO)/setup/setup.c\
+					$(SRC_DIR_BO)/main.c 
 
 OBJS 			= 	${patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC}}
 
-OBJS_BONUS		= 	${patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC_BONUS}}
+OBJS_BONUS		= 	${patsubst ${SRC_DIR_BO}/%.c, ${OBJ_DIR_BO}/%.o, ${SRC_BONUS}}
 
 DEPS 			=	$(OBJS:.o=.d)
 
+DEPS_BONUS 		=	$(OBJS_BONUS:.o=.d)
+
 all:	$(NAME)
+
+$(OBJ_DIR_BO):
+	@if [ ! -d $(OBJ_DIR_BO) ]; then mkdir -p $(OBJ_DIR_BO); fi
 
 $(OBJ_DIR):
 	@if [ ! -d $(OBJ_DIR) ]; then mkdir -p $(OBJ_DIR); fi
@@ -47,7 +55,12 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJ_DIR_BO)/%.o:	$(SRC_DIR_BO)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 -include $(DEPS)
+-include $(DEPS_BONUS)
 
 $(LIBFT_FILE):
 	@echo "Building libft..."
@@ -67,6 +80,7 @@ $(NAME_BONUS):	$(OBJS_BONUS) $(LIBFT_FILE) $(MLX_FILE) | $(BIN_DIR)
 
 clean:
 	@if [ -d $(OBJ_DIR) ]; then $(RM) $(OBJ_DIR); fi
+	@if [ -d $(OBJ_DIR_BO) ]; then $(RM) $(OBJ_DIR_BO); fi
 	@if [ -f $(NAME) ]; then $(RM) $(NAME); fi
 	@if [ -f $(NAME_BONUS) ]; then $(RM) $(NAME_BONUS); fi
 
