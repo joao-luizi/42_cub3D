@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:00 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 13:05:40 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 23:50:39 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void	free_config(t_config *cfg, bool free_map)
 		free(cfg->cl_tex);
 	if (cfg->fl_tex)
 		free(cfg->fl_tex);
+	if (cfg->door_anim)
+		free(cfg->door_anim);
+	if (cfg->face_anim)
+		free(cfg->face_anim);
 	if (free_map && cfg->map.map)
 	{
 		free_array(cfg->map.map);
@@ -86,13 +90,39 @@ static void	free_image(t_img *img, void *mlx)
  */
 static void	free_graphics(t_graphics *g, void *mlx)
 {
+	int i;
+	
 	if (!g)
 		return ;
 	free_image(&g->tex_no, mlx);
 	free_image(&g->tex_so, mlx);
 	free_image(&g->tex_we, mlx);
 	free_image(&g->tex_ea, mlx);
+	free_image(&g->tex_cl, mlx);
+	free_image(&g->tex_fl, mlx);
 	free_image(&g->main_scene, mlx);
+	if (g->door_anim)
+	{
+		i = -1;
+		while (++i < 4)
+		{
+			if (g->door_anim[i].frame.img_ptr)
+				free_image(&g->door_anim[i].frame, mlx);
+		}
+		free(g->door_anim);
+		g->door_anim = NULL;
+	}
+	if (g->face_anim)
+	{
+		i = -1;
+		while (++i < 4)
+		{
+			if (g->face_anim[i].frame.img_ptr)
+				free_image(&g->face_anim[i].frame, mlx);
+		}
+		free(g->face_anim);
+		g->face_anim = NULL;
+	}
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:53 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 16:26:20 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/15 23:54:29 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static void	init_g(t_graphics *g)
 	init_image(&g->tex_we);
 	init_image(&g->tex_ea);
 	init_image(&g->main_scene);
+	g->door_anim = NULL;
+	g->face_anim = NULL;
 }
 
 /**
