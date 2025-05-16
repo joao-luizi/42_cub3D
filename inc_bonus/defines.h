@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:28 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 15:52:13 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:53:01 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define FOV 60
 # define WINDOW_WIDTH 1200
 # define WINDOW_HEIGHT 800
+# define FACE_X 10
+# define FACE_Y 10
 # define MAIN_WIDTH 1200
 # define MAIN_HEIGHT 800
 
@@ -37,6 +39,7 @@
 # define PLAYER_MOV_SPEED 0.04
 
 # define F1_KEY 269025093
+# define SPACE_KEY 32
 # define MAP_CHARS "01NESWD"
 # define ERR_BORDER "Error.\nInvalid border detected.\n"
 # define ERR_DUP_PLAYER "Error.\nDuplicate player position found.\n"

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:12:32 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 13:05:29 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:33:18 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ static inline void	move_player(double v_x, double v_y, t_app_state *state)
 	double	buffer_y;
 
 	if (v_x > 0)
-		buffer_x = 0.5;
+		buffer_x = 0.7;
 	else
-		buffer_x = 0.5;
+		buffer_x = -0.7;
 	if (v_y > 0)
-		buffer_y = 0.5;
+		buffer_y = 0.7;
 	else
-		buffer_y = 0.5;
+		buffer_y = -0.7;
 	new_x = state->player.position.x + v_x;
 	new_y = state->player.position.y + v_y;
 	if (!is_wall(new_x + buffer_x, state->player.position.y, state))

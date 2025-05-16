@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:10 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 15:51:55 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:48:48 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ bool	validate_map(t_config *cfg)
 {
 	int		i[2];
 	char	c;
-
+	
 	i[0] = -1;
 	while (cfg->map.map[++i[0]])
 	{
@@ -121,7 +121,9 @@ bool	validate_map(t_config *cfg)
 				else
 					set_player(i[0], i[1], cfg);
 			}
-		}
+			if (c == 'D')
+				cfg->map.door_count++;
+		}	
 	}
 	if (cfg->map.player_position.x < 0 || cfg->map.player_position.y < 0)
 		return (ft_putstr_fd(ERR_NO_PLAYER, 2), false);

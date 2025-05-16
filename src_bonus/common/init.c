@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:53 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 23:54:29 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:39:42 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	init_state(t_app_state *state)
 	state->map = NULL;
 	state->normal_x = NULL;
 	state->column_buffer = NULL;
+	state->door_buffer = NULL;
+	state->anims = NULL;
 	init_g(&state->g);
 	init_player(&state->player);
 }
@@ -129,4 +131,5 @@ void	init_config(t_config *cfg)
 	cfg->map.player_direction.y = 0;
 	cfg->map.range.x = 0;
 	cfg->map.range.y = 0;
+	cfg->map.door_count = 0;
 }

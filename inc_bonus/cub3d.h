@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:20 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 12:42:13 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:58:34 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ void	init_window(t_app_state *state);
 bool	is_wall(double x, double y, t_app_state *st);
 void	draw_pixel(t_img *img, int x, int y, int color);
 void	get_wall_tex(t_img **wall_tex, t_wall wall, t_app_state *st);
-void	precompute_column(t_app_state *st, int wall[2], t_ray_info *r_info,
+void	precompute_column(int *colbuffer, int wall[2], t_ray_info *r_info,
 			t_img *wall_tex);
+void	precompute_door(int *colbuffer, int wall[2], t_ray_info *r_info,
+		t_img *wall_tex);
+t_anim_slot *find_door_anim(t_app_state *st, int x, int y);
 //		render_perf
 void	prec_normal_x(double **normal_x, int width);
 //		main_scene

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:15 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 23:52:40 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:28:24 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,11 @@ bool	load_animation_frames(t_app_state *st, t_anim **anim,
 			return (free_array(file_content), free_array(split), false);
 		free_array(split);
 		i[1]++;
+	}
+	if (i[1] < 4)
+	{
+		ft_putstr_fd("Error.\nToo few frames in animation.\n", 2);
+		return (free_array(file_content), false);
 	}
 	free_array(file_content);
 	return (true);

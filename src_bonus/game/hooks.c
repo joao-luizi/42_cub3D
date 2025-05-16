@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:55:59 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 13:05:32 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:02:39 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Handles player movement and direction based on key presses.
- * 
+ *
  * @param keycode The keycode of the pressed key.
  * @param state The application state containing the player's data.
  */
@@ -43,9 +43,9 @@ static void	handle_player(int keycode, t_app_state *state)
 }
 
 /**
- * @brief Handles utility actions such as toggling FPS display or 
+ * @brief Handles utility actions such as toggling FPS display or
  * exiting the game.
- * 
+ *
  * @param keycode The keycode of the pressed key.
  * @param state The application state containing the game's data.
  */
@@ -62,15 +62,28 @@ static void	handle_utils(int keycode, t_app_state *state)
 }
 
 /**
- * @brief Handles key press events and updates the player's state 
+ * @brief Handles key press events and updates the player's state
  * accordingly.
- * 
+ *
  * @param keycode The keycode of the pressed key.
  * @param state The application state containing the player's data.
  * @return Always returns 0.
  */
 int	handle_keypress(int keycode, t_app_state *state)
 {
+	t_anim_slot	*anim;
+
+	if (keycode == XK_space || keycode == SPACE)
+	{
+		anim = find_door_anim(state, state->player.position.x
+				+ state->player.direction.x, state->player.position.y
+				+ state->player.direction.y);
+		if (anim && !anim->is_reversed)
+		{
+			anim->is_reversed = false;
+			anim->is_started = true;
+		}
+	}
 	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
 		state->player.shift_pressed = true;
 	if (keycode == XK_Alt_L || keycode == XK_Alt_R)
@@ -91,9 +104,9 @@ int	handle_keypress(int keycode, t_app_state *state)
 }
 
 /**
- * @brief Handles key release events and updates the player's state 
+ * @brief Handles key release events and updates the player's state
  * accordingly.
- * 
+ *
  * @param keycode The keycode of the released key.
  * @param state The application state containing the player's data.
  * @return Always returns 0.
@@ -120,9 +133,9 @@ int	handle_keyrelease(int keycode, t_app_state *state)
 }
 
 /**
- * @brief Handles the closing of the application, freeing resources and 
+ * @brief Handles the closing of the application, freeing resources and
  * exiting.
- * 
+ *
  * @param state The application state containing the game's data.
  * @return Always returns 0.
  */

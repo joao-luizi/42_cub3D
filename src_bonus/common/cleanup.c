@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:00 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 23:50:39 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:13:05 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,4 +153,8 @@ void	free_state(t_app_state *state)
 		free(state->normal_x);
 	if (state->column_buffer)
 		free(state->column_buffer);
+	if (state->door_buffer)	
+		free(state->door_buffer);
+	if (state->anims)
+		free(state->anims);
 }
