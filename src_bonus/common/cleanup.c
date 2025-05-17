@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:00 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/16 17:13:05 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:27:50 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,18 @@ static void	free_image(t_img *img, void *mlx)
 	img->data_addr = NULL;
 }
 
+static void free_anim(t_anim *anim, void *mlx)
+{
+	int i;
+	
+	i = -1;
+	while (++i < 4)
+	{
+		if (anim[i].frame.img_ptr)
+			free_image(&anim[i].frame, mlx);
+	}
+	free(anim);
+}
 /**
  * @brief Frees the memory allocated for graphics-related resources.
  *
@@ -102,27 +114,27 @@ static void	free_graphics(t_graphics *g, void *mlx)
 	free_image(&g->tex_fl, mlx);
 	free_image(&g->main_scene, mlx);
 	if (g->door_anim)
-	{
-		i = -1;
-		while (++i < 4)
-		{
-			if (g->door_anim[i].frame.img_ptr)
-				free_image(&g->door_anim[i].frame, mlx);
-		}
-		free(g->door_anim);
-		g->door_anim = NULL;
-	}
+		free_anim(g->door_anim, mlx);
 	if (g->face_anim)
-	{
+		free_anim(g->face_anim, mlx);
+}
+
+/**
+ * @brief Frees the memory allocated for threads.
+ *
+ * @param state The application state containing the threads and arguments.
+ */
+static void free_threads_and_args(t_app_state *state)
+{
+	int i;
+
+    if (state->threads)
+    {
 		i = -1;
-		while (++i < 4)
-		{
-			if (g->face_anim[i].frame.img_ptr)
-				free_image(&g->face_anim[i].frame, mlx);
-		}
-		free(g->face_anim);
-		g->face_anim = NULL;
-	}
+		while (++i < state->core_count)
+			pthread_cancel(state->threads[i]);
+        free(state->threads);
+    }
 }
 
 /**
@@ -144,17 +156,15 @@ void	free_state(t_app_state *state)
 		free(state->mlx);
 		state->mlx = NULL;
 	}
+	free_threads(state);
+	pthread_mutex_destroy(&state->render_mutex);
+    pthread_cond_destroy(&state->render_cond);
 	if (state->map && state->map->map)
-	{
 		free_array(state->map->map);
-		state->map->map = NULL;
-	}
 	if (state->normal_x)
 		free(state->normal_x);
-	if (state->column_buffer)
-		free(state->column_buffer);
-	if (state->door_buffer)	
-		free(state->door_buffer);
 	if (state->anims)
 		free(state->anims);
+	if (state->args)
+		free(state->args);
 }

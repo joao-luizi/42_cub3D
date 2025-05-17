@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:55:59 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/16 18:02:39 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:38:46 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ static void	handle_utils(int keycode, t_app_state *state)
 {
 	if (keycode == XK_F1 || keycode == F1_KEY)
 		state->g.fps = !state->g.fps;
+	if (keycode == XK_F2 || keycode == F2_KEY)
+		state->g.face = !state->g.face;
+	if (keycode == XK_F3 || keycode == F3_KEY)
+		state->g.minimap = !state->g.minimap;
 	if (keycode == XK_Escape)
 	{
 		mlx_loop_end(state->mlx);

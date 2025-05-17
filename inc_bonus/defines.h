@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:28 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/16 17:53:01 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:39:01 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "../lib/minilibx-linux/mlx.h"
 # include "X11/X.h"
 # include "X11/keysym.h"
+# include <threads.h>
+# include <pthread.h>
 # include <ctype.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -34,11 +36,14 @@
 # define FACE_Y 10
 # define MAIN_WIDTH 1200
 # define MAIN_HEIGHT 800
-
+# define MAX_THREADS 8
 # define PLAYER_ROT_SPEED 0.02
 # define PLAYER_MOV_SPEED 0.04
 
 # define F1_KEY 269025093
+# define F2_KEY 269025094
+# define F3_KEY 269025095
+
 # define SPACE_KEY 32
 # define MAP_CHARS "01NESWD"
 # define ERR_BORDER "Error.\nInvalid border detected.\n"
@@ -62,4 +67,8 @@
 # define ERR_IMG_INIT "Error.\nUnable to initialize mlx image."
 # define ERR_WIN_INIT "Error.\nUnable to initialize mlx window."
 # define ERR_IMG_DA "Error.\nUnable to initialize mlx image data address."
+# define ERR_MUTEX_INIT "Error.\nUnable to initialize mutex."
+# define ERR_COND_INIT "Error.\nUnable to initialize condition variable."
+# define ERR_MLX_DESTROY "Error.\nUnable to destroy mlx window."
+# define ERR_THREAD_CREATE "Error.\nUnable to create thread."
 #endif

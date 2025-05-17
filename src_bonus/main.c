@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:52:51 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 13:04:52 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:11:51 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 		return (free_state(&st), 1);
 	}
 	free_config(&cfg, false);
-	init_window(&st);
+	init_game(&st);
 	free_state(&st);
 	return (0);
 }

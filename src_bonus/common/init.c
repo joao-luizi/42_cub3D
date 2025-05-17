@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:53 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/16 17:39:42 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:39:10 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ static void	init_g(t_graphics *g)
 	if (!g)
 		return ;
 	g->fps = false;
+	g->face = true;
+	g->minimap = true;
 	init_image(&g->tex_fl);
 	init_image(&g->tex_cl);
 	init_image(&g->tex_no);
@@ -98,9 +100,8 @@ void	init_state(t_app_state *state)
 	state->win = NULL;
 	state->map = NULL;
 	state->normal_x = NULL;
-	state->column_buffer = NULL;
-	state->door_buffer = NULL;
 	state->anims = NULL;
+	state->core_count = 0;
 	init_g(&state->g);
 	init_player(&state->player);
 }
