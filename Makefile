@@ -21,13 +21,13 @@ MLX_FILE		=	$(MLX_PATH)libmlx.a
 LINKS 			= -lmlx -lXext -lX11 -L$(MLX_PATH) -lmlx -L$(LIBFT_PATH)lib -lft -lm
 
 SRC				=	$(SRC_DIR)/render/render_utils.c $(SRC_DIR)/render/main_scene.c $(SRC_DIR)/render/render_perf.c  			\
-					$(SRC_DIR)/game/init.c $(SRC_DIR)/game/hooks.c $(SRC_DIR)/game/game.c $(SRC_DIR)/game/aux.c $(SRC_DIR)/game/game_loop.c 				\
+					$(SRC_DIR)/game/init.c $(SRC_DIR)/game/hooks.c $(SRC_DIR)/game/game.c $(SRC_DIR)/game/aux.c \
 					$(SRC_DIR)/common/aux.c $(SRC_DIR)/common/init.c $(SRC_DIR)/common/cleanup.c								\
 					$(SRC_DIR)/setup/aux.c $(SRC_DIR)/setup/setup_fields.c $(SRC_DIR)/setup/setup_map.c $(SRC_DIR)/setup/setup.c\
 					$(SRC_DIR)/main.c 
 
 SRC_BONUS		=	$(SRC_DIR_BO)/render/render_utils.c $(SRC_DIR_BO)/render/main_scene.c $(SRC_DIR_BO)/render/render_perf.c  			\
-					$(SRC_DIR_BO)/game/init.c $(SRC_DIR_BO)/game/hooks.c $(SRC_DIR_BO)/game/game.c $(SRC_DIR_BO)/game/aux.c 			\
+					$(SRC_DIR_BO)/game/init.c $(SRC_DIR_BO)/game/hooks.c $(SRC_DIR_BO)/game/game.c $(SRC_DIR_BO)/game/aux.c $(SRC_DIR_BO)/game/game_loop.c	\
 					$(SRC_DIR_BO)/common/aux.c $(SRC_DIR_BO)/common/init.c $(SRC_DIR_BO)/common/cleanup.c								\
 					$(SRC_DIR_BO)/setup/aux.c $(SRC_DIR_BO)/setup/setup_fields.c $(SRC_DIR_BO)/setup/setup_map.c $(SRC_DIR_BO)/setup/setup.c\
 					$(SRC_DIR_BO)/main.c 

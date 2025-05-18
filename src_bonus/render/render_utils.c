@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:26:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/16 17:57:03 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/17 23:00:57 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static inline int	get_door_color(t_img *img, t_ray_info *r_info, int screen_y,
 	//if (r_info->wall == SO_WALL || r_info->wall == WE_WALL)
 	//	tex_x = (int)((1.0 - r_info->door_info.x) * img->width);
 	//else
-	tex_x = (int)(r_info->door_info.x * img->width);
-	tex_y = (int)((wall_pixel_offset * img->height) / r_info->door_info.y);
+	tex_x = (int)(r_info->wall_info.x * img->width);
+	tex_y = (int)((wall_pixel_offset * img->height) / r_info->wall_info.y);
 	if (tex_x < 0)
 		tex_x = 0;
 	if (tex_x >= img->width)

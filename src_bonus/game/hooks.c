@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:55:59 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 18:38:46 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/17 23:54:20 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,7 @@ static void	handle_utils(int keycode, t_app_state *state)
 	if (keycode == XK_F3 || keycode == F3_KEY)
 		state->g.minimap = !state->g.minimap;
 	if (keycode == XK_Escape)
-	{
-		mlx_loop_end(state->mlx);
-		free_state(state);
-		exit(0);
-	}
+		close_handler(state);
 }
 
 /**
@@ -143,10 +139,22 @@ int	handle_keyrelease(int keycode, t_app_state *state)
  * @param state The application state containing the game's data.
  * @return Always returns 0.
  */
-int	close_handler(t_app_state *state)
+int close_handler(t_app_state *state)
 {
-	mlx_loop_end(state->mlx);
-	free_state(state);
-	exit(0);
-	return (0);
+    // Signal threads to exit
+	printf("Closing...\n");
+    pthread_mutex_lock(&state->render_mutex);
+    state->exit_requested = true;
+    pthread_cond_broadcast(&state->render_cond); // Wake up all threads
+    pthread_mutex_unlock(&state->render_mutex);
+
+    // Stop the MiniLibX loop
+    mlx_loop_end(state->mlx);
+
+    // Free all resources
+    free_state(state);
+
+    // Exit the program
+    exit(0);
+    return (0);
 }

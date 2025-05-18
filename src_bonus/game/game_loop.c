@@ -48,7 +48,7 @@ static inline void update_face_anim(t_app_state *state, struct timeval *now)
 		state->anims[0].is_started = true;
 		gettimeofday(&state->anims[0].frame_start, NULL);
 	}
-	if (state->anims[0].current_frame = 0)
+	if (state->anims[0].current_frame == 0)
 	{
 		delay_seconds = 10 + rand() % 6;
         state->anims[0].frame_start.tv_sec = now->tv_sec + delay_seconds;
@@ -69,10 +69,7 @@ static inline void update_face_anim(t_app_state *state, struct timeval *now)
 static inline void	update_anims(t_app_state *state, struct timeval *now)
 {
 	int		x;
-	int		delay_ms;
-	long	elapsed;
-	int		duration;
-
+	
 	x = -1;
 	while (++x < state->map->door_count + 1)
 	{

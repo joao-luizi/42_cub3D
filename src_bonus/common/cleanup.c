@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:00 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 18:27:50 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/17 23:36:55 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ static void free_anim(t_anim *anim, void *mlx)
  */
 static void	free_graphics(t_graphics *g, void *mlx)
 {
-	int i;
-	
 	if (!g)
 		return ;
 	free_image(&g->tex_no, mlx);
@@ -124,7 +122,7 @@ static void	free_graphics(t_graphics *g, void *mlx)
  *
  * @param state The application state containing the threads and arguments.
  */
-static void free_threads_and_args(t_app_state *state)
+static void free_threads(t_app_state *state)
 {
 	int i;
 
@@ -132,8 +130,12 @@ static void free_threads_and_args(t_app_state *state)
     {
 		i = -1;
 		while (++i < state->core_count)
-			pthread_cancel(state->threads[i]);
+		{
+            pthread_join(state->threads[i], NULL);
+        }
+
         free(state->threads);
+        state->threads = NULL;
     }
 }
 
@@ -147,6 +149,7 @@ void	free_state(t_app_state *state)
 {
 	if (!state)
 		return ;
+	free_threads(state);
 	if (state->mlx)
 	{
 		free_graphics(&state->g, state->mlx);
@@ -156,9 +159,10 @@ void	free_state(t_app_state *state)
 		free(state->mlx);
 		state->mlx = NULL;
 	}
-	free_threads(state);
-	pthread_mutex_destroy(&state->render_mutex);
-    pthread_cond_destroy(&state->render_cond);
+	if (state->mutex_initialized)
+		pthread_mutex_destroy(&state->render_mutex);
+	if (state->cond_initialized)
+    	pthread_cond_destroy(&state->render_cond);
 	if (state->map && state->map->map)
 		free_array(state->map->map);
 	if (state->normal_x)

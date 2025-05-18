@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:16:07 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 18:49:28 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/17 23:16:21 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,11 +129,13 @@ static bool	init_render_sync(t_app_state *state)
 {
 	if (pthread_mutex_init(&state->render_mutex, NULL) != 0)
 		return (ft_putstr_fd(ERR_MUTEX_INIT, 2), false);
+	state->mutex_initialized = true;
 	if (pthread_cond_init(&state->render_cond, NULL) != 0)
 	{
 		pthread_mutex_destroy(&state->render_mutex);
 		return (ft_putstr_fd(ERR_COND_INIT, 2), false);
 	}
+	state->cond_initialized = true;
 	state->render_ready = false;
 	state->threads_done = 0;
 	return (true);

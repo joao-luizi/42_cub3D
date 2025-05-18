@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 22:59:49 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/17 23:29:49 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,9 @@ typedef struct e_app_state
 	long				core_count;
 	t_args				*args;
 	pthread_t			*threads;
+	bool                mutex_initialized; 
+    bool                cond_initialized; 
+	bool exit_requested;
 	pthread_mutex_t		render_mutex;
 	pthread_cond_t		render_cond;
 	bool				render_ready;
