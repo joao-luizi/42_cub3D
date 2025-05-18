@@ -6,12 +6,36 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 23:50:46 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/18 14:32:27 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc_bonus/cub3d.h"
 
+static inline void after_wait(t_app_state *st)
+{
+    pthread_mutex_lock(&st->render_mutex);
+    st->threads_done++;
+    if (st->threads_done == st->core_count)
+    {
+        st->render_ready = false;
+        pthread_cond_signal(&st->render_cond);
+    }
+    pthread_mutex_unlock(&st->render_mutex); 
+}
+static inline bool pre_wait(t_app_state *st)
+{
+    pthread_mutex_lock(&st->render_mutex);
+    while (!st->render_ready && !st->exit_requested)
+        pthread_cond_wait(&st->render_cond, &st->render_mutex);
+    if (st->exit_requested)
+    {
+        pthread_mutex_unlock(&st->render_mutex);
+        return (false);
+    }
+    pthread_mutex_unlock(&st->render_mutex); 
+    return (true);
+}
 void *raycast_routine(void *arg)
 {
     t_args      *args;
@@ -20,48 +44,22 @@ void *raycast_routine(void *arg)
 
     args = (t_args *)arg;
     st = args->st;
-
+    
     while (true)
     {
-        pthread_mutex_lock(&st->render_mutex);
-
-        // Wait for render_ready or exit_requested
-        while (!st->render_ready && !st->exit_requested)
-            pthread_cond_wait(&st->render_cond, &st->render_mutex);
-
-        // Exit if exit_requested is set
-        if (st->exit_requested)
-        {
-            pthread_mutex_unlock(&st->render_mutex);
+        if (!pre_wait(st))
             break;
-        }
-
-        pthread_mutex_unlock(&st->render_mutex);
-
-        // Perform raycasting for the assigned columns
-        x = args->start_col;
-        printf("Thread %ld: Column Start %d Column End %d\n", pthread_self(), x, args->end_col);
-        while (x < args->end_col)
+        x = args->start_col - 1;
+        while (++x < args->end_col)
         {
             // init_raycast
             // step_routine
             // get_wall
             // draw_column
-            x++;
         }
-
-        // Update threads_done and signal if all threads are finished
-        pthread_mutex_lock(&st->render_mutex);
-        st->threads_done++;
-        if (st->threads_done == st->core_count)
-        {
-            st->render_ready = false;
-            pthread_cond_signal(&st->render_cond);
-        }
-        pthread_mutex_unlock(&st->render_mutex);
+        after_wait(st);
     }
-
-    printf("Thread %ld: Exiting...\n", pthread_self());
+    printf("Thread exiting...\n");
     return (NULL);
 }
 /**

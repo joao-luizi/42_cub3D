@@ -46,13 +46,9 @@ static inline void update_face_anim(t_app_state *state, struct timeval *now)
 	{
 		state->anims[0].current_frame = 0;
 		state->anims[0].is_started = true;
-		gettimeofday(&state->anims[0].frame_start, NULL);
-	}
-	if (state->anims[0].current_frame == 0)
-	{
 		delay_seconds = 10 + rand() % 6;
-        state->anims[0].frame_start.tv_sec = now->tv_sec + delay_seconds;
-        state->anims[0].frame_start.tv_usec = now->tv_usec;
+		state->anims[0].frame_start.tv_sec = now->tv_sec + delay_seconds;
+		state->anims[0].frame_start.tv_usec = now->tv_usec;
 	}
     if (time_lapsed(&state->anims[0].frame_start, now))
     {
@@ -62,7 +58,9 @@ static inline void update_face_anim(t_app_state *state, struct timeval *now)
 			state->anims[0].frame_start.tv_sec += 1;
 			state->anims[0].frame_start.tv_usec -= 1000000;
 		}
-		state->anims[0].frame_start.tv_usec += state->anims[0].anim_info->duration_ms * 1000;     
+		state->anims[0].frame_start.tv_usec += state->anims[0].anim_info->duration_ms * 1000; 
+		if (state->anims[0].current_frame == 0)
+			state->anims[0].is_started = false;    
     }
 
 }
