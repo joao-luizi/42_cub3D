@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/18 14:32:27 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:13:28 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,67 @@ static inline bool pre_wait(t_app_state *st)
     pthread_mutex_unlock(&st->render_mutex); 
     return (true);
 }
+
+static inline void setup_initial_step(t_app_state *st, t_ray_info *r_info)
+{
+    if (r_info->ray_dir.x < 0)
+    {
+        r_info->step.x = -1;
+        r_info->side_dist.x = (st->player.position.x - r_info->map.x)
+            * r_info->delta_dist.x;
+    }
+    else
+    {
+        r_info->step.x = 1;
+        r_info->side_dist.x = (r_info->map.x + 1.0 - st->player.position.x)
+            * r_info->delta_dist.x;
+    }
+    if (r_info->ray_dir.y < 0)
+    {
+        r_info->step.y = -1;
+        r_info->side_dist.y = (st->player.position.y - r_info->map.y)
+            * r_info->delta_dist.y;
+    }
+    else
+    {
+        r_info->step.y = 1;
+        r_info->side_dist.y = (r_info->map.y + 1.0 - st->player.position.y)
+            * r_info->delta_dist.y;
+    }
+}
+static inline void initialize_ray(t_app_state *st, t_ray_info *r_info, int x)
+{
+    double camera_x;
+
+    // Calculate the x-coordinate in camera space
+    r_info->ray_dir.x = st->player.direction.x + st->player.plane.x
+			* st->normal_x[x];
+    r_info->ray_dir.y = st->player.direction.y + st->player.plane.y
+			* st->normal_x[x];
+
+    // Initialize the map position (current square of the player)
+    r_info->map.x = (int)st->player.position.x;
+    r_info->map.y = (int)st->player.position.y;
+
+    // Calculate delta distances
+    r_info->delta_dist.x = fabs(1 / r_info->ray_dir.x);
+    r_info->delta_dist.y = fabs(1 / r_info->ray_dir.y);
+
+    // Initialize other fields to default values
+    r_info->wall_dist = 0;
+    r_info->wall_half = 0;
+    r_info->wall_info.x = 0;
+    r_info->wall_info.y = 0;
+    r_info->wall_text = NULL;
+    r_info->obstacles = NULL;
+    r_info->wall = NONE_WALL
+}
+
 void *raycast_routine(void *arg)
 {
     t_args      *args;
     t_app_state *st;
+    t_ray_info  r_info;
     int         x;
 
     args = (t_args *)arg;
@@ -52,8 +109,8 @@ void *raycast_routine(void *arg)
         x = args->start_col - 1;
         while (++x < args->end_col)
         {
-            // init_raycast
-            // step_routine
+            initialize_ray(st, &r_info, x);
+            setup_initial_step(st, &r_info);
             // get_wall
             // draw_column
         }
