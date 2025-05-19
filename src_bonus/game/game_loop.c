@@ -133,7 +133,8 @@ int	game_loop(t_app_state *st)
 
 
 	post_process(st, &now);
-	mlx_put_image_to_window(st->mlx, st->win, st->g.main_scene.img_ptr, 0, 0);
+	//printf("Rendering frame...\n");
+	mlx_put_image_to_window(st->mlx, st->win, st->g.buffer.img_ptr, 0, 0);
 	
 	return (0);
 }

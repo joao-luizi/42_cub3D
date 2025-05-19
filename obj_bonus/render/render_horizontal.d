@@ -1,4 +1,5 @@
-obj_bonus/render/main_scene.o: src_bonus/render/main_scene.c \
+obj_bonus/render/render_horizontal.o: \
+  src_bonus/render/render_horizontal.c \
   src_bonus/render/../../inc_bonus/cub3d.h \
   src_bonus/render/../../inc_bonus/structs.h \
   src_bonus/render/../../inc_bonus/defines.h \

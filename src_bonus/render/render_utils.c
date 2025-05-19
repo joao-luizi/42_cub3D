@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:26:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 23:00:57 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:34:21 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_anim_slot *find_door_anim(t_app_state *st, int x, int y)
     return NULL;
 }
 
-static inline int	get_door_color(t_img *img, t_ray_info *r_info, int screen_y,
+/* static inline int	get_door_color(t_img *img, t_ray_info *r_info, int screen_y,
 		int wall_start)
 {
 	int	tex_x;
@@ -51,9 +51,9 @@ static inline int	get_door_color(t_img *img, t_ray_info *r_info, int screen_y,
 	color = *(int *)(img->data_addr + (tex_y * img->size_line + tex_x
 				* (img->bpp / 8)));
 	return (color);
-}
+} */
 
-void	precompute_door(int *colbuffer, int wall[2], t_ray_info *r_info,
+/* void	precompute_door(int *colbuffer, int wall[2], t_ray_info *r_info,
 		t_img *wall_tex)
 {
 	int	k;
@@ -71,7 +71,7 @@ void	precompute_door(int *colbuffer, int wall[2], t_ray_info *r_info,
 		tex_i++;
 		k++;
 	}
-}
+} */
 
 /**
  * @brief Retrieves the color of a specific pixel from a texture based on 
@@ -83,7 +83,38 @@ void	precompute_door(int *colbuffer, int wall[2], t_ray_info *r_info,
  * @param wall_start The starting y-coordinate of the wall on the screen.
  * @return The color of the pixel in the texture.
  */
-static inline int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y,
+
+ int get_obs_color(t_obstacle *obs, int screen_y,
+		int obs_start)
+ {
+	int	tex_x;
+	int	tex_y;
+	int	color;
+	int	wall_pixel_offset;
+
+	if (!obs->current_tex)
+		return (0x000000);
+	wall_pixel_offset = screen_y - obs_start;
+
+	if (obs->flip_texture)
+		tex_x = (int)((1.0 - obs->info.x) * obs->current_tex->width);
+	else
+		tex_x = (int)(obs->info.x * obs->current_tex->width);	
+	tex_y = (int)((wall_pixel_offset * obs->current_tex->height) / obs->info.y);	
+	
+	if (tex_x < 0)
+		tex_x = 0;
+	if (tex_x >= obs->current_tex->width)
+		tex_x = obs->current_tex->width - 1;
+	if (tex_y < 0)
+		tex_y = 0;
+	if (tex_y >= obs->current_tex->height)
+		tex_y = obs->current_tex->height - 1;
+	color = *(int *)(obs->current_tex->data_addr + (tex_y * obs->current_tex->size_line + tex_x
+				* (obs->current_tex->bpp / 8)));
+	return (color);
+ }
+/* static inline int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y,
 		int wall_start)
 {
 	int	tex_x;
@@ -110,7 +141,7 @@ static inline int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y,
 	color = *(int *)(img->data_addr + (tex_y * img->size_line + tex_x
 				* (img->bpp / 8)));
 	return (color);
-}
+} */
 
 /**
  * @brief Precomputes the colors for a vertical column of pixels 
@@ -122,7 +153,7 @@ static inline int	get_tex_color(t_img *img, t_ray_info *r_info, int screen_y,
  * @param r_info The ray information structure containing wall details.
  * @param wall_tex The texture image for the wall.
  */
-void	precompute_column(int *colbuffer, int wall[2], t_ray_info *r_info,
+/* void	precompute_column(int *colbuffer, int wall[2], t_ray_info *r_info,
 		t_img *wall_tex)
 {
 	int	k;
@@ -140,7 +171,7 @@ void	precompute_column(int *colbuffer, int wall[2], t_ray_info *r_info,
 		tex_i++;
 		k++;
 	}
-}
+} */
 
 /**
  * @brief Draws a single pixel on an image at the specified coordinates.

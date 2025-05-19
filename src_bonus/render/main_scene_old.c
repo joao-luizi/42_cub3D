@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_scene.c                                       :+:      :+:    :+:   */
+/*   main_scene_old.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/16 17:58:22 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:48:44 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,72 +46,71 @@ static inline void	initialize_ray(t_app_state *st, t_ray_info *r_info)
 			* r_info->delta_dist.y;
 	}
 }
-
+static inline void get_wall_tex(t_wall type, t_obstacle *obs, t_app_state *st)
+{
+	if (type == NO_WALL)
+		obs->current_tex = &st->g.tex_no;
+	else if (type == SO_WALL)
+		obs->current_tex = &st->g.tex_so;
+	else if (type == EA_WALL)
+		obs->current_tex = &st->g.tex_ea;
+	else if (type == WE_WALL)
+		obs->current_tex = &st->g.tex_we;
+}
+static inline void get_obs_tex(t_app_state *st, t_ray_info *r_info, t_obstacle *obs, int side)
+{
+	t_anim_slot *anim;
+	
+	if (st->map->map[r_info->map.y][r_info->map.x] == '1')
+	{
+		if (side == 0)
+		{
+			if (r_info->step.x == -1)
+				r_info->wall = WE_WALL;
+			else
+				r_info->wall = EA_WALL;
+		}
+		else if (side == 1)
+		{
+			if (r_info->step.y == -1)
+				r_info->wall = NO_WALL;
+			else
+				r_info->wall = SO_WALL;
+		}
+		get_wall_tex(r_info->wall, obs, st);
+	}
+	else
+	{
+		anim = find_door_anim(st, r_info->map.x, r_info->map.y);
+		if (anim)
+			obs->current_tex = &anim->anim_info[anim->current_frame].frame;
+		else
+			obs->current_tex = NULL;
+	}
+}
 static inline void	get_door_info(t_app_state *st, t_ray_info *r_info, int side)
 {
-	
-	t_anim_slot *anim;
-
-	anim = find_door_anim(st, r_info->map.x, r_info->map.x);
-	if (anim)
-		r_info->door_tex = &anim->anim_info[anim->current_frame].frame;
+	t_obstacle *obstacle;
 	
 	if (side == 0)
 	{
-		r_info->door_dist = (r_info->map.x - st->player.position.x + (1
+		obstacle->dist = (r_info->map.x - st->player.position.x + (1
 					- r_info->step.x) / 2) / r_info->ray_dir.x;
-		r_info->door_info.x = st->player.position.y + r_info->door_dist
+		obstacle->info.x = st->player.position.y + obstacle->dist
 			* r_info->ray_dir.y;
 	}
 	else if (side == 1)
 	{
-		r_info->door_dist = (r_info->map.y - st->player.position.y + (1
+		obstacle->dist = (r_info->map.y - st->player.position.y + (1
 					- r_info->step.y) / 2) / r_info->ray_dir.y;
-		r_info->door_info.x = st->player.position.x + r_info->door_dist
+		obstacle->info.x = st->player.position.x + obstacle->dist
 			* r_info->ray_dir.x;
 	}
-	r_info->door_info.x -= floor(r_info->door_info.x);
-	r_info->door_info.y = (int)(st->g.main_scene.height / r_info->door_dist);
-	r_info->door_half = r_info->door_info.y / 2;
+	obstacle->info.x -= floor(obstacle->info.x); 
+	obstacle->info.y = (int)(st->g.main_scene.height / obstacle->dist);
+	obstacle->half_height = obstacle->info.y / 2;
 }
 
-/**
- * @brief Calculates wall information such as distance, type, and texture 
- * coordinates.
- * 
- * @param st The application state containing the player's data.
- * @param r_info The ray information structure to update.
- * @param side Indicates whether the wall was hit on the x-axis (0) or
- *  y-axis (1).
- */
-static inline void	get_wall_info(t_app_state *st, t_ray_info *r_info, int side)
-{
-	if (side == 0)
-	{
-		if (r_info->step.x == -1)
-			r_info->wall = WE_WALL;
-		else
-			r_info->wall = EA_WALL;
-		r_info->wall_dist = (r_info->map.x - st->player.position.x + (1
-					- r_info->step.x) / 2) / r_info->ray_dir.x;
-		r_info->wall_info.x = st->player.position.y + r_info->wall_dist
-			* r_info->ray_dir.y;
-	}
-	else if (side == 1)
-	{
-		if (r_info->step.y == -1)
-			r_info->wall = NO_WALL;
-		else
-			r_info->wall = SO_WALL;
-		r_info->wall_dist = (r_info->map.y - st->player.position.y + (1
-					- r_info->step.y) / 2) / r_info->ray_dir.y;
-		r_info->wall_info.x = st->player.position.x + r_info->wall_dist
-			* r_info->ray_dir.x;
-	}
-	r_info->wall_info.x -= floor(r_info->wall_info.x);
-	r_info->wall_info.y = (int)(st->g.main_scene.height / r_info->wall_dist);
-	r_info->wall_half = r_info->wall_info.y / 2;
-}
 
 /**
  * @brief Traces the ray through the map to find the first wall it 
@@ -156,7 +155,7 @@ static inline void	get_wall(t_app_state *st, t_ray_info *r_info)
  * @param r_info The ray information structure containing wall details.
  * @param x The x-coordinate of the column to draw.
  */
-static inline void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
+/* static inline void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
 {
 	int		y;
 	int		wall[2];
@@ -204,7 +203,7 @@ static inline void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
 			y++;
 		}
 	}
-}
+} */
 
 /**
  * @brief Renders the main scene by casting rays and drawing the 
@@ -212,7 +211,7 @@ static inline void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
  * 
  * @param st The application state containing the game's data.
  */
-void	render_main_scene(t_app_state *st)
+/* void	render_main_scene(t_app_state *st)
 {
 	int			x;
 	t_ray_info	ray_info;
@@ -241,4 +240,4 @@ void	render_main_scene(t_app_state *st)
 		get_wall(st, &ray_info);
 		draw_column(st, &ray_info, x);
 	}
-}
+} */

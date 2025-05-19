@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 23:29:49 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:38:49 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ typedef struct s_graphics
 	t_anim				*door_anim;
 	t_anim				*face_anim;
 	t_img				main_scene;
+	t_img				buffer;
 	t_img				tex_no;
 	t_img				tex_so;
 	t_img				tex_we;
@@ -140,6 +141,8 @@ typedef struct s_graphics
 typedef struct s_obstacle
 {
 	double				half_height;
+	double				dist;
+	bool				flip_texture;
 	t_vector			info;
 	t_img				*current_tex;
 	struct s_obstacle	*next;
@@ -147,10 +150,6 @@ typedef struct s_obstacle
 
 typedef struct e_ray_info
 {
-	double				wall_dist;
-	double				wall_half;
-	t_vector			wall_info;
-	t_img				*wall_text;
 	t_obstacle			*obstacles;
 	t_vector			ray_dir;
 	t_vector			delta_dist;
@@ -185,6 +184,7 @@ typedef struct e_app_state
 	t_map				*map;
 	t_player			player;
 	double				*normal_x;
+	double				*normal_y;
 	t_anim_slot			*anims;
 }						t_app_state;
 

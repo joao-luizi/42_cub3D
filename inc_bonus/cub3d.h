@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:20 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 18:40:47 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:34:00 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,18 @@ void		init_game(t_app_state *state);
 
 //	render
 //		render_utils
+int get_obs_color(t_obstacle *obs, int screen_y,
+		int obs_start);
 bool		is_wall(double x, double y, t_app_state *st);
 void		draw_pixel(t_img *img, int x, int y, int color);
-void		get_wall_tex(t_img **wall_tex, t_wall wall, t_app_state *st);
-void		precompute_column(int *colbuffer, int wall[2], t_ray_info *r_info,
-				t_img *wall_tex);
-void		precompute_door(int *colbuffer, int wall[2], t_ray_info *r_info,
-				t_img *wall_tex);
 t_anim_slot	*find_door_anim(t_app_state *st, int x, int y);
 //		render_perf
-void		prec_normal_x(double **normal_x, int width);
+void		prec_normal(t_app_state *st);
 //		main_scene
 void		render_main_scene(t_app_state *st);
 void		*raycast_routine(void *arg);
+//render_horizontal
+void render_ceiling_and_floor(t_app_state *st, int start_x, int end_x);
 //	setup
 //		aux
 size_t		count_file_lines(char *path);

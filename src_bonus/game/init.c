@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:16:07 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 23:16:21 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:39:08 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ static bool	init_window_and_image(t_app_state *state)
 	if (!init_mlx_image(&state->g.main_scene, state->mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT))
 		return (ft_putstr_fd(ERR_IMG_INIT, 2), false);
+	if (!init_mlx_image(&state->g.buffer, state->mlx, WINDOW_WIDTH,
+			WINDOW_HEIGHT))
+		return (ft_putstr_fd(ERR_IMG_INIT, 2), false);
 	return (true);
 }
 
@@ -113,7 +116,7 @@ static bool	init_thread_args(t_app_state *state)
 		if (i == state->core_count - 1)
             state->args[i].end_col = MAIN_WIDTH;
         else
-            state->args[i].end_col = (i + 1) * slice;
+            state->args[i].end_col = state->args[i].start_col + slice;
 	}
 	return (true);
 }
@@ -183,11 +186,12 @@ static bool	init_threads_and_buffers(t_app_state *state)
 		state->core_count = MAX_THREADS;
 	if (state->core_count == 0)
 		return (ft_putstr_fd(ERR_MLX_INIT, 2), false);
+	//state->core_count = 1;
 	if (!init_thread_args(state)
 		|| !init_render_sync(state)
 		|| !init_threads(state))
 		return (false);
-	prec_normal_x(&state->normal_x, MAIN_WIDTH);
+	prec_normal(state);
 	if (!state->normal_x)
 		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
 	return (true);
