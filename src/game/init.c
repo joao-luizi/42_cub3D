@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tjorge-l < tjorge-l@student.42lisboa.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:16:07 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 12:39:58 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:38:03 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param st The application state containing the game's data.
  * @return Always returns 0.
  */
-static inline int	game_loop(t_app_state *st)
+static inline int	game_loop(t_app_state *st)	// What the hell is an inline int?
 {
 	struct timeval	va;
 
@@ -69,7 +69,7 @@ void	init_window(t_app_state *state)
 	state->win = mlx_new_window(state->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
 			"cub3D");
 	if (!state->win)
-		return (ft_putstr_fd(ERR_WIN_INIT, 2), (void)0);
+		return (ft_putstr_fd(ERR_WIN_INIT, 2), (void)0);	// Test what happens if execution stops here.
 	if (!init_mlx_image(&state->g.main_scene, state->mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT))
 		return (ft_putstr_fd(ERR_IMG_INIT, 2), (void)0);

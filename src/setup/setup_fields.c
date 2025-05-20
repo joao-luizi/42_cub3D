@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_fields.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-l <tjorge-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tjorge-l < tjorge-l@student.42lisboa.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:15 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 15:50:36 by tjorge-l         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:45:44 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 		line++;
 	if (!*line)
 		return (true);	// Allegedly this is equates to a whitespace line, checked above, right?
+						// It also catches case where *line == NULL
 	if (!ft_strncmp(line, "NO ", 3))
 		return (parse_config_item(&cfg->no_tex, "NO", (char *)line + 3));
 	if (!ft_strncmp(line, "SO ", 3))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-l <tjorge-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tjorge-l < tjorge-l@student.42lisboa.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 15:28:37 by tjorge-l         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:00:08 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static bool	check_file_contents(t_config *cfg, char **file_contents,
 	if (!calculate_map_dimensions(cfg, file_contents, &index, line_count))
 		return (false);
 	map_end_index = index;
-	while (file_contents[index] && index < line_count)
+	while (file_contents[index] && index < line_count)	// Checks that there's no empty line and that map is at the end of the file, right?
 	{
 		if (!is_whitespace_line(file_contents[index]))
 		{

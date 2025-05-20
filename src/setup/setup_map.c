@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tjorge-l < tjorge-l@student.42lisboa.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:10 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 16:07:38 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:25:56 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  * @return true if all configuration fields were successfully parsed,
 	false otherwise.
  */
-static bool	isvalid_border(t_config *cfg, int i, int j)
+static bool	isvalid_border(t_config *cfg, int i, int j)	// Perhaps need to understand this in more detail.
 {
 	char	cur;
 
@@ -101,7 +101,7 @@ static void	set_player(int i, int j, t_config *cfg)
  */
 bool	validate_map(t_config *cfg)
 {
-	int		i[2];
+	int		i[2];	// Awesome!
 	char	c;
 
 	i[0] = -1;
@@ -113,8 +113,8 @@ bool	validate_map(t_config *cfg)
 			c = cfg->map.map[i[0]][i[1]];
 			if (!isvalid_border(cfg, i[0], i[1]))
 				return (ft_putstr_fd(ERR_BORDER, 2), false);
-			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
-			{
+			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')	// What's going on in this if?
+			{													// Starting position definition, but...
 				if (cfg->map.player_position.x != -1
 					&& cfg->map.player_position.y != -1)
 					return (ft_putstr_fd(ERR_DUP_PLAYER, 2), false);
@@ -161,8 +161,8 @@ while (*index < line_count && file_contents[*index])
 				return (ft_putstr_fd(ERR_MAP_CHAR, 2), false);
 		}
 		line_length = ft_strlen(file_contents[*index]);
-		if (line_length > (size_t)cfg->map.range.x)
-			cfg->map.range.x = line_length;
+		if (line_length > (size_t)cfg->map.range.x)	// Does this means it's possible for lines to have 
+			cfg->map.range.x = line_length;			// different widths (with a different number of actual values)?
 		cfg->map.range.y++;
 	}
 	(*index)++;
@@ -198,8 +198,8 @@ bool	normalize_map(t_config *cfg, char **file_contents,
 		cfg->map.map[index] = (char *)ft_calloc(cfg->map.range.x + 1,
 				sizeof(char));
 		if (!cfg->map.map[index])
-			return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
-		i = 0;
+			return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);	// May this not result in memory leaks?
+		i = 0;													// If index != 0 fails, with previous success allocations?
 		while (file_contents[map_start_index][i])
 		{
 			cfg->map.map[index][i] = file_contents[map_start_index][i];

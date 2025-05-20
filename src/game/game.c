@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tjorge-l < tjorge-l@student.42lisboa.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:12:32 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 12:40:15 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:40:19 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static inline void	move_player(double v_x, double v_y, t_app_state *state)
 		buffer_y = 0.5;
 	new_x = state->player.position.x + v_x;
 	new_y = state->player.position.y + v_y;
-	if (!is_wall(new_x + buffer_x, state->player.position.y, state))
+	if (!is_wall(new_x + buffer_x, state->player.position.y, state))	// Need to understand this check better.
 		state->player.position.x = new_x;
 	if (!is_wall(state->player.position.x, new_y + buffer_y, state))
 		state->player.position.y = new_y;
