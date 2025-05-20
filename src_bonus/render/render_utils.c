@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:26:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 15:32:43 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:29:54 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ t_anim_slot	*find_door_anim(t_app_state *st, int x, int y)
  * @return The color of the pixel in the texture.
  */
 
-int	get_obs_color(t_obstacle *obs, int screen_y, int obs_start)
+int	get_obs_color(t_obstacle *obs, int screen_y, int obs_start, float blending_factor)
 {
 	int	tex_x;
 	int	tex_y;
 	int	color;
 	int	wall_pixel_offset;
 
-	if (!obs->current_tex)
+	if (!obs->current_tex || blending_factor >= MAX_BLEND_FACTOR)
 		return (0x000000);
 	wall_pixel_offset = screen_y - obs_start;
 	if (obs->flip_texture)
@@ -58,9 +58,7 @@ int	get_obs_color(t_obstacle *obs, int screen_y, int obs_start)
 		tex_y = 0;
 	if (tex_y >= obs->current_tex->height)
 		tex_y = obs->current_tex->height - 1;
-	color = *(int *)(obs->current_tex->data_addr + (tex_y
-				* obs->current_tex->size_line + tex_x * (obs->current_tex->bpp
-					/ 8)));
+	color = get_pixel_color(obs->current_tex, tex_x, tex_y, blending_factor);
 	return (color);
 }
 

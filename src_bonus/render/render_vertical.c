@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 15:35:39 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:52:32 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ static inline void	get_obs_info(t_app_state *st, t_ray_info *r_info, int side)
 	obs->info.x -= floor(obs->info.x);
 	obs->info.y = (int)(st->g.main_scene.height / obs->dist);
 	obs->half_height = obs->info.y / 2;
+	if (st->g.fog == true)
+	{
+		if (obs->dist >= MAX_DISTANCE)
+			obs->blending_factor = 1.0f;
+		else
+			obs->blending_factor = obs->dist / MAX_DISTANCE;
+	}
+	else
+		obs->blending_factor = 0.0f;
 	get_obs_tex(st, r_info, obs, side);
 	obs->next = r_info->obstacles;
 	r_info->obstacles = obs;
@@ -84,9 +93,16 @@ void	draw_column(t_app_state *st, t_ray_info *r_info, int x)
 			y = -1;
 		while (++y <= obs_w[1] && y < st->g.main_scene.height)
 		{
-			color = get_obs_color(obs, y, obs_w[0]);
-			if (color != 0xFF00FF)
-				draw_pixel(&st->g.main_scene, x, y, color);
+			// Get the original color from the texture
+            color = get_obs_color(obs, y, obs_w[0], 0.0f); // Pass 0.0f to avoid blending here
+
+            // Check for transparency (MAGENTA)
+            if (color != 0xFF00FF)
+            {
+                // Apply blending only to solid colors
+                color = get_obs_color(obs, y, obs_w[0], obs->blending_factor);
+                draw_pixel(&st->g.main_scene, x, y, color);
+            }
 		}
 		obs = obs->next;
 	}

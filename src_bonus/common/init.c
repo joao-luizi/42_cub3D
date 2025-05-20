@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:53 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 13:33:15 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:51:01 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static void	init_g(t_graphics *g)
 	g->fps = false;
 	g->face = true;
 	g->minimap = true;
+	g->fog = true;
 	init_image(&g->tex_fl);
 	init_image(&g->tex_cl);
 	init_image(&g->tex_no);

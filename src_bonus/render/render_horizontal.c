@@ -6,20 +6,13 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 14:16:58 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:53:59 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc_bonus/cub3d.h"
 
-static int	get_pixel_color(t_img *img, int tex_x, int tex_y)
-{
-	int	pixel;
 
-	pixel = *(int *)(img->data_addr + (tex_y * img->size_line + tex_x
-				* (img->bpp / 8)));
-	return (pixel);
-}
 
 static inline void	paint_pixels(t_app_state *st, t_point screen,
 		t_vector ray_dir, int idy)
@@ -27,17 +20,25 @@ static inline void	paint_pixels(t_app_state *st, t_point screen,
 	t_vector	floor;
 	t_point		tex;
 	double		denom;
-
+	double		distance;
+	
 	denom = ray_dir.x * st->player.direction.x + ray_dir.y
 		* st->player.direction.y;
 	floor.x = st->player.position.x + (st->normal_y[idy] / denom) * ray_dir.x;
 	floor.y = st->player.position.y + (st->normal_y[idy] / denom) * ray_dir.y;
 	tex.x = (int)(floor.x * st->g.tex_fl.width) % st->g.tex_fl.width;
 	tex.y = (int)(floor.y * st->g.tex_fl.height) % st->g.tex_fl.height;
+	if (st->g.fog )
+	{
+		distance = sqrt(pow(floor.x - st->player.position.x, 2) +
+			pow(floor.y - st->player.position.y, 2));
+	}
+	else
+		distance = 0;			
 	draw_pixel(&st->g.main_scene, screen.x, screen.y,
-		get_pixel_color(&st->g.tex_fl, tex.x, tex.y));
+		get_pixel_color(&st->g.tex_fl, tex.x, tex.y, distance / MAX_DISTANCE));
 	draw_pixel(&st->g.main_scene, screen.x, MAIN_HEIGHT - screen.y - 1,
-		get_pixel_color(&st->g.tex_cl, tex.x, tex.y));
+		get_pixel_color(&st->g.tex_cl, tex.x, tex.y, distance / MAX_DISTANCE));
 }
 
 static inline void	calculate_ray_direction(t_vector *ray_dir,

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:55:59 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 13:26:59 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:54:34 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,13 @@ static void	handle_player(int keycode, t_app_state *state)
 static void	handle_utils(int keycode, t_app_state *state)
 {
 	if (keycode == XK_F1 || keycode == F1_KEY)
-	{
 		state->g.fps = !state->g.fps;
-		printf("FPS: %s\n", state->g.fps ? "ON" : "OFF");
-	}
 	if (keycode == XK_F2 || keycode == F2_KEY)
 		state->g.face = !state->g.face;
 	if (keycode == XK_F3 || keycode == F3_KEY)
 		state->g.minimap = !state->g.minimap;
+	if (keycode == XK_F4 || keycode == F4_KEY)
+		state->g.fog = !state->g.fog;
 	if (keycode == XK_Escape)
 		close_handler(state);
 }

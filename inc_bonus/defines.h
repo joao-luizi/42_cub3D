@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:28 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 18:39:01 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:54:47 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@
 # define PLAYER_ROT_SPEED 0.02
 # define PLAYER_MOV_SPEED 0.04
 
+# define MAX_BLEND_FACTOR 1.0f
+# define MAX_DISTANCE 5.0f
 # define F1_KEY 269025093
 # define F2_KEY 269025094
 # define F3_KEY 269025095
+# define F4_KEY 269025096
 
 # define SPACE_KEY 32
 # define MAP_CHARS "01NESWD"

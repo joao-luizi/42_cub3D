@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 13:32:54 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:50:36 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ typedef struct s_graphics
 	bool				fps;
 	bool				face;
 	bool				minimap;
+	bool				fog;
 	t_anim				*door_anim;
 	t_anim				*face_anim;
 	t_img				main_scene;
@@ -143,6 +144,7 @@ typedef struct s_obstacle
 	double				half_height;
 	double				dist;
 	bool				flip_texture;
+	float				blending_factor;
 	t_vector			info;
 	t_img				*current_tex;
 	struct s_obstacle	*next;

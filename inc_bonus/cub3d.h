@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:20 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 15:37:01 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:29:08 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		render_ceiling_and_floor(t_app_state *st, int start_x, int end_x);
 void		prec_normal(t_app_state *st);
 //		render_utils
 t_anim_slot	*find_door_anim(t_app_state *st, int x, int y);
-int			get_obs_color(t_obstacle *obs, int screen_y, int obs_start);
+int	get_obs_color(t_obstacle *obs, int screen_y, int obs_start, float blending_factor);
 void		draw_pixel(t_img *img, int x, int y, int color);
 bool		is_wall(double x, double y, t_app_state *st);
 // 			render_vertical
@@ -72,6 +72,10 @@ void		draw_column(t_app_state *st, t_ray_info *r_info, int x);
 //		tex_utils
 void	get_obs_tex(t_app_state *st, t_ray_info *r_info, t_obstacle *obs,
 	int side);
+int	get_pixel_color(t_img *img, int tex_x, int tex_y, float blending_factor);
+
+
+
 //	setup
 //		aux
 size_t		count_file_lines(char *path);
