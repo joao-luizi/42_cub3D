@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 16:50:36 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:18:08 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ typedef struct e_app_state
 	double				*normal_x;
 	double				*normal_y;
 	t_anim_slot			*anims;
+	struct timeval		previous_time;
 }						t_app_state;
 
 #endif

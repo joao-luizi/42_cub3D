@@ -19,10 +19,10 @@ static inline bool time_lapsed(struct timeval *frame_start, struct timeval *now)
     return false;
 }
 
-static inline void update_face_anim(t_app_state *state, struct timeval *now)
+static inline void update_face_anim(t_app_state *state)
 {
 	int		delay_seconds;
-
+	struct timeval *now = &state->previous_time;
 	if (!state->anims[0].is_started)
 	{
 		state->anims[0].current_frame = 0;
@@ -45,10 +45,10 @@ static inline void update_face_anim(t_app_state *state, struct timeval *now)
     }
 
 }
-static inline void	update_anims(t_app_state *state, struct timeval *now)
+static inline void	update_anims(t_app_state *state)
 {
 	int		x;
-	
+	struct timeval *now = &state->previous_time;
 	x = -1;
 	while (++x < state->map->door_count + 1)
 	{
@@ -89,15 +89,15 @@ static inline void	update_anims(t_app_state *state, struct timeval *now)
  */
 int	game_loop(t_app_state *st)
 {
-	struct timeval	now;
-
-	gettimeofday(&now, NULL);
-	update_face_anim(st, &now);
-	update_anims(st, &now);
-	update_player(st);
-	render_main_scene(st, &now);
-
 	
+
+	gettimeofday(&st->previous_time, NULL);
+	update_face_anim(st);
+	update_anims(st);
+	update_player(st);
+	render_main_scene(st);
+
+	//post_process(st);
 	mlx_put_image_to_window(st->mlx, st->win, st->g.main_scene.img_ptr, 0, 0);
 	
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:20 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 16:29:08 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:33:54 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,54 @@
 # define CUB3D_H
 
 # include "structs.h"
+
+
+void				empty_letter(int src[5][3]);
+void				get_character_pattern(char c, int letter[5][3]);
+void				get_pattern_a(int src[5][3]);
+void				get_pattern_b(int src[5][3]);
+void				get_pattern_c(int src[5][3]);
+void				get_pattern_d(int src[5][3]);
+void				get_pattern_e(int src[5][3]);
+void				get_pattern_f(int src[5][3]);
+void				get_pattern_g(int src[5][3]);
+void				get_pattern_h(int src[5][3]);
+void				get_pattern_i(int src[5][3]);
+void				get_pattern_j(int src[5][3]);
+void				get_pattern_k(int src[5][3]);
+void				get_pattern_l(int src[5][3]);
+void				get_pattern_m(int src[5][3]);
+void				get_pattern_n(int src[5][3]);
+void				get_pattern_o(int src[5][3]);
+void				get_pattern_p(int src[5][3]);
+void				get_pattern_q(int src[5][3]);
+void				get_pattern_k(int src[5][3]);
+void				get_pattern_r(int src[5][3]);
+void				get_pattern_s(int src[5][3]);
+void				get_pattern_t(int src[5][3]);
+void				get_pattern_u(int src[5][3]);
+void				get_pattern_v(int src[5][3]);
+void				get_pattern_w(int src[5][3]);
+void				get_pattern_x(int src[5][3]);
+void				get_pattern_y(int src[5][3]);
+void				get_pattern_z(int src[5][3]);
+void				get_pattern_zero(int src[5][3]);
+void				get_pattern_one(int src[5][3]);
+void				get_pattern_two(int src[5][3]);
+void				get_pattern_three(int src[5][3]);
+void				get_pattern_four(int src[5][3]);
+void				get_pattern_five(int src[5][3]);
+void				get_pattern_six(int src[5][3]);
+void				get_pattern_seven(int src[5][3]);
+void				get_pattern_eight(int src[5][3]);
+void				get_pattern_nine(int src[5][3]);
+void				get_pattern_hash(int src[5][3]);
+void				get_pattern_plus(int src[5][3]);
+void				get_pattern_minus(int src[5][3]);
+void				get_pattern_dot(int src[5][3]);
+
+// write_string.c
+void				lib_x_write_string(char *str, int x, int y, t_img *section);
 
 //	common
 //		aux.
@@ -50,10 +98,11 @@ void		init_game(t_app_state *state);
 
 //	render
 //		main_scene
-void		render_main_scene(t_app_state *st, struct timeval *now);
+void		render_main_scene(t_app_state *st);
 void		*raycast_routine(void *arg);
 //		post_process
-void		post_process(t_app_state *st, struct timeval *now);
+void		post_process(t_app_state *st);
+void	print_fps(t_app_state *st);
 //		render_horizontal
 void		render_ceiling_and_floor(t_app_state *st, int start_x, int end_x);
 

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 14:39:41 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:46:14 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
  * @param st The application state containing the MiniLibX instance and 
  * window.
  */
-static inline void	print_fps(time_t previous_sec, time_t previous_usec,
-	t_app_state *st)
+void	print_fps(t_app_state *st)
 {
 struct timeval	current;
 int				frame_time;
@@ -32,10 +31,10 @@ char			*itoa;
 
 
 gettimeofday(&current, NULL);
-if (previous_sec != 0 || previous_usec != 0)
+if (st->previous_time.tv_sec != 0 || st->previous_time.tv_usec != 0)
 {
-	frame_time = (current.tv_sec - previous_sec) * 1000000
-		+ (current.tv_usec - previous_usec);
+	frame_time = (current.tv_sec - st->previous_time.tv_sec ) * 1000000
+		+ (current.tv_usec - st->previous_time.tv_usec );
 	if (frame_time > 0)
 		fps = 1000000 / frame_time;
 	else
@@ -47,8 +46,9 @@ else
 	fps = 0;
 }
 itoa = ft_itoa(fps);
-mlx_string_put(st->mlx, st->win, 10, 20, 0xFF0000, "FPS:");
-mlx_string_put(st->mlx, st->win, 50, 20, 0xFF0000, itoa);
+
+lib_x_write_string("FPS", 10, 20, &st->g.main_scene);
+lib_x_write_string(itoa, 80, 20, &st->g.main_scene);
 free(itoa);
 }
 
@@ -73,7 +73,7 @@ static inline void	blit_face_frame(t_img *dst, t_img *src, int dst_x, int dst_y)
 	}
 }
 
-void	post_process(t_app_state *st, struct timeval *now)
+void	post_process(t_app_state *st)
 {
 	int frame;
 	t_img *face_frame;
@@ -84,5 +84,5 @@ void	post_process(t_app_state *st, struct timeval *now)
 		blit_face_frame(&st->g.main_scene, face_frame, FACE_X, MAIN_HEIGHT
 			- (FACE_Y + face_frame->height));
 	if (st->g.fps)
-		print_fps(now->tv_sec, now->tv_usec, st);
+		print_fps(st);
 }

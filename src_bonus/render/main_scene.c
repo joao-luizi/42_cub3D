@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 14:38:15 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:46:51 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ void	*raycast_routine(void *arg)
 			free_obstacles(r_info.obstacles);
 			r_info.obstacles = NULL;
 		}
+		if (args->start_col == 0 && 100 < args->end_col)
+		{
+			if (st->g.fps)
+				print_fps(st);
+		}
 		after_wait(st);
 	}
 	return (NULL);
@@ -70,7 +75,7 @@ void	*raycast_routine(void *arg)
  *
  * @param st The application state containing the game's data.
  */
-void	render_main_scene(t_app_state *st, struct timeval *now)
+void	render_main_scene(t_app_state *st)
 {
 	int	i;
 
@@ -89,5 +94,5 @@ void	render_main_scene(t_app_state *st, struct timeval *now)
 	pthread_mutex_unlock(&st->render_mutex);
 	if (st->exit_requested)
 		return ;
-	post_process(st, now);
+	
 }
