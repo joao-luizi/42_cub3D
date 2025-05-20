@@ -1,25 +1,6 @@
 #include "../../inc_bonus/cub3d.h"
 
-void	blit_face_frame(t_img *dst, t_img *src, int dst_x, int dst_y)
-{
-	int	color;
-	int x;
-	int y;
 
-	y = -1;
-	while (++y < src->height)
-	{
-		x = -1;
-		while (++x < src->width)
-		{
-			color = *(unsigned int *)(src->data_addr + (y * src->size_line + x
-						* (src->bpp / 8)));
-			if (color == 0xFF00FF)
-				continue ;
-			draw_pixel(dst, dst_x + x, dst_y + y, color);
-		}
-	}
-}
 
 static inline bool time_lapsed(struct timeval *frame_start, struct timeval *now)
 {
@@ -98,18 +79,7 @@ static inline void	update_anims(t_app_state *state, struct timeval *now)
 	}
 }
 
-static inline void post_process(t_app_state *st, struct timeval	*now)
-{
-	int frame;
-	t_img *face_frame;
 
-	frame = st->anims[0].current_frame;
-	face_frame = &st->g.face_anim[frame].frame;
-	if (st->g.face)
-		blit_face_frame(&st->g.main_scene, face_frame, FACE_X, MAIN_HEIGHT - (FACE_Y + face_frame->height));
-	if (st->g.fps)
-		print_fps(now->tv_sec, now->tv_usec, st);
-}
 /**
  * @brief The main game loop that updates the player, renders the scene,
  * and displays FPS.
@@ -122,19 +92,13 @@ int	game_loop(t_app_state *st)
 	struct timeval	now;
 
 	gettimeofday(&now, NULL);
-	
-	//evaluate graphic quality, if lacking include
-	//mlx_clear_window(st->mlx, st->win);
-
 	update_face_anim(st, &now);
 	update_anims(st, &now);
 	update_player(st);
-	render_main_scene(st);
+	render_main_scene(st, &now);
 
-
-	post_process(st, &now);
-	//printf("Rendering frame...\n");
-	mlx_put_image_to_window(st->mlx, st->win, st->g.buffer.img_ptr, 0, 0);
+	
+	mlx_put_image_to_window(st->mlx, st->win, st->g.main_scene.img_ptr, 0, 0);
 	
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:20 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/19 18:34:00 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:13:57 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void		count_char(int *count, char c, char *str);
 void		free_config(t_config *cfg, bool free_map);
 void		free_array(char **arr);
 void		free_state(t_app_state *state);
+void		free_obstacles(t_obstacle *head);
 //		init
 void		init_config(t_config *cfg);
 void		init_state(t_app_state *state);
@@ -47,18 +48,17 @@ void		init_game(t_app_state *state);
 
 //	render
 //		render_utils
-int get_obs_color(t_obstacle *obs, int screen_y,
-		int obs_start);
+int			get_obs_color(t_obstacle *obs, int screen_y, int obs_start);
 bool		is_wall(double x, double y, t_app_state *st);
 void		draw_pixel(t_img *img, int x, int y, int color);
 t_anim_slot	*find_door_anim(t_app_state *st, int x, int y);
 //		render_perf
 void		prec_normal(t_app_state *st);
 //		main_scene
-void		render_main_scene(t_app_state *st);
+void		render_main_scene(t_app_state *st, struct timeval *now);
 void		*raycast_routine(void *arg);
-//render_horizontal
-void render_ceiling_and_floor(t_app_state *st, int start_x, int end_x);
+// render_horizontal
+void		render_ceiling_and_floor(t_app_state *st, int start_x, int end_x);
 //	setup
 //		aux
 size_t		count_file_lines(char *path);

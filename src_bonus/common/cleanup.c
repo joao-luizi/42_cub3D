@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:00 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 23:36:55 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:34:39 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,8 @@ void	free_state(t_app_state *state)
 		pthread_mutex_destroy(&state->render_mutex);
 	if (state->cond_initialized)
     	pthread_cond_destroy(&state->render_cond);
+	if (state->main_initialized)
+		pthread_cond_destroy(&state->main_cond);
 	if (state->map && state->map->map)
 		free_array(state->map->map);
 	if (state->normal_x)
@@ -171,4 +173,18 @@ void	free_state(t_app_state *state)
 		free(state->anims);
 	if (state->args)
 		free(state->args);
+	if (state->thread_can_render)
+		free(state->thread_can_render);
+}
+
+void	free_obstacles(t_obstacle *head)
+{
+	t_obstacle	*tmp;
+
+	while (head)
+	{
+		tmp = head->next;
+		free(head);
+		head = tmp;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/19 19:38:49 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:32:54 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ typedef struct s_args
 {
 	int					start_col;
 	int					end_col;
+	int 				index;
 	struct e_app_state	*st;
 }						t_args;
 
@@ -175,9 +176,12 @@ typedef struct e_app_state
 	pthread_t			*threads;
 	bool                mutex_initialized; 
     bool                cond_initialized; 
-	bool exit_requested;
+	bool				main_initialized;
+	bool 				exit_requested;
+	bool				*thread_can_render;
 	pthread_mutex_t		render_mutex;
 	pthread_cond_t		render_cond;
+	pthread_cond_t 		main_cond;
 	bool				render_ready;
 	int					threads_done;
 	t_graphics			g;

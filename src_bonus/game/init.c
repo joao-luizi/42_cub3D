@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:16:07 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/19 19:39:08 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:32:35 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,12 @@ static bool	init_render_sync(t_app_state *state)
 		return (ft_putstr_fd(ERR_COND_INIT, 2), false);
 	}
 	state->cond_initialized = true;
+	if (pthread_cond_init(&state->main_cond, NULL) != 0)
+	{
+		pthread_mutex_destroy(&state->render_mutex);
+		return (ft_putstr_fd(ERR_COND_INIT, 2), false);
+	}
+	state->main_initialized = true;
 	state->render_ready = false;
 	state->threads_done = 0;
 	return (true);
@@ -157,9 +163,13 @@ static bool	init_threads(t_app_state *state)
 	state->threads = ft_calloc(state->core_count, sizeof(pthread_t));
 	if (!state->threads)
 		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
+	state->thread_can_render = ft_calloc(state->core_count, sizeof(bool));
+	if (!state->thread_can_render)
+		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
 	i = -1;
 	while (++i < state->core_count)
 	{
+		state->args[i].index = i;
 		if (pthread_create(&state->threads[i], NULL, raycast_routine,
 				&state->args[i]) != 0)
 		{

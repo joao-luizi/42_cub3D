@@ -1,15 +1,15 @@
-NO /home/joaomigu/Documents/cub3d/assets/textures/NO_1.xpm
+NO /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/NO_1.xpm
 
-SO /home/joaomigu/Documents/cub3d/assets/textures/SO_1.xpm
-WE /home/joaomigu/Documents/cub3d/assets/textures/WS_1.xpm
-EA /home/joaomigu/Documents/cub3d/assets/textures/ES_1.xpm
+SO /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/SO_1.xpm
+WE /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/WS_1.xpm
+EA /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/ES_1.xpm
 
-F /home/joaomigu/Documents/cub3d/assets/textures/floor.xpm
-C /home/joaomigu/Documents/cub3d/assets/textures/ceiling.xpm
+F /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/floor.xpm
+C /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/ceiling.xpm
 
-ANIM_DOOR /home/joaomigu/Documents/cub3d/assets/textures/door.ani
+ANIM_DOOR /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/door.ani
 
-ANIM_FACE                     /home/joaomigu/Documents/cub3d/assets/textures/face.ani
+ANIM_FACE                     /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/face.ani
 
  11111111
  10000001

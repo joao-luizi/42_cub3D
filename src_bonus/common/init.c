@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:53 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/17 23:30:16 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:33:15 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,12 @@ void	init_state(t_app_state *state)
 	state->render_ready = false;
 	state->cond_initialized = false;
 	state->mutex_initialized = false;
+	state->main_initialized = false;
 	state->exit_requested = false;
 	state->threads_done = 0;
 	state->threads = NULL;
 	state->args = NULL;
+	state->thread_can_render = NULL;
 	init_g(&state->g);
 	init_player(&state->player);
 }
