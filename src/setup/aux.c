@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tjorge-l <tjorge-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:19 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 12:39:10 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:41:51 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ bool	get_file_content(char *path, size_t line_count, char ***file_content)
 		return (ft_putstr_fd(ERR_ALLOC_FAIL, 2), false);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (ft_putstr_fd(ERR_OPEN_FILE, 2), ft_putstr_fd(ERR_OPEN_FILE, 2),
-			ft_putstr_fd(path, 2), ft_putstr_fd("\n", STDERR_FILENO), false);
-	i = 0;
+		return (ft_putstr_fd(ERR_OPEN_FILE, 2), ft_putstr_fd(ERR_OPEN_FILE, 2),	// Duplicate error message part, right?
+			ft_putstr_fd(path, 2), ft_putstr_fd("\n", STDERR_FILENO), false);	// Test: will the free_array(file_content), false)
+	i = 0;																		//	on load_configurations() actually free everything on exit here?
 	line = NULL;
 	while (true)
 	{

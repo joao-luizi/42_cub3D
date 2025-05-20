@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tjorge-l <tjorge-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 12:38:10 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:28:37 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,11 @@ bool	load_configurations(t_config *cfg)
 
 	file_content = NULL;
 	if (!validate_file_argument(cfg->normal_file_path))
-		return (free_array(file_content), false);
+		return (free_array(file_content), false);		// No need to free file_content, right?
 	line_count = count_file_lines(cfg->normal_file_path);
 	if (line_count == 0)
-		return (free_array(file_content), false);
-	file_content = NULL;
+		return (free_array(file_content), false);		// No need to free file_content, right?
+	file_content = NULL;								// No need to redefine file_content to NULL, right?
 	if (!get_file_content(cfg->normal_file_path, line_count, &file_content))
 		return (free_array(file_content), false);
 	if (!check_file_contents(cfg, file_content, line_count))

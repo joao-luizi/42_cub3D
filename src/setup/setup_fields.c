@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_fields.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tjorge-l <tjorge-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:15 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 16:14:21 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:50:36 by tjorge-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ static bool	parse_configuration_line(t_config *cfg, const char *line)
 	while (*line && is_whitespace(*line))
 		line++;
 	if (!*line)
-		return (true);
+		return (true);	// Allegedly this is equates to a whitespace line, checked above, right?
 	if (!ft_strncmp(line, "NO ", 3))
 		return (parse_config_item(&cfg->no_tex, "NO", (char *)line + 3));
 	if (!ft_strncmp(line, "SO ", 3))
@@ -161,6 +161,7 @@ bool	parse_configurations(t_config *cfg, char **file_contents,
 			return (false);
 		(*index)++;
 	}
+	// Shouldn't it also return false upon !is_map_line(file_contents[*index] evaluating to true?
 	if (!cfg->no_tex || !cfg->so_tex || !cfg->we_tex || !cfg->ea_tex
 		|| !cfg->cl_tex || !cfg->fl_tex)
 		return (ft_putstr_fd(ERR_FIELDS, 2), false);
