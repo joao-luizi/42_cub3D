@@ -6,28 +6,28 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:26:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 14:18:57 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:32:43 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc_bonus/cub3d.h"
 
-t_anim_slot *find_door_anim(t_app_state *st, int x, int y)
+t_anim_slot	*find_door_anim(t_app_state *st, int x, int y)
 {
-    int i = 1; // anims[0] is reserved for face animation
-    while (i < st->map->door_count + 1)
-    {
-        if (st->anims[i].map_point.x == x && st->anims[i].map_point.y == y)
-            return &st->anims[i];
-        i++;
-    }
-    return NULL;
+	int i = 1; // anims[0] is reserved for face animation
+	while (i < st->map->door_count + 1)
+	{
+		if (st->anims[i].map_point.x == x && st->anims[i].map_point.y == y)
+			return (&st->anims[i]);
+		i++;
+	}
+	return (NULL);
 }
 
 /**
- * @brief Retrieves the color of a specific pixel from a texture based on 
+ * @brief Retrieves the color of a specific pixel from a texture based on
  * ray information.
- * 
+ *
  * @param img The texture image.
  * @param r_info The ray information structure containing wall details.
  * @param screen_y The y-coordinate on the screen.
@@ -35,9 +35,8 @@ t_anim_slot *find_door_anim(t_app_state *st, int x, int y)
  * @return The color of the pixel in the texture.
  */
 
- int get_obs_color(t_obstacle *obs, int screen_y,
-		int obs_start)
- {
+int	get_obs_color(t_obstacle *obs, int screen_y, int obs_start)
+{
 	int	tex_x;
 	int	tex_y;
 	int	color;
@@ -46,13 +45,11 @@ t_anim_slot *find_door_anim(t_app_state *st, int x, int y)
 	if (!obs->current_tex)
 		return (0x000000);
 	wall_pixel_offset = screen_y - obs_start;
-
 	if (obs->flip_texture)
 		tex_x = (int)((1.0 - obs->info.x) * obs->current_tex->width);
 	else
-		tex_x = (int)(obs->info.x * obs->current_tex->width);	
-	tex_y = (int)((wall_pixel_offset * obs->current_tex->height) / obs->info.y);	
-	
+		tex_x = (int)(obs->info.x * obs->current_tex->width);
+	tex_y = (int)((wall_pixel_offset * obs->current_tex->height) / obs->info.y);
 	if (tex_x < 0)
 		tex_x = 0;
 	if (tex_x >= obs->current_tex->width)
@@ -61,17 +58,15 @@ t_anim_slot *find_door_anim(t_app_state *st, int x, int y)
 		tex_y = 0;
 	if (tex_y >= obs->current_tex->height)
 		tex_y = obs->current_tex->height - 1;
-	color = *(int *)(obs->current_tex->data_addr + (tex_y * obs->current_tex->size_line + tex_x
-				* (obs->current_tex->bpp / 8)));
+	color = *(int *)(obs->current_tex->data_addr + (tex_y
+				* obs->current_tex->size_line + tex_x * (obs->current_tex->bpp
+					/ 8)));
 	return (color);
- }
-
-
-
+}
 
 /**
  * @brief Draws a single pixel on an image at the specified coordinates.
- * 
+ *
  * @param img The image to draw on.
  * @param x The x-coordinate of the pixel.
  * @param y The y-coordinate of the pixel.
@@ -87,11 +82,11 @@ void	draw_pixel(t_img *img, int x, int y, int color)
 
 /**
  * @brief Checks if a given position in the map is a wall or out of bounds.
- * 
+ *
  * @param x The x-coordinate of the position.
  * @param y The y-coordinate of the position.
  * @param st The application state containing the map data.
- * @return true if the position is a wall or out of bounds, false 
+ * @return true if the position is a wall or out of bounds, false
  * otherwise.
  */
 bool	is_wall(double x, double y, t_app_state *st)
@@ -110,5 +105,3 @@ bool	is_wall(double x, double y, t_app_state *st)
 		return (true);
 	return (false);
 }
-
-

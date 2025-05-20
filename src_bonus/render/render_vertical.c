@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 14:37:12 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:35:39 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,5 @@ void	initialize_ray(t_app_state *st, t_ray_info *r_info, int x)
 	r_info->delta_dist.y = fabs(1 / r_info->ray_dir.y);
 	r_info->obstacles = NULL;
 	r_info->wall = NONE_WALL;
+	
 }

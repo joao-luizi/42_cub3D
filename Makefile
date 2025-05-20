@@ -29,7 +29,7 @@ SRC				=	$(SRC_DIR)/render/render_utils.c $(SRC_DIR)/render/main_scene.c $(SRC_D
 SRC_BONUS		=	$(SRC_DIR_BO)/render/render_utils.c $(SRC_DIR_BO)/render/main_scene.c $(SRC_DIR_BO)/render/render_perf.c $(SRC_DIR_BO)/render/render_horizontal.c 		\
 					$(SRC_DIR_BO)/render/post_process.c $(SRC_DIR_BO)/render/render_vertical.c $(SRC_DIR_BO)/render/tex_utils.c 		\
 					$(SRC_DIR_BO)/game/init.c $(SRC_DIR_BO)/game/hooks.c $(SRC_DIR_BO)/game/game.c $(SRC_DIR_BO)/game/aux.c $(SRC_DIR_BO)/game/game_loop.c	\
-					$(SRC_DIR_BO)/common/aux.c $(SRC_DIR_BO)/common/init.c $(SRC_DIR_BO)/common/cleanup.c								\
+					$(SRC_DIR_BO)/common/aux.c $(SRC_DIR_BO)/common/init.c $(SRC_DIR_BO)/common/cleanup.c	 $(SRC_DIR_BO)/common/cleanup_g.c							\
 					$(SRC_DIR_BO)/setup/aux.c $(SRC_DIR_BO)/setup/setup_fields.c $(SRC_DIR_BO)/setup/setup_map.c $(SRC_DIR_BO)/setup/setup.c\
 					$(SRC_DIR_BO)/main.c 
 
