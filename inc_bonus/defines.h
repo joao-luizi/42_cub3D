@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:28 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 16:54:47 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/21 12:41:59 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define PLAYER_MOV_SPEED 0.04
 
 # define MAX_BLEND_FACTOR 1.0f
-# define MAX_DISTANCE 5.0f
+# define MAX_DISTANCE 10.0f
 # define F1_KEY 269025093
 # define F2_KEY 269025094
 # define F3_KEY 269025095

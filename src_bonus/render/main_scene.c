@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 18:46:51 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/21 12:49:20 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	*raycast_routine(void *arg)
 	{
 		if (!pre_wait(st, args->index))
 			break ;
-		render_ceiling_and_floor(st, args->start_col, args->end_col);
 		x = args->start_col - 1;
 		while (++x < args->end_col)
 		{
@@ -60,11 +59,8 @@ void	*raycast_routine(void *arg)
 			free_obstacles(r_info.obstacles);
 			r_info.obstacles = NULL;
 		}
-		if (args->start_col == 0 && 100 < args->end_col)
-		{
-			if (st->g.fps)
-				print_fps(st);
-		}
+		render_ceiling_and_floor(st, args->start_col, args->end_col);
+		post_process(st);
 		after_wait(st);
 	}
 	return (NULL);
@@ -78,7 +74,16 @@ void	*raycast_routine(void *arg)
 void	render_main_scene(t_app_state *st)
 {
 	int	i;
-
+	int y;
+	int x;
+	
+	y = -1;
+	while(++y < st->g.main_scene.height)
+    {
+		x = -1;
+        while (++x < st->g.main_scene.width)
+            draw_pixel(&st->g.main_scene, x, y, 0x000000);
+    }
 	pthread_mutex_lock(&st->render_mutex);
 	st->render_ready = true;
 	st->threads_done = 0;
@@ -94,5 +99,4 @@ void	render_main_scene(t_app_state *st)
 	pthread_mutex_unlock(&st->render_mutex);
 	if (st->exit_requested)
 		return ;
-	
 }

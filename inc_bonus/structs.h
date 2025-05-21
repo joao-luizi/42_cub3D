@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 18:18:08 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:53:30 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,9 @@ typedef struct e_ray_info
 	t_point				step;
 	t_vector			side_dist;
 	t_wall				wall;
+	int					wall_start;
+	int					wall_end;
+	double				ray_distance;
 }						t_ray_info;
 
 typedef struct s_args

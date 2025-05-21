@@ -90,14 +90,12 @@ static inline void	update_anims(t_app_state *state)
 int	game_loop(t_app_state *st)
 {
 	
-
+	
 	gettimeofday(&st->previous_time, NULL);
 	update_face_anim(st);
 	update_anims(st);
 	update_player(st);
 	render_main_scene(st);
-
-	//post_process(st);
 	mlx_put_image_to_window(st->mlx, st->win, st->g.main_scene.img_ptr, 0, 0);
 	
 	return (0);
