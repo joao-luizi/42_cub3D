@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/21 11:53:30 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:58:13 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_anim_slot
 	t_anim				*anim_info;
 	bool				is_started;
 	bool				is_reversed;
+	bool				is_start_requested;
 }						t_anim_slot;
 
 typedef struct s_config

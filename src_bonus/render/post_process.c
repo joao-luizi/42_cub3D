@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/21 12:36:16 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:14:37 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,16 @@ void	print_fps(t_app_state *st)
 		fps = 0;
 	}
 	itoa = ft_itoa(fps);
-	lib_x_write_string("FPS", 10, 20, &st->g.main_scene);
-	lib_x_write_string(itoa, 80, 20, &st->g.main_scene);
+	lib_x_write_string("FPS", FPS_X + 10, FPS_Y + 20, &st->g.main_scene);
+	lib_x_write_string(itoa, FPS_X + 80, FPS_Y + 20, &st->g.main_scene);
 	free(itoa);
 	itoa = ft_itoa(st->core_count);
-	lib_x_write_string("CORES", 10, 50, &st->g.main_scene);
-	lib_x_write_string(itoa, 80, 50, &st->g.main_scene);
+	lib_x_write_string("CORES", FPS_X + 10, FPS_Y, &st->g.main_scene);
+	lib_x_write_string(itoa, FPS_X + 80, FPS_Y, &st->g.main_scene);
 	free(itoa);
 }
 
-static inline void	blit_face_frame(t_img *dst, t_img *src, int dst_x,
-		int dst_y)
+static inline void	blit_face_frame(t_img *dst, t_img *src, t_point p, t_args *args)
 {
 	int	color;
 	int	x;
@@ -67,25 +66,31 @@ static inline void	blit_face_frame(t_img *dst, t_img *src, int dst_x,
 		x = -1;
 		while (++x < src->width)
 		{
+			if (x + p.x < args->start_col
+				|| x + p.x >= args->end_col)
+				continue ;
 			color = *(unsigned int *)(src->data_addr + (y * src->size_line + x
 						* (src->bpp / 8)));
 			if (color == 0xFF00FF)
 				continue ;
-			draw_pixel(dst, dst_x + x, dst_y + y, color);
+			draw_pixel(dst, p.x + x, p.y + y, color);
 		}
 	}
 }
-
-void	post_process(t_app_state *st)
+static bool belongs_in_slice(t_args *args, int x)
+{
+	return (x >= args->start_col && x < args->end_col);
+}
+void	post_process(t_app_state *st, t_args *args)
 {
 	int frame;
 	t_img *face_frame;
 
 	frame = st->anims[0].current_frame;
 	face_frame = &st->g.face_anim[frame].frame;
-	if (st->g.face)
-		blit_face_frame(&st->g.main_scene, face_frame, FACE_X, MAIN_HEIGHT
-			- (FACE_Y + face_frame->height));
-	if (st->g.fps)
+	if (st->g.face && (belongs_in_slice(args, FACE_X) || belongs_in_slice(args, FACE_X + face_frame->width)))
+		blit_face_frame(&st->g.main_scene, face_frame, (t_point){ FACE_X, MAIN_HEIGHT
+			- (FACE_Y + face_frame->height) }, args);
+	if (st->g.fps && (belongs_in_slice(args, FPS_X) || belongs_in_slice(args, FPS_X + face_frame->width)))
 		print_fps(st);
 }

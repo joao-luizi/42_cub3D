@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:55:59 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 16:54:34 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:59:53 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,8 @@ int	handle_keypress(int keycode, t_app_state *state)
 		anim = find_door_anim(state, state->player.position.x
 				+ state->player.direction.x, state->player.position.y
 				+ state->player.direction.y);
-		if (anim && !anim->is_reversed)
-		{
-			anim->is_reversed = false;
-			anim->is_started = true;
-		}
+		if (anim && !anim->is_started)
+			anim->is_start_requested = true;
 	}
 	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
 		state->player.shift_pressed = true;

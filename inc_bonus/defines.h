@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:28 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/21 12:41:59 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:15:24 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@
 # define FOV 60
 # define WINDOW_WIDTH 1200
 # define WINDOW_HEIGHT 800
-# define FACE_X 10
+# define FACE_X 1000
 # define FACE_Y 10
+# define FPS_X  1000
+# define FPS_Y  650
 # define MAIN_WIDTH 1200
 # define MAIN_HEIGHT 800
 # define MAX_THREADS 8
-# define PLAYER_ROT_SPEED 0.02
+# define PLAYER_ROT_SPEED 0.04
 # define PLAYER_MOV_SPEED 0.04
 
 # define MAX_BLEND_FACTOR 1.0f

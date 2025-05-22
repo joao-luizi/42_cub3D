@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:20 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/21 12:49:14 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:10:02 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void		init_game(t_app_state *state);
 void		render_main_scene(t_app_state *st);
 void		*raycast_routine(void *arg);
 //		post_process
-void		post_process(t_app_state *st);
+void	post_process(t_app_state *st, t_args *args);
 void	print_fps(t_app_state *st);
 //		render_horizontal
 void		render_ceiling_and_floor(t_app_state *st, int start_x, int end_x);

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/21 12:49:20 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:10:39 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	*raycast_routine(void *arg)
 			r_info.obstacles = NULL;
 		}
 		render_ceiling_and_floor(st, args->start_col, args->end_col);
-		post_process(st);
+		post_process(st, args);
 		after_wait(st);
 	}
 	return (NULL);

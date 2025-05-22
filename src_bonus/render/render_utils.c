@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:26:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 16:29:54 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:36:51 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ bool	is_wall(double x, double y, t_app_state *st)
 {
 	int	map_x;
 	int	map_y;
-
+	t_anim_slot	*anim;
+	
 	map_x = (int)x;
 	map_y = (int)y;
 	if (map_x <= 0 || map_y <= 0 || map_x >= st->map->range.x
@@ -99,7 +100,15 @@ bool	is_wall(double x, double y, t_app_state *st)
 		return (true);
 	if (st->map->map[map_y][map_x] == ' ' || st->map->map[map_y][map_x] == '\0')
 		return (true);
-	if (st->map->map[map_y][map_x] == 'D' || st->map->map[map_y][map_x] == '1')
+	if (st->map->map[map_y][map_x] == '1')
 		return (true);
+	if (st->map->map[map_y][map_x] == 'D')
+	{
+		anim = find_door_anim(st, map_x, map_y);
+		if (anim && anim->is_started)
+			return (false);
+		else
+			return (true);
+	}
 	return (false);
 }
