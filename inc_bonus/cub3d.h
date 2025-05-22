@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:20 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/22 14:10:02 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:22:44 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,13 @@ void		update_player(t_app_state *state);
 int			handle_keypress(int keycode, t_app_state *state);
 int			handle_keyrelease(int keycode, t_app_state *state);
 int			close_handler(t_app_state *state);
+int	mouse_move_handler(int x, int y, t_app_state *st);
 //		init
 void		init_game(t_app_state *state);
+//		minimap	
+bool	init_fov_points(t_player *player);
+bool	init_player_points(t_player *player);
+
 
 //	render
 //		main_scene
@@ -118,6 +123,8 @@ void		initialize_ray(t_app_state *st, t_ray_info *r_info, int x);
 void		setup_initial_step(t_app_state *st, t_ray_info *r_info);
 void		dda(t_app_state *st, t_ray_info *r_info);
 void		draw_column(t_app_state *st, t_ray_info *r_info, int x);
+//	minimap
+void		render_minimap(t_app_state *st, t_args *args);
 //		tex_utils
 void	get_obs_tex(t_app_state *st, t_ray_info *r_info, t_obstacle *obs,
 	int side);

@@ -30,8 +30,8 @@ SRC_BONUS		=	$(SRC_DIR_BO)/render/render_utils.c $(SRC_DIR_BO)/render/main_scene
 					$(SRC_DIR_BO)/asc_strings/digits_0_4.c $(SRC_DIR_BO)/asc_strings/digits_5_9.c $(SRC_DIR_BO)/asc_strings/letters_a_e.c $(SRC_DIR_BO)/asc_strings/letters_f_j.c \
 					$(SRC_DIR_BO)/asc_strings/letters_k_o.c $(SRC_DIR_BO)/asc_strings/letters_p_t.c $(SRC_DIR_BO)/asc_strings/letters_u_x.c $(SRC_DIR_BO)/asc_strings/letters_y_z.c \
 					$(SRC_DIR_BO)/asc_strings/patterns.c $(SRC_DIR_BO)/asc_strings/symbols.c $(SRC_DIR_BO)/asc_strings/write_string.c \
-					$(SRC_DIR_BO)/render/post_process.c $(SRC_DIR_BO)/render/render_vertical.c $(SRC_DIR_BO)/render/tex_utils.c 		\
-					$(SRC_DIR_BO)/game/init.c $(SRC_DIR_BO)/game/hooks.c $(SRC_DIR_BO)/game/game.c $(SRC_DIR_BO)/game/aux.c $(SRC_DIR_BO)/game/game_loop.c	\
+					$(SRC_DIR_BO)/render/minimap.c $(SRC_DIR_BO)/render/post_process.c $(SRC_DIR_BO)/render/render_vertical.c $(SRC_DIR_BO)/render/tex_utils.c 		\
+					$(SRC_DIR_BO)/game/minimap.c $(SRC_DIR_BO)/game/init.c $(SRC_DIR_BO)/game/hooks.c $(SRC_DIR_BO)/game/game.c $(SRC_DIR_BO)/game/aux.c $(SRC_DIR_BO)/game/game_loop.c	\
 					$(SRC_DIR_BO)/common/aux.c $(SRC_DIR_BO)/common/init.c $(SRC_DIR_BO)/common/cleanup.c	 $(SRC_DIR_BO)/common/cleanup_g.c							\
 					$(SRC_DIR_BO)/setup/aux.c $(SRC_DIR_BO)/setup/setup_fields.c $(SRC_DIR_BO)/setup/setup_map.c $(SRC_DIR_BO)/setup/setup.c\
 					$(SRC_DIR_BO)/main.c 

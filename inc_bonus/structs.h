@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:33 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/22 15:58:13 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:34:21 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_map
 	t_point				player_position;
 	t_point				player_direction;
 	int					door_count;
+	int 				minimap_scale;
 
 }						t_map;
 
@@ -112,6 +113,8 @@ typedef struct e_player
 	t_vector			rotation_factor_pos;
 	t_vector			rotation_factor_neg;
 	t_speed				speed;
+	bool				***triangle_points;
+	t_point				**fov_points;
 	bool				shift_pressed;
 	bool				alt_pressed;
 	bool				up_pressed;
@@ -131,7 +134,6 @@ typedef struct s_graphics
 	t_anim				*door_anim;
 	t_anim				*face_anim;
 	t_img				main_scene;
-	t_img				buffer;
 	t_img				tex_no;
 	t_img				tex_so;
 	t_img				tex_we;

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/22 14:14:37 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:58:05 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,6 @@ void	post_process(t_app_state *st, t_args *args)
 			- (FACE_Y + face_frame->height) }, args);
 	if (st->g.fps && (belongs_in_slice(args, FPS_X) || belongs_in_slice(args, FPS_X + face_frame->width)))
 		print_fps(st);
+	if (st->g.minimap && (belongs_in_slice(args, MINIMAP_X) || belongs_in_slice(args, MINIMAP_X + MINIMAP_WIDTH)))
+		render_minimap(st, args);
 }

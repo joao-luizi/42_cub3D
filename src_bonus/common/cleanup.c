@@ -6,11 +6,38 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:00 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 15:16:55 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 17:52:55 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc_bonus/cub3d.h"
+
+
+static void	free_memoization(t_app_state *st)
+{
+	int	i;
+	int	j;
+
+	if (st->player.triangle_points)
+	{
+		i = -1;
+		while (++i < 3)
+		{
+			j = -1;
+			while (++j < MINIMAP_HEIGHT)
+				free(st->player.triangle_points[i][j]);
+			free(st->player.triangle_points[i]);
+		}
+		free(st->player.triangle_points);
+	}
+	if (st->player.fov_points)
+	{
+		i = -1;
+		while (++i < FOV * 2)
+			free(st->player.fov_points[i]);
+		free(st->player.fov_points);
+	}
+}
 
 /**
  * @brief Frees a null-terminated array of strings.
@@ -97,12 +124,15 @@ static void free_state_aux(t_app_state *state)
 		free_array(state->map->map);
 	if (state->normal_x)
 		free(state->normal_x);
+	if (state->normal_y)
+		free(state->normal_y);
 	if (state->anims)
 		free(state->anims);
 	if (state->args)
 		free(state->args);
 	if (state->thread_can_render)
 		free(state->thread_can_render);
+	free_memoization(state);
 }
 /**
  * @brief Frees the memory allocated for the application state and its 

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:12:32 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/16 17:33:18 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:30:53 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,15 @@ static inline void	horizontal_move(t_app_state *state, double *v_x,
 		*v_y += state->player.direction.x * move_speed;
 	}
 	if (state->player.turn_left_pressed)
+	{
 		rotate_player(state, state->player.rotation_factor_neg);
+		//state->player.turn_left_pressed = false;
+	}
 	if (state->player.turn_right_pressed)
+	{
 		rotate_player(state, state->player.rotation_factor_pos);
+		//state->player.turn_right_pressed = false;
+	}
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:53 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 16:51:01 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:34:43 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	init_player(t_player *player)
 	player->left_pressed = false;
 	player->turn_left_pressed = false;
 	player->turn_right_pressed = false;
+	player->triangle_points = NULL;
+	player->fov_points = NULL;
 }
 
 /**
@@ -143,4 +145,5 @@ void	init_config(t_config *cfg)
 	cfg->map.range.x = 0;
 	cfg->map.range.y = 0;
 	cfg->map.door_count = 0;
+	cfg->map.minimap_scale = 10;
 }

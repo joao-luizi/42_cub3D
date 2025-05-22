@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:28 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/22 14:15:24 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:45:43 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include <time.h>
 
 # define FOV 60
+# define FOV_D 60
+
 # define WINDOW_WIDTH 1200
 # define WINDOW_HEIGHT 800
 # define FACE_X 1000
@@ -41,6 +43,12 @@
 # define MAX_THREADS 8
 # define PLAYER_ROT_SPEED 0.04
 # define PLAYER_MOV_SPEED 0.04
+
+# define MINIMAP_X 10
+# define MINIMAP_Y 500
+# define MINIMAP_WIDTH 240
+# define MINIMAP_HEIGHT 160
+
 
 # define MAX_BLEND_FACTOR 1.0f
 # define MAX_DISTANCE 10.0f

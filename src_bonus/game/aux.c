@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:16:07 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 15:28:10 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:33:17 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ bool	init_threads_and_buffers(t_app_state *state)
 	if (!init_thread_args(state)
 		|| !init_render_sync(state)
 		|| !init_threads(state))
+		return (false);
+	if (!init_player_points(&state->player) || !init_fov_points(&state->player))
 		return (false);
 	prec_normal(state);
 	if (!state->normal_x)

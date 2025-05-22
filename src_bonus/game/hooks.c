@@ -6,11 +6,34 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:55:59 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/22 15:59:53 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:36:53 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc_bonus/cub3d.h"
+
+int	mouse_move_handler(int x, int y, t_app_state *st)
+{
+	(void)y;
+
+	if (x > MAIN_WIDTH - MAIN_WIDTH / 4)
+	{
+		st->player.turn_left_pressed = false;
+		st->player.turn_right_pressed = true;
+	}
+	else if (x < MAIN_WIDTH / 4)
+	{
+		st->player.turn_left_pressed = true;
+		st->player.turn_right_pressed = false;
+	}
+	else
+	{
+		st->player.turn_left_pressed = false;
+		st->player.turn_right_pressed = false;
+	}
+
+	return (0);
+}
 
 /**
  * @brief Handles player movement and direction based on key presses.
@@ -61,6 +84,16 @@ static void	handle_utils(int keycode, t_app_state *state)
 		state->g.fog = !state->g.fog;
 	if (keycode == XK_Escape)
 		close_handler(state);
+	if (keycode == XK_plus || keycode == XK_KP_Add)
+	{
+		if (state->map->minimap_scale < 30)
+			state->map->minimap_scale += 10;
+	}
+	if (keycode == XK_minus || keycode == XK_KP_Subtract)
+	{
+		if (state->map->minimap_scale > 10)
+			state->map->minimap_scale -= 10;
+	}
 }
 
 /**
@@ -150,3 +183,5 @@ int close_handler(t_app_state *state)
     exit(0);
     return (0);
 }
+
+

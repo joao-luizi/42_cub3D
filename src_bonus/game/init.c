@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:16:07 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/20 15:28:46 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:17:19 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,10 @@ static bool	init_window_and_image(t_app_state *state)
 	if (!init_mlx_image(&state->g.main_scene, state->mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT))
 		return (ft_putstr_fd(ERR_IMG_INIT, 2), false);
-	if (!init_mlx_image(&state->g.buffer, state->mlx, WINDOW_WIDTH,
-			WINDOW_HEIGHT))
-		return (ft_putstr_fd(ERR_IMG_INIT, 2), false);
 	return (true);
 }
+
+
 
 /**
  * @brief Sets up event hooks for the game loop and input handling.
@@ -67,6 +66,7 @@ static bool	init_window_and_image(t_app_state *state)
  */
 static void	init_hooks(t_app_state *state)
 {
+	mlx_hook(state->win, MotionNotify, PointerMotionMask, mouse_move_handler, state);
 	mlx_hook(state->win, KeyPress, KeyPressMask, handle_keypress, state);
 	mlx_hook(state->win, KeyRelease, KeyReleaseMask, handle_keyrelease, state);
 	mlx_hook(state->win, DestroyNotify, StructureNotifyMask, close_handler,
