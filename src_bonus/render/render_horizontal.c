@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:25:44 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/22 12:22:06 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/24 14:24:04 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ ceiling.x = st->player.position.x + (st->normal_y[idy] / denom) * ray_dir.x;
 ceiling.y = st->player.position.y + (st->normal_y[idy] / denom) * ray_dir.y;
 tex.x = (int)(ceiling.x * st->g.tex_cl.width) % st->g.tex_cl.width;
 tex.y = (int)(ceiling.y * st->g.tex_cl.height) % st->g.tex_cl.height;
-
 if (st->g.fog)
 {
 	distance = sqrt(pow(ceiling.x - st->player.position.x, 2) +
@@ -35,21 +34,9 @@ if (st->g.fog)
 }
 else
 	distance = 0;
-
-// Draw ceiling pixel
-draw_pixel(&st->g.main_scene, screen.x, screen.y,
+draw_pixel(&st->g.main_scene, screen.x, MAIN_HEIGHT - screen.y - 1 ,
 	get_pixel_color(&st->g.tex_cl, tex.x, tex.y, distance / MAX_DISTANCE));
-
-// Calculate floor based on ceiling
-t_vector floor;
-floor.x = ceiling.x;
-floor.y = ceiling.y;
-
-tex.x = (int)(floor.x * st->g.tex_fl.width) % st->g.tex_fl.width;
-tex.y = (int)(floor.y * st->g.tex_fl.height) % st->g.tex_fl.height;
-
-// Draw floor pixel
-draw_pixel(&st->g.main_scene, screen.x, MAIN_HEIGHT - screen.y - 1,
+draw_pixel(&st->g.main_scene, screen.x, screen.y,
 	get_pixel_color(&st->g.tex_fl, tex.x, tex.y, distance / MAX_DISTANCE));
 }
 
@@ -57,11 +44,11 @@ static inline void	calculate_ray_direction(t_vector *ray_dir,
         t_app_state *st, t_point screen, double *denom)
 {
 	ray_dir->x = st->player.direction.x + st->player.plane.x
-		* st->normal_x[screen.x];
+	* st->normal_x[screen.x];
 	ray_dir->y = st->player.direction.y + st->player.plane.y
-		* st->normal_x[screen.x];
+	* st->normal_x[screen.x];
 	*denom = ray_dir->x * st->player.direction.x + ray_dir->y
-		* st->player.direction.y;
+	* st->player.direction.y;	
 }
 
 void	render_ceiling_and_floor(t_app_state *st, int start_x, int end_x)
@@ -72,9 +59,9 @@ void	render_ceiling_and_floor(t_app_state *st, int start_x, int end_x)
 	t_point		screen;
 	
 	
-	screen.y = 0;
+	screen.y = MAIN_HEIGHT / 2;
     idy = 0;
-    while (screen.y < MAIN_HEIGHT / 2)
+    while (screen.y < MAIN_HEIGHT)
 	{
 		screen.x = start_x;
 		while (screen.x < end_x)
