@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:38:12 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/22 12:23:59 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/25 13:02:53 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	draw_char_to_image(int offset_x, int offset_y, t_img *section,
 			pos.x = offset_x + (i * pixel_size);
 			pos.y = offset_y + (j * pixel_size);
 			if (char_map[j][i] == 1)
-				paint_pixel(section, pixel_size, pos, 0x000000);
+				paint_pixel(section, pixel_size, pos, 0xFFFFFF);
 			i++;
 		}
 		j++;

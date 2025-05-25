@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:54:28 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/22 16:45:43 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/25 13:01:50 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 # define MAIN_WIDTH 1200
 # define MAIN_HEIGHT 800
 # define MAX_THREADS 8
-# define PLAYER_ROT_SPEED 0.04
-# define PLAYER_MOV_SPEED 0.04
+# define PLAYER_ROT_SPEED 0.08
+# define PLAYER_MOV_SPEED 0.14
 
 # define MINIMAP_X 10
 # define MINIMAP_Y 500
