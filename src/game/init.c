@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:16:07 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 12:39:58 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/05/27 15:54:41 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,10 @@
  */
 static inline int	game_loop(t_app_state *st)
 {
-	struct timeval	va;
 
-	gettimeofday(&va, NULL);
-	mlx_clear_window(st->mlx, st->win);
 	update_player(st);
 	render_main_scene(st);
 	mlx_put_image_to_window(st->mlx, st->win, st->g.main_scene.img_ptr, 0, 0);
-	if (st->g.fps)
-		print_fps(va.tv_sec, va.tv_usec, st);
 	return (0);
 }
 
