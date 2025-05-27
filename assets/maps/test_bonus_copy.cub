@@ -1,15 +1,16 @@
-NO /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/bonus/NO.xpm
 
-SO /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/bonus/SO.xpm
-WE /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/bonus/WS.xpm
-EA /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/bonus/ES.xpm
+NO /home/tjorge-l/Documents/rank_4/cube/assets/textures/bonus/NO.xpm
 
-F /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/bonus/floor.xpm
-C /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/bonus/ceiling_a.xpm
+SO /home/tjorge-l/Documents/rank_4/cube/assets/textures/bonus/SO.xpm
+WE /home/tjorge-l/Documents/rank_4/cube/assets/textures/bonus/WS.xpm
+EA /home/tjorge-l/Documents/rank_4/cube/assets/textures/bonus/ES.xpm
 
-ANIM_DOOR /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/bonus/door.ani
+F /home/tjorge-l/Documents/rank_4/cube/assets/textures/bonus/floor.xpm
+C /home/tjorge-l/Documents/rank_4/cube/assets/textures/bonus/ceiling_a.xpm
 
-ANIM_FACE /home/joaomigu/Documents/42_Projects/new_cub/assets/textures/face.ani
+ANIM_DOOR /home/tjorge-l/Documents/rank_4/cube/assets/textures/bonus/door.ani
+
+ANIM_FACE /home/tjorge-l/Documents/rank_4/cube/assets/textures/face.ani
 
 
 
