@@ -113,14 +113,23 @@ static inline void	horizontal_move(t_app_state *state, double *v_x,
 	if (state->player.turn_left_pressed)
 	{
 		rotate_player(state, state->player.rotation_factor_neg);
-		//state->player.turn_left_pressed = false;
 	}
 	if (state->player.turn_right_pressed)
 	{
 		rotate_player(state, state->player.rotation_factor_pos);
-		//state->player.turn_right_pressed = false;
 	}
 }
+
+// if (state->player.turn_left_pressed)
+// {
+// 	rotate_player(state, state->player.rotation_factor_neg);
+// 	//state->player.turn_left_pressed = false;
+// }
+// if (state->player.turn_right_pressed)
+// {
+// 	rotate_player(state, state->player.rotation_factor_pos);
+// 	//state->player.turn_right_pressed = false;
+// }
 
 /**
  * @brief Updates the player's position and orientation based on input.
