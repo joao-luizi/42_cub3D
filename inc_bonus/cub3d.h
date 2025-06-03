@@ -90,6 +90,8 @@ bool		init_animations(t_app_state *state);
 bool		init_threads_and_buffers(t_app_state *state);
 //		game_loop
 int			game_loop(t_app_state *st);
+//		game_loop_b
+bool	time_lapsed(struct timeval *frame_start, struct timeval *now);
 //		game
 void		update_player(t_app_state *state);
 //		hooks

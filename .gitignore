@@ -10,3 +10,4 @@
 /obj_bonus/common/cleanup_b.*
 /obj_bonus/game/hooks_b.*
 /obj_bonus/game/aux_b.*
+/obj_bonus/game/game_loop_b.*
