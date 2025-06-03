@@ -49,7 +49,6 @@
 # define MINIMAP_WIDTH 240
 # define MINIMAP_HEIGHT 160
 
-
 # define MAX_BLEND_FACTOR 1.0f
 # define MAX_DISTANCE 10.0f
 # define F1_KEY 269025093

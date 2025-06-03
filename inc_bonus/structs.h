@@ -48,7 +48,6 @@ typedef struct s_rgb
 	int					red;
 	int					green;
 	int					blue;
-
 }						t_rgb;
 
 typedef struct s_point
@@ -76,7 +75,7 @@ typedef struct s_map
 	t_point				player_position;
 	t_point				player_direction;
 	int					door_count;
-	int 				minimap_scale;
+	int					minimap_scale;
 
 }						t_map;
 
@@ -171,7 +170,7 @@ typedef struct s_args
 {
 	int					start_col;
 	int					end_col;
-	int 				index;
+	int					index;
 	struct e_app_state	*st;
 }						t_args;
 
@@ -182,14 +181,14 @@ typedef struct e_app_state
 	long				core_count;
 	t_args				*args;
 	pthread_t			*threads;
-	bool                mutex_initialized; 
-    bool                cond_initialized; 
+	bool				mutex_initialized;
+	bool				cond_initialized;
 	bool				main_initialized;
-	bool 				exit_requested;
+	bool				exit_requested;
 	bool				*thread_can_render;
 	pthread_mutex_t		render_mutex;
 	pthread_cond_t		render_cond;
-	pthread_cond_t 		main_cond;
+	pthread_cond_t		main_cond;
 	bool				render_ready;
 	int					threads_done;
 	t_graphics			g;
