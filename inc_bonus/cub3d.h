@@ -150,10 +150,13 @@ bool		fill_texture(void *mlx, t_img *tex, char *file);
 //		setup_animation
 bool	load_animation(t_app_state *st, char **split, t_anim *anim);
 bool	load_animation_frames(t_app_state *st, t_anim **anim, char *anim_file);
+//		setup_map_utils
+bool		validate_map(t_config *cfg);
 //		setup_map
+bool	isvalid_border(t_config *cfg, int i, int j);
+void	set_player(int i, int j, t_config *cfg);
 bool		calculate_map_dimensions(t_config *cfg, char **file_contents,
 				size_t *index, size_t line_count);
-bool		validate_map(t_config *cfg);
 bool		normalize_map(t_config *cfg, char **file_contents,
 				size_t map_start_index, size_t map_end_index);
 //		setup_fields
