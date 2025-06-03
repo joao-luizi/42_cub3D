@@ -25,30 +25,25 @@
  */
 void	prec_normal(t_app_state *st)
 {
-    int	x;
-    int	idy;
+	int	x;
+	int	idy;
 
-    
-    st->normal_x = ft_calloc(MAIN_WIDTH, sizeof(double));
-    st->normal_y = ft_calloc(MAIN_HEIGHT / 2, sizeof(double));
-    if (!st->normal_x || !st->normal_y)
-    {
-        ft_putstr_fd(ERR_ALLOC_FAIL, 2);
-        exit(EXIT_FAILURE);
-    }
-
-   
-    x = -1;
-    while (++x < MAIN_WIDTH)
-        st->normal_x[x] = 2 * x / (double)MAIN_WIDTH - 1;
-
-   
-    x = MAIN_HEIGHT / 2 - 1; 
-    idy = 0;
-    while (x >= 0) 
-    {
-        st->normal_y[idy] = (0.5 * MAIN_HEIGHT) / (MAIN_HEIGHT / 2 - x);
-        x--;
-        idy++;
-    }
+	st->normal_x = ft_calloc(MAIN_WIDTH, sizeof(double));
+	st->normal_y = ft_calloc(MAIN_HEIGHT / 2, sizeof(double));
+	if (!st->normal_x || !st->normal_y)
+	{
+		ft_putstr_fd(ERR_ALLOC_FAIL, 2);
+		exit(EXIT_FAILURE);
+	}
+	x = -1;
+	while (++x < MAIN_WIDTH)
+		st->normal_x[x] = 2 * x / (double)MAIN_WIDTH - 1;
+	x = MAIN_HEIGHT / 2 - 1;
+	idy = 0;
+	while (x >= 0)
+	{
+		st->normal_y[idy] = (0.5 * MAIN_HEIGHT) / (MAIN_HEIGHT / 2 - x);
+		x--;
+		idy++;
+	}
 }
