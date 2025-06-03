@@ -12,7 +12,6 @@
 
 #include "../../inc_bonus/cub3d.h"
 
-
 static void	scan_triangle_line(t_player *player, int i, int y, int cell_size)
 {
 	int		start_x;
