@@ -35,7 +35,7 @@ SRC_BONUS		=	$(SRC_DIR_BO)/render/render_utils.c $(SRC_DIR_BO)/render/main_scene
 					$(SRC_DIR_BO)/render/post_process.c $(SRC_DIR_BO)/render/render_vertical.c $(SRC_DIR_BO)/render/tex_utils.c 		\
 					$(SRC_DIR_BO)/game/minimap.c $(SRC_DIR_BO)/game/init.c $(SRC_DIR_BO)/game/hooks.c $(SRC_DIR_BO)/game/game.c $(SRC_DIR_BO)/game/aux.c $(SRC_DIR_BO)/game/game_loop.c	\
 					$(SRC_DIR_BO)/common/aux.c $(SRC_DIR_BO)/common/init.c $(SRC_DIR_BO)/common/cleanup.c	 $(SRC_DIR_BO)/common/cleanup_g.c							\
-					$(SRC_DIR_BO)/setup/aux.c $(SRC_DIR_BO)/setup/setup_fields.c $(SRC_DIR_BO)/setup/setup_map.c $(SRC_DIR_BO)/setup/setup.c\
+					$(SRC_DIR_BO)/setup/aux.c $(SRC_DIR_BO)/setup/setup_animation.c $(SRC_DIR_BO)/setup/setup_fields.c $(SRC_DIR_BO)/setup/setup_map.c $(SRC_DIR_BO)/setup/setup.c \
 					$(SRC_DIR_BO)/main.c 
 
 OBJS 			= 	${patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC}}

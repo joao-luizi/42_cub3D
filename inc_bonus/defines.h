@@ -84,4 +84,5 @@
 # define ERR_COND_INIT "Error.\nUnable to initialize condition variable."
 # define ERR_MLX_DESTROY "Error.\nUnable to destroy mlx window."
 # define ERR_THREAD_CREATE "Error.\nUnable to create thread."
+# define ERR_ANIM_FRAMES "Error.\nToo few frames in animation.\n"
 #endif

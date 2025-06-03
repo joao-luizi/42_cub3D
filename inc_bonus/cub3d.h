@@ -147,6 +147,9 @@ bool		get_file_content(char *path, size_t line_count,
 bool		is_map_line(const char *line);
 bool		is_allowed(char c, char *allowed);
 bool		fill_texture(void *mlx, t_img *tex, char *file);
+//		setup_animation
+bool	load_animation(t_app_state *st, char **split, t_anim *anim);
+bool	load_animation_frames(t_app_state *st, t_anim **anim, char *anim_file);
 //		setup_map
 bool		calculate_map_dimensions(t_config *cfg, char **file_contents,
 				size_t *index, size_t line_count);
