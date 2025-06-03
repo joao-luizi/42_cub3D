@@ -86,6 +86,7 @@ void		init_state(t_app_state *state);
 //	game
 //		aux
 bool		init_animations(t_app_state *state);
+//		aux_b
 bool		init_threads_and_buffers(t_app_state *state);
 //		game_loop
 int			game_loop(t_app_state *st);
