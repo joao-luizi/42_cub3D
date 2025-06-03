@@ -12,7 +12,6 @@
 
 #include "../../inc_bonus/cub3d.h"
 
-
 static void	free_memoization(t_app_state *st)
 {
 	int	i;
@@ -40,84 +39,30 @@ static void	free_memoization(t_app_state *st)
 }
 
 /**
- * @brief Frees a null-terminated array of strings.
- *
- * @param arr The array of strings to free.
- */
-void	free_array(char **arr)
-{
-	int	i;
-
-	if (!arr)
-		return ;
-	i = -1;
-	while (arr[++i])
-		free(arr[i]);
-	free(arr);
-}
-
-/**
- * @brief Frees the memory allocated for the configuration structure.
- *
- * @param cfg The configuration structure to free.
- * @param free_map A boolean indicating whether to free the map inside the 
- configuration.
- */
-void	free_config(t_config *cfg, bool free_map)
-{
-	if (!cfg)
-		return ;
-	if (cfg->normal_file_path)
-		free(cfg->normal_file_path);
-	if (cfg->no_tex)
-		free(cfg->no_tex);
-	if (cfg->so_tex)
-		free(cfg->so_tex);
-	if (cfg->we_tex)
-		free(cfg->we_tex);
-	if (cfg->ea_tex)
-		free(cfg->ea_tex);
-	if (cfg->cl_tex)
-		free(cfg->cl_tex);
-	if (cfg->fl_tex)
-		free(cfg->fl_tex);
-	if (cfg->door_anim)
-		free(cfg->door_anim);
-	if (cfg->face_anim)
-		free(cfg->face_anim);
-	if (free_map && cfg->map.map)
-	{
-		free_array(cfg->map.map);
-		cfg->map.map = NULL;
-	}
-}
-
-
-
-/**
  * @brief Frees the memory allocated for threads.
  *
  * @param state The application state containing the threads and arguments.
  */
-static void free_threads(t_app_state *state)
+static void	free_threads(t_app_state *state)
 {
-	int i;
+	int	i;
 
-    if (state->threads)
-    {
+	if (state->threads)
+	{
 		i = -1;
 		while (++i < state->core_count)
-            pthread_join(state->threads[i], NULL);
-        free(state->threads);
-        state->threads = NULL;
-    }
+			pthread_join(state->threads[i], NULL);
+		free(state->threads);
+		state->threads = NULL;
+	}
 }
-static void free_state_aux(t_app_state *state)
+
+static void	free_state_aux(t_app_state *state)
 {
 	if (state->mutex_initialized)
 		pthread_mutex_destroy(&state->render_mutex);
 	if (state->cond_initialized)
-    	pthread_cond_destroy(&state->render_cond);
+		pthread_cond_destroy(&state->render_cond);
 	if (state->main_initialized)
 		pthread_cond_destroy(&state->main_cond);
 	if (state->map && state->map->map)
@@ -134,6 +79,7 @@ static void free_state_aux(t_app_state *state)
 		free(state->thread_can_render);
 	free_memoization(state);
 }
+
 /**
  * @brief Frees the memory allocated for the application state and its 
  * associated resources.
@@ -155,16 +101,4 @@ void	free_state(t_app_state *state)
 		state->mlx = NULL;
 	}
 	free_state_aux(state);
-}
-
-void	free_obstacles(t_obstacle *head)
-{
-	t_obstacle	*tmp;
-
-	while (head)
-	{
-		tmp = head->next;
-		free(head);
-		head = tmp;
-	}
 }

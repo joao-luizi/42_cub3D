@@ -7,3 +7,4 @@
 /obj_bonus/render/dda.*
 /obj_bonus/setup/setup_animation.*
 /obj_bonus/setup/setup_map_utils.*
+/obj_bonus/common/cleanup_b.*

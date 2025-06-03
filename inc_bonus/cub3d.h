@@ -72,11 +72,13 @@ size_t		ft_str_array_len(char **str);
 void		count_char(int *count, char c, char *str);
 //		cleanup_g
 void		free_graphics(t_graphics *g, void *mlx);
-//		cleanup
+//		cleanup_utils
 void		free_array(char **arr);
 void		free_config(t_config *cfg, bool free_map);
-void		free_state(t_app_state *state);
 void		free_obstacles(t_obstacle *head);
+
+//		cleanup
+void		free_state(t_app_state *state);
 //		init
 void		init_config(t_config *cfg);
 void		init_state(t_app_state *state);
