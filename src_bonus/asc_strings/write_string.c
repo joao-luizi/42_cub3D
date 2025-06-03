@@ -12,7 +12,6 @@
 
 #include "../../inc_bonus/cub3d.h"
 
-
 /**
  * @brief Paints a square of pixels at the given
  *  position with the specified color.
@@ -141,26 +140,31 @@ void	empty_letter(int src[5][3])
  */
 void	debug_print_letter(int letter[5][3])
 {
-    int	row;
-    int	col;
+	int	row;
+	int	col;
 
-    row = 0;
-    while (row < 5)
-    {
-        col = 0;
-        while (col < 3)
-        {
-            if (letter[row][col] == 1)
-                printf("#");
-            else
-                printf(" ");
-            col++;
-        }
-        printf("\n"); // Move to the next row
-        row++;
-    }
-    printf("\n"); // Add a blank line after the letter for readability
+	row = 0;
+	while (row < 5)
+	{
+		col = 0;
+		while (col < 3)
+		{
+			if (letter[row][col] == 1)
+				printf("#");
+			else
+				printf(" ");
+			col++;
+		}
+		printf("\n");
+		row++;
+	}
+	printf("\n");
 }
+
+// 	printf("\n"); // Move to the next row
+// 	row++;
+// }
+// printf("\n"); // Add a blank line after the letter for readability
 
 /**
  * @brief Writes a string of characters to an 
