@@ -12,7 +12,6 @@
 
 #include "../../inc_bonus/cub3d.h"
 
-
 /**
  * @brief Initializes a MiniLibX image with the specified dimensions.
  *
@@ -38,7 +37,6 @@ static bool	init_mlx_image(t_img *img, void *mlx, int width, int height)
 	return (true);
 }
 
-
 /**
  * @brief Initializes the MiniLibX window and main scene image.
  *
@@ -57,8 +55,6 @@ static bool	init_window_and_image(t_app_state *state)
 	return (true);
 }
 
-
-
 /**
  * @brief Sets up event hooks for the game loop and input handling.
  *
@@ -66,7 +62,8 @@ static bool	init_window_and_image(t_app_state *state)
  */
 static void	init_hooks(t_app_state *state)
 {
-	mlx_hook(state->win, MotionNotify, PointerMotionMask, mouse_move_handler, state);
+	mlx_hook(state->win, MotionNotify, PointerMotionMask,
+		mouse_move_handler, state);
 	mlx_hook(state->win, KeyPress, KeyPressMask, handle_keypress, state);
 	mlx_hook(state->win, KeyRelease, KeyReleaseMask, handle_keyrelease, state);
 	mlx_hook(state->win, DestroyNotify, StructureNotifyMask, close_handler,
