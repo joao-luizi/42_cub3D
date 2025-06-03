@@ -144,30 +144,30 @@ bool	validate_map(t_config *cfg)
 bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
 	size_t *index, size_t line_count)
 {
-size_t	line_length;
-int		i;
+	size_t	line_length;
+	int		i;
 
-line_length = 0;
-while (*index < line_count && file_contents[*index])
-{
-	if (!is_whitespace_line(file_contents[*index]))
+	line_length = 0;
+	while (*index < line_count && file_contents[*index])
 	{
-		i = -1;
-		while (file_contents[*index][++i])
+		if (!is_whitespace_line(file_contents[*index]))
 		{
-			if (file_contents[*index][i] == ' ')
-				continue ;
-			if (!is_allowed(file_contents[*index][i], MAP_CHARS))
-				return (ft_putstr_fd(ERR_MAP_CHAR, 2), false);
+			i = -1;
+			while (file_contents[*index][++i])
+			{
+				if (file_contents[*index][i] == ' ')
+					continue ;
+				if (!is_allowed(file_contents[*index][i], MAP_CHARS))
+					return (ft_putstr_fd(ERR_MAP_CHAR, 2), false);
+			}
+			line_length = ft_strlen(file_contents[*index]);
+			if (line_length > (size_t)cfg->map.range.x)
+				cfg->map.range.x = line_length;
+			cfg->map.range.y++;
 		}
-		line_length = ft_strlen(file_contents[*index]);
-		if (line_length > (size_t)cfg->map.range.x)
-			cfg->map.range.x = line_length;
-		cfg->map.range.y++;
+		(*index)++;
 	}
-	(*index)++;
-}
-return (true);
+	return (true);
 }
 
 /**

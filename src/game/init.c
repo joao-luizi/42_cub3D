@@ -21,7 +21,6 @@
  */
 static inline int	game_loop(t_app_state *st)
 {
-
 	update_player(st);
 	render_main_scene(st);
 	mlx_put_image_to_window(st->mlx, st->win, st->g.main_scene.img_ptr, 0, 0);
