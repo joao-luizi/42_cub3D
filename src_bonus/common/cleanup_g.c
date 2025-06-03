@@ -12,8 +12,6 @@
 
 #include "../../inc_bonus/cub3d.h"
 
-
-
 /**
  * @brief Frees the memory allocated for an image structure and destroys 
  * the image.
@@ -31,10 +29,10 @@ static void	free_image(t_img *img, void *mlx)
 	img->data_addr = NULL;
 }
 
-static void free_anim(t_anim *anim, void *mlx)
+static void	free_anim(t_anim *anim, void *mlx)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	while (++i < 4)
 	{
@@ -43,6 +41,7 @@ static void free_anim(t_anim *anim, void *mlx)
 	}
 	free(anim);
 }
+
 /**
  * @brief Frees the memory allocated for graphics-related resources.
  *
