@@ -124,7 +124,14 @@ void		setup_initial_step(t_app_state *st, t_ray_info *r_info);
 void		dda(t_app_state *st, t_ray_info *r_info);
 void		draw_column(t_app_state *st, t_ray_info *r_info, int x);
 //	minimap
+bool		is_player(t_app_state *st, int x, int y);
 void		render_minimap(t_app_state *st, t_args *args);
+//	minimap wall
+bool		is_local_wall(t_app_state *st, int x, int y);
+int			get_local_color(int x);
+int			get_local_wall_color(t_app_state *st, int x, int y);
+//	minimap color
+int			get_color(t_app_state *st, int x, int y);
 //		tex_utils
 void	get_obs_tex(t_app_state *st, t_ray_info *r_info, t_obstacle *obs,
 	int side);
