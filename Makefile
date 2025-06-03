@@ -27,7 +27,7 @@ SRC				=	$(SRC_DIR)/render/render_utils.c $(SRC_DIR)/render/main_scene.c $(SRC_D
 					$(SRC_DIR)/main.c 
 
 SRC_BONUS		=	$(SRC_DIR_BO)/render/render_utils.c $(SRC_DIR_BO)/render/main_scene.c $(SRC_DIR_BO)/render/raycast.c \
-					$(SRC_DIR_BO)/render/render_perf.c $(SRC_DIR_BO)/render/render_horizontal.c 		\
+					$(SRC_DIR_BO)/render/render_perf.c $(SRC_DIR_BO)/render/render_horizontal.c $(SRC_DIR_BO)/render/dda.c\
 					$(SRC_DIR_BO)/asc_strings/digits_0_4.c $(SRC_DIR_BO)/asc_strings/digits_5_9.c $(SRC_DIR_BO)/asc_strings/letters_a_e.c $(SRC_DIR_BO)/asc_strings/letters_f_j.c \
 					$(SRC_DIR_BO)/asc_strings/letters_k_o.c $(SRC_DIR_BO)/asc_strings/letters_p_t.c $(SRC_DIR_BO)/asc_strings/letters_u_x.c $(SRC_DIR_BO)/asc_strings/letters_y_z.c \
 					$(SRC_DIR_BO)/asc_strings/patterns.c $(SRC_DIR_BO)/asc_strings/symbols.c $(SRC_DIR_BO)/asc_strings/write_string.c \
