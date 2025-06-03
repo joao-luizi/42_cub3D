@@ -14,7 +14,9 @@
 
 t_anim_slot	*find_door_anim(t_app_state *st, int x, int y)
 {
-	int i = 1; // anims[0] is reserved for face animation
+	int	i;
+
+	i = 1;
 	while (i < st->map->door_count + 1)
 	{
 		if (st->anims[i].map_point.x == x && st->anims[i].map_point.y == y)
@@ -23,6 +25,8 @@ t_anim_slot	*find_door_anim(t_app_state *st, int x, int y)
 	}
 	return (NULL);
 }
+
+// anims[0] is reserved for face animation
 
 /**
  * @brief Retrieves the color of a specific pixel from a texture based on
@@ -35,7 +39,8 @@ t_anim_slot	*find_door_anim(t_app_state *st, int x, int y)
  * @return The color of the pixel in the texture.
  */
 
-int	get_obs_color(t_obstacle *obs, int screen_y, int obs_start, float blending_factor)
+int	get_obs_color(t_obstacle *obs, int screen_y,
+		int obs_start, float blending_factor)
 {
 	int	tex_x;
 	int	tex_y;
@@ -89,10 +94,10 @@ void	draw_pixel(t_img *img, int x, int y, int color)
  */
 bool	is_wall(double x, double y, t_app_state *st)
 {
-	int	map_x;
-	int	map_y;
+	int			map_x;
+	int			map_y;
 	t_anim_slot	*anim;
-	
+
 	map_x = (int)x;
 	map_y = (int)y;
 	if (map_x <= 0 || map_y <= 0 || map_x >= st->map->range.x
