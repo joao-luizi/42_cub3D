@@ -92,10 +92,11 @@ int			game_loop(t_app_state *st);
 //		game
 void		update_player(t_app_state *state);
 //		hooks
-int			handle_keypress(int keycode, t_app_state *state);
 int			handle_keyrelease(int keycode, t_app_state *state);
 int			close_handler(t_app_state *state);
 int	mouse_move_handler(int x, int y, t_app_state *st);
+//		hooks_b
+int			handle_keypress(int keycode, t_app_state *state);
 //		init
 void		init_game(t_app_state *state);
 //		minimap	
