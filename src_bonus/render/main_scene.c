@@ -12,59 +12,20 @@
 
 #include "../../inc_bonus/cub3d.h"
 
-static inline void	after_wait(t_app_state *st)
+static void	render_main_scene_util(t_app_state *st)
 {
-	pthread_mutex_lock(&st->render_mutex);
-	st->threads_done++;
-	if (st->threads_done == st->core_count)
-		pthread_cond_signal(&st->main_cond);
-	pthread_mutex_unlock(&st->render_mutex);
-}
-static inline bool	pre_wait(t_app_state *st, int index)
-{
-	pthread_mutex_lock(&st->render_mutex);
-	while ((!st->render_ready || !st->thread_can_render[index])
-		&& !st->exit_requested)
-		pthread_cond_wait(&st->render_cond, &st->render_mutex);
-	if (st->exit_requested)
+	int	y;
+	int	x;
+
+	y = -1;
+	while (++y < st->g.main_scene.height)
 	{
-		pthread_mutex_unlock(&st->render_mutex);
-		return (false);
+		x = -1;
+		while (++x < st->g.main_scene.width)
+			draw_pixel(&st->g.main_scene, x, y, 0x000000);
 	}
-	st->thread_can_render[index] = false;
-	pthread_mutex_unlock(&st->render_mutex);
-	return (true);
 }
 
-void	*raycast_routine(void *arg)
-{
-	t_args		*args;
-	t_app_state	*st;
-	t_ray_info	r_info;
-	int			x;
-
-	args = (t_args *)arg;
-	st = args->st;
-	while (true)
-	{
-		if (!pre_wait(st, args->index))
-			break ;
-		x = args->start_col - 1;
-		while (++x < args->end_col)
-		{
-			initialize_ray(st, &r_info, x);
-			setup_initial_step(st, &r_info);
-			dda(st, &r_info);
-			draw_column(st, &r_info, x);
-			free_obstacles(r_info.obstacles);
-			r_info.obstacles = NULL;
-		}
-		render_ceiling_and_floor(st, args->start_col, args->end_col);
-		post_process(st, args);
-		after_wait(st);
-	}
-	return (NULL);
-}
 /**
  * @brief Renders the main scene by casting rays and drawing the
  * corresponding wall slices.
@@ -74,16 +35,8 @@ void	*raycast_routine(void *arg)
 void	render_main_scene(t_app_state *st)
 {
 	int	i;
-	int y;
-	int x;
-	
-	y = -1;
-	while(++y < st->g.main_scene.height)
-    {
-		x = -1;
-        while (++x < st->g.main_scene.width)
-            draw_pixel(&st->g.main_scene, x, y, 0x000000);
-    }
+
+	render_main_scene_util(st);
 	pthread_mutex_lock(&st->render_mutex);
 	st->render_ready = true;
 	st->threads_done = 0;

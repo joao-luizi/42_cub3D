@@ -3,3 +3,4 @@
 /.vscode
 /obj_bonus/render/minimap_color.*
 /obj_bonus/render/minimap_wall.*
+/obj_bonus/render/raycast.*
