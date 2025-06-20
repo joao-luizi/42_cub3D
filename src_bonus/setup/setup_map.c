@@ -42,6 +42,8 @@ bool	isvalid_border(t_config *cfg, int i, int j)
 		if (i - 1 >= 0 && (cfg->map.map[i - 1][j] == ' ' || cfg->map.map[i
 				- 1][j] == '\0'))
 			return (false);
+		if (cfg->map.map[i + 1] == NULL)
+			return (false);
 		if (cfg->map.map[i + 1][j] == ' ' || cfg->map.map[i + 1][j] == '\0')
 			return (false);
 		if (j - 1 >= 0 && (cfg->map.map[i][j - 1] == ' ' || cfg->map.map[i][j
