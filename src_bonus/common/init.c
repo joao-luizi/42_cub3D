@@ -103,6 +103,7 @@ void	init_state(t_app_state *state)
 	state->win = NULL;
 	state->map = NULL;
 	state->normal_x = NULL;
+	state->normal_y = NULL;
 	state->anims = NULL;
 	state->core_count = 0;
 	state->render_ready = false;
