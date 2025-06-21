@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 13:05:10 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:02:50 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static bool	check_file_contents(t_config *cfg, char **file_contents,
 {
 	size_t	index;
 	size_t	map_start_index;
-	size_t	map_end_index;
 
 	index = 0;
 	if (!parse_configurations(cfg, file_contents, line_count, &index))
@@ -59,7 +58,7 @@ static bool	check_file_contents(t_config *cfg, char **file_contents,
 	map_start_index = index;
 	if (!calculate_map_dimensions(cfg, file_contents, &index, line_count))
 		return (false);
-	map_end_index = index;
+	index = map_start_index + cfg->map.range.y;
 	while (file_contents[index] && index < line_count)
 	{
 		if (!is_whitespace_line(file_contents[index]))
@@ -70,7 +69,8 @@ static bool	check_file_contents(t_config *cfg, char **file_contents,
 				return (ft_putstr_fd(ERR_LAST_ELE, 2), false);
 		}
 	}
-	return (normalize_map(cfg, file_contents, map_start_index, map_end_index));
+	return (normalize_map(cfg, file_contents, map_start_index, map_start_index
+			+ cfg->map.range.y));
 }
 
 /**

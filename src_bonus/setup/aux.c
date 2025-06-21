@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:19 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 13:05:00 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/06/21 16:56:18 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ bool	get_file_content(char *path, size_t line_count, char ***file_content)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		line[ft_strlen(line) - 1] = '\0';
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = '\0';
 		(*file_content)[i] = line;
 		i++;
 	}

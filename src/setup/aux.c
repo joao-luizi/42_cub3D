@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:19 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 12:39:10 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/06/21 16:53:00 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Loads a texture from a file and initializes the texture structure.
- * 
+ *
  * @param mlx The MiniLibX instance used to load the texture.
  * @param tex The texture structure to initialize.
  * @param file The path to the texture file.
@@ -45,11 +45,12 @@ bool	fill_texture(void *mlx, t_img *tex, char *file)
 }
 
 /**
- * @brief Reads the content of a file and stores it in a dynamically 
+ * @brief Reads the content of a file and stores it in a dynamically
  * allocated array of strings.
- * 
+ *
  * @param path The path to the file to read.
  * @param line_count The number of lines in the file.
+
  * @param file_content Pointer to the array of strings to store the file content.
  * @return true if the file was successfully read, false otherwise.
  */
@@ -57,7 +58,7 @@ bool	get_file_content(char *path, size_t line_count, char ***file_content)
 {
 	char	*line;
 	int		fd;
-	int		i;
+	size_t	i;
 
 	*file_content = ft_calloc(sizeof(char *), line_count + 1);
 	if (!(*file_content))
@@ -68,12 +69,13 @@ bool	get_file_content(char *path, size_t line_count, char ***file_content)
 			ft_putstr_fd(path, 2), ft_putstr_fd("\n", STDERR_FILENO), false);
 	i = 0;
 	line = NULL;
-	while (true)
+	while (i <= line_count)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		line[ft_strlen(line) - 1] = '\0';
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = '\0';
 		(*file_content)[i] = line;
 		i++;
 	}
@@ -83,9 +85,9 @@ bool	get_file_content(char *path, size_t line_count, char ***file_content)
 
 /**
  * @brief Counts the number of lines in a file.
- * 
+ *
  * @param path The path to the file to count lines in.
- * @return The number of lines in the file, or 0 if the 
+ * @return The number of lines in the file, or 0 if the
  * file could not be opened or is empty.
  */
 size_t	count_file_lines(char *path)
@@ -119,7 +121,7 @@ size_t	count_file_lines(char *path)
 
 /**
  * @brief Checks if a character is in the allowed set of characters.
- * 
+ *
  * @param c The character to check.
  * @param allowed A string containing the allowed characters.
  * @return true if the character is allowed, false otherwise.
@@ -139,7 +141,7 @@ bool	is_allowed(char c, char *allowed)
 
 /**
  * @brief Determines if a line is a valid map line based on allowed characters.
- * 
+ *
  * @param line The line to check.
  * @return true if the line is a valid map line, false otherwise.
  */

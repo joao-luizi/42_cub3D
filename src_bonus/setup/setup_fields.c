@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:15 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/16 12:28:24 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/06/21 16:57:15 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * @return true if the RGB values were successfully extracted and valid,
 	false otherwise.
  */
-bool	extract_rgb(const char *line, int *ref)
+static bool	extract_rgb(const char *line, int *ref)
 {
 	char	**split;
 	int		color[4];
@@ -33,9 +33,10 @@ bool	extract_rgb(const char *line, int *ref)
 		return (ft_putstr_fd(ERR_COLOR_FORMAT, 2), ft_putstr_fd((char *)line,
 				2), ft_putstr_fd("\n", 2), false);
 	split = ft_split(line, ',');
-	if (!split || ft_str_array_len(split) != 3)
-		return (ft_putstr_fd(ERR_COLOR_FORMAT, 2), ft_putstr_fd((char *)line,
-				2), ft_putstr_fd("\n", 2), false);
+	if (!split || ft_str_array_len(split) != 3 || is_whitespace_line(split[0])
+		|| is_whitespace_line(split[1]) || is_whitespace_line(split[2]))
+		return (free_array(split), ft_putstr_fd(ERR_COLOR_FORMAT, 2),
+			ft_putstr_fd((char *)line, 2), ft_putstr_fd("\n", 2), false);
 	color[0] = ft_atoi(split[0]);
 	color[1] = ft_atoi(split[1]);
 	color[2] = ft_atoi(split[2]);

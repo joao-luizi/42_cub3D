@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:10 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 16:07:38 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/06/21 16:55:08 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
 
- * @brief Parses the configuration fields from the file contents and 
+ * @brief Parses the configuration fields from the file contents and
  updates the configuration structure.
  *
  * This function iterates through the file contents,
@@ -47,8 +47,8 @@ static bool	isvalid_border(t_config *cfg, int i, int j)
 			return (false);
 		if (cfg->map.map[i + 1][j] == ' ' || cfg->map.map[i + 1][j] == '\0')
 			return (false);
-		if (j - 1 >= 0 && (cfg->map.map[i][j - 1] == ' ' || cfg->map.map[i][j
-			- 1] == '\0'))
+		if (j - 1 >= 0 && (cfg->map.map[i][j - 1] == ' '
+			|| cfg->map.map[i][j - 1] == '\0'))
 			return (false);
 		if (cfg->map.map[i][j + 1] == ' ' || cfg->map.map[i][j + 1] == '\0')
 			return (false);
@@ -144,7 +144,7 @@ bool	validate_map(t_config *cfg)
 	false otherwise.
  */
 bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
-	size_t *index, size_t line_count)
+		size_t *index, size_t line_count)
 {
 	size_t	line_length;
 	int		i;
@@ -173,6 +173,7 @@ bool	calculate_map_dimensions(t_config *cfg, char **file_contents,
 }
 
 /**
+
 
  * @brief Normalizes the map by padding rows with spaces to ensure uniform width.
  *
