@@ -1,0 +1,954 @@
+valgrind >> testes.txt
+==23121== Memcheck, a memory error detector
+==23121== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23121== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23121== Command: ./cub3D invalid_maps/texture_tests/test1.cub
+==23121== 
+Error.
+Unrecognized field line: NOassets/bluestone.xpm
+==23121== 
+==23121== HEAP SUMMARY:
+==23121==     in use at exit: 0 bytes in 0 blocks
+==23121==   total heap usage: 255 allocs, 255 frees, 2,961 bytes allocated
+==23121== 
+==23121== All heap blocks were freed -- no leaks are possible
+==23121== 
+==23121== For lists of detected and suppressed errors, rerun with: -s
+==23121== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23122== Memcheck, a memory error detector
+==23122== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23122== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23122== Command: ./cub3D invalid_maps/texture_tests/test2.cub
+==23122== 
+111
+1N1
+111
+Error.
+Missing texture: , assets/bluestone.xpm
+==23122== 
+==23122== HEAP SUMMARY:
+==23122==     in use at exit: 0 bytes in 0 blocks
+==23122==   total heap usage: 370 allocs, 370 frees, 76,798 bytes allocated
+==23122== 
+==23122== All heap blocks were freed -- no leaks are possible
+==23122== 
+==23122== For lists of detected and suppressed errors, rerun with: -s
+==23122== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23123== Memcheck, a memory error detector
+==23123== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23123== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23123== Command: ./cub3D invalid_maps/texture_tests/test3.cub
+==23123== 
+111
+1N1
+111
+Error.
+Missing texture: NO assets/bluestone.xpm
+==23123== 
+==23123== HEAP SUMMARY:
+==23123==     in use at exit: 0 bytes in 0 blocks
+==23123==   total heap usage: 372 allocs, 372 frees, 76,855 bytes allocated
+==23123== 
+==23123== All heap blocks were freed -- no leaks are possible
+==23123== 
+==23123== For lists of detected and suppressed errors, rerun with: -s
+==23123== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23124== Memcheck, a memory error detector
+==23124== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23124== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23124== Command: ./cub3D invalid_maps/texture_tests/test4.cub
+==23124== 
+Error.
+Unrecognized field line: NO
+==23124== 
+==23124== HEAP SUMMARY:
+==23124==     in use at exit: 0 bytes in 0 blocks
+==23124==   total heap usage: 264 allocs, 264 frees, 3,058 bytes allocated
+==23124== 
+==23124== All heap blocks were freed -- no leaks are possible
+==23124== 
+==23124== For lists of detected and suppressed errors, rerun with: -s
+==23124== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23125== Memcheck, a memory error detector
+==23125== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23125== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23125== Command: ./cub3D invalid_maps/texture_tests/test5.cub
+==23125== 
+Error.
+Duplicate ID found: NO
+==23125== 
+==23125== HEAP SUMMARY:
+==23125==     in use at exit: 0 bytes in 0 blocks
+==23125==   total heap usage: 266 allocs, 266 frees, 3,068 bytes allocated
+==23125== 
+==23125== All heap blocks were freed -- no leaks are possible
+==23125== 
+==23125== For lists of detected and suppressed errors, rerun with: -s
+==23125== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23126== Memcheck, a memory error detector
+==23126== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23126== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23126== Command: ./cub3D invalid_maps/texture_tests/test6.cub
+==23126== 
+Error.
+Unrecognized field line: NO_assets/bluestone.xpm
+==23126== 
+==23126== HEAP SUMMARY:
+==23126==     in use at exit: 0 bytes in 0 blocks
+==23126==   total heap usage: 257 allocs, 257 frees, 3,011 bytes allocated
+==23126== 
+==23126== All heap blocks were freed -- no leaks are possible
+==23126== 
+==23126== For lists of detected and suppressed errors, rerun with: -s
+==23126== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23127== Memcheck, a memory error detector
+==23127== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23127== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23127== Command: ./cub3D invalid_maps/texture_tests/test7.cub
+==23127== 
+111
+1N1
+111
+Error.
+Missing texture: assets/bluestone.xpm a
+==23127== 
+==23127== HEAP SUMMARY:
+==23127==     in use at exit: 0 bytes in 0 blocks
+==23127==   total heap usage: 370 allocs, 370 frees, 76,798 bytes allocated
+==23127== 
+==23127== All heap blocks were freed -- no leaks are possible
+==23127== 
+==23127== For lists of detected and suppressed errors, rerun with: -s
+==23127== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23128== Memcheck, a memory error detector
+==23128== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23128== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23128== Command: ./cub3D invalid_maps/texture_tests/test8.cub
+==23128== 
+111
+1N1
+111
+Error.
+Missing texture: assets/bluestone.xp
+==23128== 
+==23128== HEAP SUMMARY:
+==23128==     in use at exit: 0 bytes in 0 blocks
+==23128==   total heap usage: 364 allocs, 364 frees, 76,639 bytes allocated
+==23128== 
+==23128== All heap blocks were freed -- no leaks are possible
+==23128== 
+==23128== For lists of detected and suppressed errors, rerun with: -s
+==23128== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23129== Memcheck, a memory error detector
+==23129== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23129== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23129== Command: ./cub3D invalid_maps/texture_tests/test9.cub
+==23129== 
+111
+1N1
+111
+Error.
+Missing texture: assets/bluestone.xpm.xpm
+==23129== 
+==23129== HEAP SUMMARY:
+==23129==     in use at exit: 0 bytes in 0 blocks
+==23129==   total heap usage: 374 allocs, 374 frees, 76,914 bytes allocated
+==23129== 
+==23129== All heap blocks were freed -- no leaks are possible
+==23129== 
+==23129== For lists of detected and suppressed errors, rerun with: -s
+==23129== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23130== Memcheck, a memory error detector
+==23130== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23130== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23130== Command: ./cub3D invalid_maps/texture_tests/test10.cub
+==23130== 
+Error.
+Missing configurations fields.
+==23130== 
+==23130== HEAP SUMMARY:
+==23130==     in use at exit: 0 bytes in 0 blocks
+==23130==   total heap usage: 216 allocs, 216 frees, 2,445 bytes allocated
+==23130== 
+==23130== All heap blocks were freed -- no leaks are possible
+==23130== 
+==23130== For lists of detected and suppressed errors, rerun with: -s
+==23130== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23131== Memcheck, a memory error detector
+==23131== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23131== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23131== Command: ./cub3D invalid_maps/texture_tests/test11.cub
+==23131== 
+Error.
+Unrecognized field line: c 225,30,0
+==23131== 
+==23131== HEAP SUMMARY:
+==23131==     in use at exit: 0 bytes in 0 blocks
+==23131==   total heap usage: 262 allocs, 262 frees, 3,101 bytes allocated
+==23131== 
+==23131== All heap blocks were freed -- no leaks are possible
+==23131== 
+==23131== For lists of detected and suppressed errors, rerun with: -s
+==23131== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23132== Memcheck, a memory error detector
+==23132== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23132== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23132== Command: ./cub3D invalid_maps/texture_tests/test12.cub
+==23132== 
+Error.
+Unrecognized field line: so assets/eagle.xpm
+==23132== 
+==23132== HEAP SUMMARY:
+==23132==     in use at exit: 0 bytes in 0 blocks
+==23132==   total heap usage: 258 allocs, 258 frees, 3,033 bytes allocated
+==23132== 
+==23132== All heap blocks were freed -- no leaks are possible
+==23132== 
+==23132== For lists of detected and suppressed errors, rerun with: -s
+==23132== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23134== Memcheck, a memory error detector
+==23134== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23134== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23134== Command: ./cub3D invalid_maps/color_tests/test1.cub
+==23134== 
+Error.
+Unrecognized field line: F_220,100,0
+==23134== 
+==23134== HEAP SUMMARY:
+==23134==     in use at exit: 0 bytes in 0 blocks
+==23134==   total heap usage: 261 allocs, 261 frees, 3,088 bytes allocated
+==23134== 
+==23134== All heap blocks were freed -- no leaks are possible
+==23134== 
+==23134== For lists of detected and suppressed errors, rerun with: -s
+==23134== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23135== Memcheck, a memory error detector
+==23135== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23135== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23135== Command: ./cub3D invalid_maps/color_tests/test2.cub
+==23135== 
+Error.
+Unrecognized field line: F	_22,100,0
+==23135== 
+==23135== HEAP SUMMARY:
+==23135==     in use at exit: 0 bytes in 0 blocks
+==23135==   total heap usage: 261 allocs, 261 frees, 3,088 bytes allocated
+==23135== 
+==23135== All heap blocks were freed -- no leaks are possible
+==23135== 
+==23135== For lists of detected and suppressed errors, rerun with: -s
+==23135== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23136== Memcheck, a memory error detector
+==23136== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23136== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23136== Command: ./cub3D invalid_maps/color_tests/test3.cub
+==23136== 
+111
+1N1
+111
+Error.
+Incorrect color format: 000,220,100,0
+==23136== 
+==23136== HEAP SUMMARY:
+==23136==     in use at exit: 0 bytes in 0 blocks
+==23136==   total heap usage: 526 allocs, 526 frees, 85,232 bytes allocated
+==23136== 
+==23136== All heap blocks were freed -- no leaks are possible
+==23136== 
+==23136== For lists of detected and suppressed errors, rerun with: -s
+==23136== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23137== Memcheck, a memory error detector
+==23137== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23137== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23137== Command: ./cub3D invalid_maps/color_tests/test4.cub
+==23137== 
+111
+1N1
+111
+Error.
+Incorrect color format: ,220,100
+==23137== 
+==23137== HEAP SUMMARY:
+==23137==     in use at exit: 32 bytes in 3 blocks
+==23137==   total heap usage: 519 allocs, 516 frees, 85,109 bytes allocated
+==23137== 
+==23137== LEAK SUMMARY:
+==23137==    definitely lost: 24 bytes in 1 blocks
+==23137==    indirectly lost: 8 bytes in 2 blocks
+==23137==      possibly lost: 0 bytes in 0 blocks
+==23137==    still reachable: 0 bytes in 0 blocks
+==23137==         suppressed: 0 bytes in 0 blocks
+==23137== Rerun with --leak-check=full to see details of leaked memory
+==23137== 
+==23137== For lists of detected and suppressed errors, rerun with: -s
+==23137== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23138== Memcheck, a memory error detector
+==23138== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23138== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23138== Command: ./cub3D invalid_maps/color_tests/test5.cub
+==23138== 
+111
+1N1
+111
+Error.
+Incorrect color format: 220,100,
+==23138== 
+==23138== HEAP SUMMARY:
+==23138==     in use at exit: 32 bytes in 3 blocks
+==23138==   total heap usage: 519 allocs, 516 frees, 85,109 bytes allocated
+==23138== 
+==23138== LEAK SUMMARY:
+==23138==    definitely lost: 24 bytes in 1 blocks
+==23138==    indirectly lost: 8 bytes in 2 blocks
+==23138==      possibly lost: 0 bytes in 0 blocks
+==23138==    still reachable: 0 bytes in 0 blocks
+==23138==         suppressed: 0 bytes in 0 blocks
+==23138== Rerun with --leak-check=full to see details of leaked memory
+==23138== 
+==23138== For lists of detected and suppressed errors, rerun with: -s
+==23138== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23139== Memcheck, a memory error detector
+==23139== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23139== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23139== Command: ./cub3D invalid_maps/color_tests/test6.cub
+==23139== 
+111
+1N1
+111
+Error.
+Incorrect color format: -1,220,100
+==23139== 
+==23139== HEAP SUMMARY:
+==23139==     in use at exit: 0 bytes in 0 blocks
+==23139==   total heap usage: 524 allocs, 524 frees, 85,176 bytes allocated
+==23139== 
+==23139== All heap blocks were freed -- no leaks are possible
+==23139== 
+==23139== For lists of detected and suppressed errors, rerun with: -s
+==23139== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23140== Memcheck, a memory error detector
+==23140== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23140== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23140== Command: ./cub3D invalid_maps/color_tests/test7.cub
+==23140== 
+111
+1N1
+111
+Error.
+Incorrect color format: 300,220,100
+==23140== 
+==23140== HEAP SUMMARY:
+==23140==     in use at exit: 0 bytes in 0 blocks
+==23140==   total heap usage: 526 allocs, 526 frees, 85,208 bytes allocated
+==23140== 
+==23140== All heap blocks were freed -- no leaks are possible
+==23140== 
+==23140== For lists of detected and suppressed errors, rerun with: -s
+==23140== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23141== Memcheck, a memory error detector
+==23141== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23141== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23141== Command: ./cub3D invalid_maps/color_tests/test8.cub
+==23141== 
+111
+1N1
+111
+Error.
+Incorrect color format: 225
+==23141== 
+==23141== HEAP SUMMARY:
+==23141==     in use at exit: 0 bytes in 0 blocks
+==23141==   total heap usage: 506 allocs, 506 frees, 84,972 bytes allocated
+==23141== 
+==23141== All heap blocks were freed -- no leaks are possible
+==23141== 
+==23141== For lists of detected and suppressed errors, rerun with: -s
+==23141== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23142== Memcheck, a memory error detector
+==23142== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23142== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23142== Command: ./cub3D invalid_maps/color_tests/test9.cub
+==23142== 
+111
+1N1
+111
+Error.
+Incorrect color format: 0x00FFFF,0,0
+==23142== 
+==23142== HEAP SUMMARY:
+==23142==     in use at exit: 0 bytes in 0 blocks
+==23142==   total heap usage: 532 allocs, 532 frees, 85,283 bytes allocated
+==23142== 
+==23142== All heap blocks were freed -- no leaks are possible
+==23142== 
+==23142== For lists of detected and suppressed errors, rerun with: -s
+==23142== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23152== Memcheck, a memory error detector
+==23152== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23152== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23152== Command: ./cub3D invalid_maps/color_tests/test10.cub
+==23152== 
+111
+1N1
+111
+Error.
+Incorrect color format: 0x,0,0
+==23152== 
+==23152== HEAP SUMMARY:
+==23152==     in use at exit: 0 bytes in 0 blocks
+==23152==   total heap usage: 520 allocs, 520 frees, 85,110 bytes allocated
+==23152== 
+==23152== All heap blocks were freed -- no leaks are possible
+==23152== 
+==23152== For lists of detected and suppressed errors, rerun with: -s
+==23152== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23153== Memcheck, a memory error detector
+==23153== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23153== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23153== Command: ./cub3D invalid_maps/color_tests/test11.cub
+==23153== 
+111
+1N1
+111
+Error.
+Incorrect color format: 
+==23153== 
+==23153== HEAP SUMMARY:
+==23153==     in use at exit: 0 bytes in 0 blocks
+==23153==   total heap usage: 500 allocs, 500 frees, 84,934 bytes allocated
+==23153== 
+==23153== All heap blocks were freed -- no leaks are possible
+==23153== 
+==23153== For lists of detected and suppressed errors, rerun with: -s
+==23153== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23155== Memcheck, a memory error detector
+==23155== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23155== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23155== Command: ./cub3D invalid_maps/color_tests/test12.cub
+==23155== 
+Error.
+Unrecognized field line: F
+==23155== 
+==23155== HEAP SUMMARY:
+==23155==     in use at exit: 0 bytes in 0 blocks
+==23155==   total heap usage: 241 allocs, 241 frees, 2,919 bytes allocated
+==23155== 
+==23155== All heap blocks were freed -- no leaks are possible
+==23155== 
+==23155== For lists of detected and suppressed errors, rerun with: -s
+==23155== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23156== Memcheck, a memory error detector
+==23156== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23156== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23156== Command: ./cub3D invalid_maps/color_tests/test13.cub
+==23156== 
+Error.
+Duplicate ID found: F
+==23156== 
+==23156== HEAP SUMMARY:
+==23156==     in use at exit: 0 bytes in 0 blocks
+==23156==   total heap usage: 260 allocs, 260 frees, 3,029 bytes allocated
+==23156== 
+==23156== All heap blocks were freed -- no leaks are possible
+==23156== 
+==23156== For lists of detected and suppressed errors, rerun with: -s
+==23156== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23161== Memcheck, a memory error detector
+==23161== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23161== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23161== Command: ./cub3D invalid_maps/color_tests/test14.cub
+==23161== 
+Error.
+Missing configurations fields.
+==23161== 
+==23161== HEAP SUMMARY:
+==23161==     in use at exit: 0 bytes in 0 blocks
+==23161==   total heap usage: 254 allocs, 254 frees, 3,182 bytes allocated
+==23161== 
+==23161== All heap blocks were freed -- no leaks are possible
+==23161== 
+==23161== For lists of detected and suppressed errors, rerun with: -s
+==23161== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23167== Memcheck, a memory error detector
+==23167== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23167== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23167== Command: ./cub3D invalid_maps/color_tests/test15.cub
+==23167== 
+Error.
+Missing configurations fields.
+==23167== 
+==23167== HEAP SUMMARY:
+==23167==     in use at exit: 0 bytes in 0 blocks
+==23167==   total heap usage: 238 allocs, 238 frees, 2,910 bytes allocated
+==23167== 
+==23167== All heap blocks were freed -- no leaks are possible
+==23167== 
+==23167== For lists of detected and suppressed errors, rerun with: -s
+==23167== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23170== Memcheck, a memory error detector
+==23170== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23170== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23170== Command: ./cub3D invalid_maps/map_tests/test1.cub
+==23170== 
+1N1
+Error.
+Invalid border detected.
+==23170== 
+==23170== HEAP SUMMARY:
+==23170==     in use at exit: 0 bytes in 0 blocks
+==23170==   total heap usage: 260 allocs, 260 frees, 3,113 bytes allocated
+==23170== 
+==23170== All heap blocks were freed -- no leaks are possible
+==23170== 
+==23170== For lists of detected and suppressed errors, rerun with: -s
+==23170== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23171== Memcheck, a memory error detector
+==23171== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23171== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23171== Command: ./cub3D invalid_maps/map_tests/test2.cub
+==23171== 
+111
+101
+111
+Error.
+Indeterminate player position.
+==23171== 
+==23171== HEAP SUMMARY:
+==23171==     in use at exit: 0 bytes in 0 blocks
+==23171==   total heap usage: 267 allocs, 267 frees, 3,149 bytes allocated
+==23171== 
+==23171== All heap blocks were freed -- no leaks are possible
+==23171== 
+==23171== For lists of detected and suppressed errors, rerun with: -s
+==23171== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23172== Memcheck, a memory error detector
+==23172== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23172== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23172== Command: ./cub3D invalid_maps/map_tests/test3.cub
+==23172== 
+111
+1N1
+101
+Error.
+Invalid border detected.
+==23172== 
+==23172== HEAP SUMMARY:
+==23172==     in use at exit: 0 bytes in 0 blocks
+==23172==   total heap usage: 267 allocs, 267 frees, 3,149 bytes allocated
+==23172== 
+==23172== All heap blocks were freed -- no leaks are possible
+==23172== 
+==23172== For lists of detected and suppressed errors, rerun with: -s
+==23172== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23173== Memcheck, a memory error detector
+==23173== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23173== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23173== Command: ./cub3D invalid_maps/map_tests/test4.cub
+==23173== 
+Error.
+Unrecognized field line: 111
+==23173== 
+==23173== HEAP SUMMARY:
+==23173==     in use at exit: 0 bytes in 0 blocks
+==23173==   total heap usage: 269 allocs, 269 frees, 3,139 bytes allocated
+==23173== 
+==23173== All heap blocks were freed -- no leaks are possible
+==23173== 
+==23173== For lists of detected and suppressed errors, rerun with: -s
+==23173== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23175== Memcheck, a memory error detector
+==23175== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23175== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23175== Command: ./cub3D invalid_maps/map_tests/test5.cub
+==23175== 
+1111
+1 N1
+Error.
+Invalid border detected.
+==23175== 
+==23175== HEAP SUMMARY:
+==23175==     in use at exit: 0 bytes in 0 blocks
+==23175==   total heap usage: 273 allocs, 273 frees, 3,186 bytes allocated
+==23175== 
+==23175== All heap blocks were freed -- no leaks are possible
+==23175== 
+==23175== For lists of detected and suppressed errors, rerun with: -s
+==23175== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23176== Memcheck, a memory error detector
+==23176== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23176== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23176== Command: ./cub3D invalid_maps/map_tests/test6.cub
+==23176== 
+1111
+1 N1
+Error.
+Invalid border detected.
+==23176== 
+==23176== HEAP SUMMARY:
+==23176==     in use at exit: 0 bytes in 0 blocks
+==23176==   total heap usage: 273 allocs, 273 frees, 3,186 bytes allocated
+==23176== 
+==23176== All heap blocks were freed -- no leaks are possible
+==23176== 
+==23176== For lists of detected and suppressed errors, rerun with: -s
+==23176== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23177== Memcheck, a memory error detector
+==23177== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23177== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23177== Command: ./cub3D invalid_maps/map_tests/test7.cub
+==23177== 
+1111
+10N1
+Error.
+Invalid border detected.
+==23177== 
+==23177== HEAP SUMMARY:
+==23177==     in use at exit: 0 bytes in 0 blocks
+==23177==   total heap usage: 273 allocs, 273 frees, 3,186 bytes allocated
+==23177== 
+==23177== All heap blocks were freed -- no leaks are possible
+==23177== 
+==23177== For lists of detected and suppressed errors, rerun with: -s
+==23177== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23178== Memcheck, a memory error detector
+==23178== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23178== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23178== Command: ./cub3D invalid_maps/map_tests/test8.cub
+==23178== 
+Error.
+Empty line on map.
+==23178== 
+==23178== HEAP SUMMARY:
+==23178==     in use at exit: 0 bytes in 0 blocks
+==23178==   total heap usage: 275 allocs, 275 frees, 3,175 bytes allocated
+==23178== 
+==23178== All heap blocks were freed -- no leaks are possible
+==23178== 
+==23178== For lists of detected and suppressed errors, rerun with: -s
+==23178== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23179== Memcheck, a memory error detector
+==23179== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23179== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23179== Command: ./cub3D invalid_maps/map_tests/test9.cub
+==23179== 
+1111
+10N1
+1110
+Error.
+Invalid border detected.
+==23179== 
+==23179== HEAP SUMMARY:
+==23179==     in use at exit: 0 bytes in 0 blocks
+==23179==   total heap usage: 273 allocs, 273 frees, 3,186 bytes allocated
+==23179== 
+==23179== All heap blocks were freed -- no leaks are possible
+==23179== 
+==23179== For lists of detected and suppressed errors, rerun with: -s
+==23179== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23180== Memcheck, a memory error detector
+==23180== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23180== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23180== Command: ./cub3D invalid_maps/map_tests/test10.cub
+==23180== 
+Error.
+Invalid char detected.
+==23180== 
+==23180== HEAP SUMMARY:
+==23180==     in use at exit: 0 bytes in 0 blocks
+==23180==   total heap usage: 263 allocs, 263 frees, 3,106 bytes allocated
+==23180== 
+==23180== All heap blocks were freed -- no leaks are possible
+==23180== 
+==23180== For lists of detected and suppressed errors, rerun with: -s
+==23180== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23181== Memcheck, a memory error detector
+==23181== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23181== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23181== Command: ./cub3D invalid_maps/map_tests/test11.cub
+==23181== 
+Error.
+Invalid char detected.
+==23181== 
+==23181== HEAP SUMMARY:
+==23181==     in use at exit: 0 bytes in 0 blocks
+==23181==   total heap usage: 271 allocs, 271 frees, 3,142 bytes allocated
+==23181== 
+==23181== All heap blocks were freed -- no leaks are possible
+==23181== 
+==23181== For lists of detected and suppressed errors, rerun with: -s
+==23181== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23182== Memcheck, a memory error detector
+==23182== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23182== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23182== Command: ./cub3D invalid_maps/map_tests/test12.cub
+==23182== 
+Error.
+Invalid char detected.
+==23182== 
+==23182== HEAP SUMMARY:
+==23182==     in use at exit: 0 bytes in 0 blocks
+==23182==   total heap usage: 273 allocs, 273 frees, 3,154 bytes allocated
+==23182== 
+==23182== All heap blocks were freed -- no leaks are possible
+==23182== 
+==23182== For lists of detected and suppressed errors, rerun with: -s
+==23182== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23183== Memcheck, a memory error detector
+==23183== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23183== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23183== Command: ./cub3D invalid_maps/map_tests/test13.cub
+==23183== 
+Error.
+Invalid char detected.
+==23183== 
+==23183== HEAP SUMMARY:
+==23183==     in use at exit: 0 bytes in 0 blocks
+==23183==   total heap usage: 277 allocs, 277 frees, 3,168 bytes allocated
+==23183== 
+==23183== All heap blocks were freed -- no leaks are possible
+==23183== 
+==23183== For lists of detected and suppressed errors, rerun with: -s
+==23183== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23184== Memcheck, a memory error detector
+==23184== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23184== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23184== Command: ./cub3D invalid_maps/map_tests/test14.cub
+==23184== 
+Error.
+Invalid char detected.
+==23184== 
+==23184== HEAP SUMMARY:
+==23184==     in use at exit: 0 bytes in 0 blocks
+==23184==   total heap usage: 291 allocs, 291 frees, 3,254 bytes allocated
+==23184== 
+==23184== All heap blocks were freed -- no leaks are possible
+==23184== 
+==23184== For lists of detected and suppressed errors, rerun with: -s
+==23184== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23185== Memcheck, a memory error detector
+==23185== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23185== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23185== Command: ./cub3D invalid_maps/map_tests/test15.cub
+==23185== 
+Error.
+Unrecognized field line: 111
+==23185== 
+==23185== HEAP SUMMARY:
+==23185==     in use at exit: 0 bytes in 0 blocks
+==23185==   total heap usage: 269 allocs, 269 frees, 3,140 bytes allocated
+==23185== 
+==23185== All heap blocks were freed -- no leaks are possible
+==23185== 
+==23185== For lists of detected and suppressed errors, rerun with: -s
+==23185== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23186== Memcheck, a memory error detector
+==23186== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23186== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23186== Command: ./cub3D invalid_maps/map_tests/test16.cub
+==23186== 
+Error.
+Missing configurations fields.
+==23186== 
+==23186== HEAP SUMMARY:
+==23186==     in use at exit: 0 bytes in 0 blocks
+==23186==   total heap usage: 264 allocs, 264 frees, 3,095 bytes allocated
+==23186== 
+==23186== All heap blocks were freed -- no leaks are possible
+==23186== 
+==23186== For lists of detected and suppressed errors, rerun with: -s
+==23186== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23187== Memcheck, a memory error detector
+==23187== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23187== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23187== Command: ./cub3D invalid_maps/map_tests/test17.cub
+==23187== 
+Error.
+Missing configurations fields.
+==23187== 
+==23187== HEAP SUMMARY:
+==23187==     in use at exit: 0 bytes in 0 blocks
+==23187==   total heap usage: 29 allocs, 29 frees, 270 bytes allocated
+==23187== 
+==23187== All heap blocks were freed -- no leaks are possible
+==23187== 
+==23187== For lists of detected and suppressed errors, rerun with: -s
+==23187== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23188== Memcheck, a memory error detector
+==23188== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23188== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23188== Command: ./cub3D invalid_maps/map_tests/test18.cub
+==23188== 
+Error.
+Indeterminate player position.
+==23188== 
+==23188== HEAP SUMMARY:
+==23188==     in use at exit: 0 bytes in 0 blocks
+==23188==   total heap usage: 238 allocs, 238 frees, 2,980 bytes allocated
+==23188== 
+==23188== All heap blocks were freed -- no leaks are possible
+==23188== 
+==23188== For lists of detected and suppressed errors, rerun with: -s
+==23188== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23189== Memcheck, a memory error detector
+==23189== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23189== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23189== Command: ./cub3D invalid_maps/map_tests/test19.cub
+==23189== 
+1111
+1NW1
+Error.
+Duplicate player position found.
+==23189== 
+==23189== HEAP SUMMARY:
+==23189==     in use at exit: 0 bytes in 0 blocks
+==23189==   total heap usage: 275 allocs, 275 frees, 3,199 bytes allocated
+==23189== 
+==23189== All heap blocks were freed -- no leaks are possible
+==23189== 
+==23189== For lists of detected and suppressed errors, rerun with: -s
+==23189== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==23190== Memcheck, a memory error detector
+==23190== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23190== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23190== Command: ./cub3D invalid_maps/map_tests/test20.cub
+==23190== 
+Error.
+Empty configuration file: ==23190== 
+==23190== HEAP SUMMARY:
+==23190==     in use at exit: 0 bytes in 0 blocks
+==23190==   total heap usage: 4 allocs, 4 frees, 154 bytes allocated
+==23190== 
+==23190== All heap blocks were freed -- no leaks are possible
+==23190== 
+==23190== For lists of detected and suppressed errors, rerun with: -s
+==23190== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+joaomigu@joaomigu-VirtualBox:~/Documents/42_Projects/cub3D_end/bin$ 
+
+
+invalid_maps/texture_tests/:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+
+invalid_maps/color_tests/:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+
+invalid_maps/map_tests/:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+
+invalid_maps/texture_tests/:
+
+1
+2
+3
+4
+5
+6
+7
+invalid_maps/texture_tests/:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+
+invalid_maps/color_tests/:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+
+invalid_maps/map_tests/:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+

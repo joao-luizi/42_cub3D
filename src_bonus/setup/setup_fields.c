@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:15 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/06/21 16:57:15 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:06:37 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * @return true if the RGB values were successfully extracted and valid,
 	false otherwise.
  */
-static bool	extract_rgb(const char *line, int *ref)
+bool	extract_rgb(const char *line, int *ref)
 {
 	char	**split;
 	int		color[4];
