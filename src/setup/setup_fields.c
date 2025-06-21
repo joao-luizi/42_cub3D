@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:15 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/05/15 16:14:21 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:28:18 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static bool	extract_rgb(const char *line, int *ref)
  */
 bool	validate_fields(t_config *cfg, t_app_state *state)
 {
+	int	i;
+
 	state->mlx = mlx_init();
 	if (!state->mlx)
 		return (ft_putstr_fd(ERR_MLX_INIT, 2), false);
@@ -73,6 +75,18 @@ bool	validate_fields(t_config *cfg, t_app_state *state)
 		|| !extract_rgb(cfg->fl_tex, &state->g.floor)
 		|| !extract_rgb(cfg->cl_tex, &state->g.ceil))
 		return (false);
+	i = -1;
+	while (cfg->fl_tex[++i])
+		if (!ft_isdigit(cfg->fl_tex[i]) && cfg->fl_tex[i] != ','
+			&& !ft_iswhitespace(cfg->fl_tex[i]))
+			return (ft_putstr_fd(ERR_COLOR_FORMAT, 2), ft_putstr_fd(cfg->fl_tex,
+					2), ft_putstr_fd("\n", 2), false);
+	i = -1;
+	while (cfg->cl_tex[++i])
+		if (!ft_isdigit(cfg->fl_tex[i]) && cfg->fl_tex[i] != ','
+			&& !ft_iswhitespace(cfg->fl_tex[i]))
+			return (ft_putstr_fd(ERR_COLOR_FORMAT, 2), ft_putstr_fd(cfg->cl_tex,
+					2), ft_putstr_fd("\n", 2), false);
 	return (true);
 }
 
