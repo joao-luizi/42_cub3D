@@ -1,15 +1,15 @@
-NO /home/joaomigu/Documents/cub3d/assets/textures/bonus/NO.xpm
+NO assets/textures/bonus/NO.xpm
 
-SO /home/joaomigu/Documents/cub3d/assets/textures/bonus/SO.xpm
-WE /home/joaomigu/Documents/cub3d/assets/textures/bonus/WS.xpm
-EA /home/joaomigu/Documents/cub3d/assets/textures/bonus/ES.xpm
+SO assets/textures/bonus/SO.xpm
+WE assets/textures/bonus/WS.xpm
+EA assets/textures/bonus/ES.xpm
 
-F /home/joaomigu/Documents/cub3d/assets/textures/bonus/floor.xpm
-C /home/joaomigu/Documents/cub3d/assets/textures/bonus/ceiling_a.xpm
+F assets/textures/bonus/floor.xpm
+C assets/textures/bonus/ceiling_a.xpm
 
-ANIM_DOOR /home/joaomigu/Documents/cub3d/assets/textures/bonus/door.ani
+ANIM_DOOR assets/textures/bonus/door.ani
 
-ANIM_FACE /home/joaomigu/Documents/cub3d/assets/textures/face.ani
+ANIM_FACE assets/textures/bonus/face.ani
 
         1111111111111111111111111
         1000000000110000000000001

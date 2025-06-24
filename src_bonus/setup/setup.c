@@ -6,7 +6,7 @@
 /*   By: joaomigu <joaomigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:53:02 by joaomigu          #+#    #+#             */
-/*   Updated: 2025/06/21 17:02:50 by joaomigu         ###   ########.fr       */
+/*   Updated: 2025/06/24 09:46:22 by joaomigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +43,32 @@ static bool	validate_file_argument(char *arg)
  * @param line_count The total number of lines in the file.
  * @return true if the file contents are valid, false otherwise.
  */
-static bool	check_file_contents(t_config *cfg, char **file_contents,
-		size_t line_count)
+static bool	check_file_contents(t_config *cfg, char **fc, size_t lc)
 {
 	size_t	index;
-	size_t	map_start_index;
+	size_t	msi;
 
 	index = 0;
-	if (!parse_configurations(cfg, file_contents, line_count, &index))
+	if (!parse_configurations(cfg, fc, lc, &index))
 		return (false);
-	while (file_contents[index] && is_whitespace_line(file_contents[index])
-		&& index < line_count)
+	while (fc[index] && is_whitespace_line(fc[index]) && index < lc)
 		index++;
-	map_start_index = index;
-	if (!calculate_map_dimensions(cfg, file_contents, &index, line_count))
+	msi = index;
+	if (!calculate_map_dimensions(cfg, fc, &index, lc))
 		return (false);
-	index = map_start_index + cfg->map.range.y;
-	while (file_contents[index] && index < line_count)
+	index = msi + cfg->map.range.y;
+	while (fc[index] && index < lc)
 	{
-		if (!is_whitespace_line(file_contents[index]))
+		if (!is_whitespace_line(fc[index]))
 		{
-			if (is_map_line(file_contents[index++]))
+			if (is_map_line(fc[index]))
 				return (ft_putstr_fd(ERR_MAP_LINE, 2), false);
 			else
 				return (ft_putstr_fd(ERR_LAST_ELE, 2), false);
 		}
+		index++;
 	}
-	return (normalize_map(cfg, file_contents, map_start_index, map_start_index
-			+ cfg->map.range.y));
+	return (normalize_map(cfg, fc, msi, msi + cfg->map.range.y));
 }
 
 /**

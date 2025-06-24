@@ -1,13 +1,4 @@
 /bin
 /obj
+/obj_bonus
 /.vscode
-/obj_bonus/render/minimap_color.*
-/obj_bonus/render/minimap_wall.*
-/obj_bonus/render/raycast.*
-/obj_bonus/render/dda.*
-/obj_bonus/setup/setup_animation.*
-/obj_bonus/setup/setup_map_utils.*
-/obj_bonus/common/cleanup_b.*
-/obj_bonus/game/hooks_b.*
-/obj_bonus/game/aux_b.*
-/obj_bonus/game/game_loop_b.*
