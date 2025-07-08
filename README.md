@@ -4,6 +4,8 @@
 cub3d is a 3D graphics project inspired by Wolfenstein 3D, designed to build a first-person view of a maze using raycasting. It is one of the major projects in the 42 curriculum that introduces graphics programming, parsing, and game logic using C and the miniLibX graphics library.
 ---
 
+https://github.com/user-attachments/assets/2bfc29d3-7c54-4823-87db-2dcc65504c37
+
 ## Table of Contents
 
 - [Project Goals](#project-goals)
